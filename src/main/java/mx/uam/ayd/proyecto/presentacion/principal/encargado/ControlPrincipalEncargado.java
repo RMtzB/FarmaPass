@@ -1,13 +1,18 @@
 
 package mx.uam.ayd.proyecto.presentacion.principal.encargado;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
+import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.presentacion.GenerarPedido.ControlGenerarPedido;
 import mx.uam.ayd.proyecto.presentacion.HistorialDeVentas.ControlHistorialDeVentas;
 import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlCierreVenta;
+import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlInventario;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.venta.ControlVenta;
 
@@ -15,8 +20,12 @@ import mx.uam.ayd.proyecto.presentacion.venta.ControlVenta;
 public class ControlPrincipalEncargado {
 
 	@Autowired
+	
+	private ControlInventario controlInventario;
+	
+	@Autowired
 	private ControlVenta controlVenta;
-
+	
 	@Autowired
 	private VentanaPrincipalEncargado ventana;
 	
@@ -71,5 +80,13 @@ public class ControlPrincipalEncargado {
 		controlGenerarPedido.despliega(empleado);
 		
 	}
+
+	public void start(Empleado empleado) {
+		controlInventario.inicia2(empleado);
+	}
+	
+
+	
+	
 
 }

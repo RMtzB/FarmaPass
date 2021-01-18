@@ -38,10 +38,10 @@ public class VentanaCierreVenta extends JFrame {
 	private JButton btnFinalizar;
 	private ControlCierreVenta control;
 
-	DefaultTableModel modeloInventario = new DefaultTableModel();
+	DefaultTableModel modeloInventario = new DefaultTableModel(); // 1
 	DefaultTableModel modeloVenta = new DefaultTableModel();
 	DefaultTableModel modeloPedido = new DefaultTableModel();
-	private JTable tabla_inventario;
+	private JTable tabla_inventario;//1.1
 	private JTable tabla_venta;
 	private JTable tabla_pedidos;
 	private JTextField txtNombreEmpleado;
@@ -61,14 +61,14 @@ public class VentanaCierreVenta extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		tabla_inventario = new JTable(modeloInventario) {
+		tabla_inventario = new JTable(modeloInventario) { //1.2
 			public boolean isCellEditable(int rowIndex, int vColIndex) {
 				return false;
 			}
 		};
-		;
+		//;
 
-		modeloInventario.addColumn("Nombre");
+		modeloInventario.addColumn("Nombre"); //2
 		modeloInventario.addColumn("Compuesto");
 		modeloInventario.addColumn("Total\n Productos");
 		modeloInventario.addColumn("Precio");
@@ -103,8 +103,8 @@ public class VentanaCierreVenta extends JFrame {
 		scrollPaneCierreVenta.setBounds(0, 0, 474, 135);
 		panel.add(scrollPaneCierreVenta);
 
-		tabla_inventario = new JTable(
-				new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Compuesto", "Precio" }));
+//    	tabla_inventario = new JTable(
+//				new DefaultTableModel(new Object[][] {}, new String[] { "Nombre", "Compuesto", "Precio" }));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -197,10 +197,10 @@ public class VentanaCierreVenta extends JFrame {
 		btnVentas.setBounds(130, 17, 120, 23);
 		panel_3.add(btnVentas);
 
-		btnInventario.addActionListener(new ActionListener() {
+		btnInventario.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
-				limpiarTablas();
-				control.obtenerProductos();
+				limpiarTablas(); //3
+				control.obtenerProductos(); //4
 				scrollPaneCierreVenta.setViewportView(tabla_inventario);
 			}
 		});
@@ -253,7 +253,6 @@ public class VentanaCierreVenta extends JFrame {
 		tabla_inventario.setModel(modeloInventario);
 		RowsRenderer rr = new RowsRenderer(2);
 		tabla_inventario.setDefaultRenderer(Object.class, rr);
-
 	}
 
 	public void agregarPedido(PedidoCliente pedidoCliente, List<Producto> productos, List<Cliente> cliente) {
@@ -276,7 +275,7 @@ public class VentanaCierreVenta extends JFrame {
 	    tabla_pedidos.setRowHeight(5, 50);
 	}
 	
-	private void limpiarTablas() {
+	private void limpiarTablas() { //3 
 		if (tabla_venta.getRowCount() > 0) {
 			int filas = tabla_venta.getRowCount();
 			try {
@@ -286,7 +285,7 @@ public class VentanaCierreVenta extends JFrame {
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Error al limpiar la tabla venta.");
 			}
-		} else if (tabla_inventario.getRowCount() > 0) {
+		} else if (tabla_inventario.getRowCount() > 0) { // solo esto
 			int filas = tabla_inventario.getRowCount();
 			try {
 				for (int i = 0; filas > i; i++) {

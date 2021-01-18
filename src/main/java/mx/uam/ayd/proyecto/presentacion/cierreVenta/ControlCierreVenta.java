@@ -18,7 +18,6 @@ import mx.uam.ayd.proyecto.negocio.modelo.PedidoCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
-import mx.uam.ayd.proyecto.presentacion.monitoreo.ControlMonitoreo;
 import mx.uam.ayd.proyecto.presentacion.principal.empleado.ControlPrincipalEmpleados;
 import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
 
@@ -33,7 +32,7 @@ import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEnca
 public class ControlCierreVenta {
 	@Autowired
 	private VentanaCierreVenta ventana;
-
+	
 	@Autowired
 	private ServicioVenta servicioVenta;
 
@@ -53,11 +52,8 @@ public class ControlCierreVenta {
 	private ControlPrincipalEncargado controlPrincipalEncargado;
 	
 	@Autowired
-	private ControlMonitoreo controlMonitoreo;
-	
-	@Autowired
 	private ControlInicioSesion controlInicioSesion;
-
+	
 	/**
 	 * Inicia el flujo de control de la ventana de cierre de venta
 	 * 
@@ -67,6 +63,7 @@ public class ControlCierreVenta {
 	public void inicia(Empleado empleado) {
 		ventana.muestra(this, empleado);
 	}
+	
 
 	public void obtenerVentasDia(String fechaF) {
 		List<Venta> ventasDia = servicioVenta.obtenerVentasPorFecha(fechaF);
@@ -94,6 +91,19 @@ public class ControlCierreVenta {
 			}
 		}
 	}
+	
+	public void obtenerProductos2() {
+		List<Producto> productos = servicioProducto.obtenerProductos();
+		if(productos.isEmpty()) {
+			ventana.sinProductos("No hay productos para mostrar");
+		} else {
+			for (Producto producto : productos) {
+				ventana.agregaProductos(producto);
+			}
+		}
+	}
+	
+	
 
 	public void obtenerPedidosClienteDelDia(String fechaF) {
 		List<PedidoCliente> pedidosClienteDia = servicioPedidoCliente.obtenerPedidosPorFechaCreacion(fechaF);

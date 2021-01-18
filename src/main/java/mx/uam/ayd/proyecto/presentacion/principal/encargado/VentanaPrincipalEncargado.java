@@ -3,14 +3,9 @@ package mx.uam.ayd.proyecto.presentacion.principal.encargado;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import org.springframework.stereotype.Component;
@@ -33,7 +28,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 
 	public VentanaPrincipalEncargado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 395, 272);
+		setBounds(100, 100, 431, 307);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,6 +95,17 @@ public class VentanaPrincipalEncargado extends JFrame {
 		
 		btnpedido.setBounds(10, 77, 128, 23);
 		panel_1.add(btnpedido);
+		
+		JButton invent = new JButton("Inventario");
+		invent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+//				limpiarTablas(); //3
+    			control.start(empleado);
+//				scrollPaneCierreVenta.setViewportView(tabla_inventario);
+			}
+		});
+		invent.setBounds(199, 77, 89, 23);
+		panel_1.add(invent);
 		contentPane.add(panel_2);
 
 		JButton btnCerrarSesion = new JButton("Cerrar sesion");
@@ -132,5 +138,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 	public void oculta() {
 		setVisible(false);
 	}
+	
+	
 }
 
