@@ -37,27 +37,26 @@ class GrupoTest {
 		Grupo grupo = new Grupo();
 		grupo.setNombre("CK01");
 		
+		
+		
 		// Prueba 1: Corroborar que addUsuario funciona correctamente si no hay usuarios en el grupo
 		boolean resultado = grupo.addUsuario(usuario);
 		
 		assertEquals(true,resultado);
+		
+		
 		
 		// Prueba 2: Corroborar que no es posible agregar un mismo usuario dos veces al grupo
 		resultado = grupo.addUsuario(usuario);
 
 		assertEquals(false,resultado);
 		
+		
+		
 		// Prueba 3: Corroborar que no se puede pasar null como parámetro
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-
 			grupo.addUsuario(null);
-
-
 		});
-		
-		
-
-		
 	}
 
 }

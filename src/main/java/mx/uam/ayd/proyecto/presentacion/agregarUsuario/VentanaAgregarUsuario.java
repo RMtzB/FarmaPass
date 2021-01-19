@@ -31,8 +31,6 @@ public class VentanaAgregarUsuario extends JFrame {
 
 
 	public VentanaAgregarUsuario() {
-		
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 292, 266);
 		contentPane = new JPanel();

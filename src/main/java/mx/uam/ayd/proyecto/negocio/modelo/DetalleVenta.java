@@ -24,6 +24,5 @@ import lombok.Data;
 public class DetalleVenta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idDetalleVenta; 
-	
+	private long idDetalleVenta;
 }

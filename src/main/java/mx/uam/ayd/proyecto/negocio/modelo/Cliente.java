@@ -20,6 +20,7 @@ import lombok.Data;
  * @author AKarina
  *
  */
+
 @Entity
 @Data
 public class Cliente {
