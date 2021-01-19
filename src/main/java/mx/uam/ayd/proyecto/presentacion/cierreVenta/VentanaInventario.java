@@ -46,7 +46,7 @@ public class VentanaInventario extends JFrame {
 	private JTable tabla_inventario;//1.1
 
 	
-
+	JScrollPane scrollPaneInvent;
 
 	
 	/**
@@ -75,7 +75,7 @@ public class VentanaInventario extends JFrame {
 		Panel panel = new Panel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		JScrollPane scrollPaneInvent = new JScrollPane();
+		scrollPaneInvent = new JScrollPane();
 		panel.add(scrollPaneInvent);
 		
 		JLabel inventariotxt = new JLabel("Inventario");
@@ -87,29 +87,30 @@ public class VentanaInventario extends JFrame {
 		
 		JButton retur = new JButton("Regresar");
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("Agregar Producto");
+		
+		JButton btnDescuento = new JButton("Agregar Descuento");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-					.addContainerGap(240, Short.MAX_VALUE)
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnDescuento)
+					.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
 					.addComponent(btnNewButton_1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(retur))
 		);
 		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(retur)
-						.addComponent(btnNewButton_1)))
+						.addComponent(btnNewButton_1)
+						.addComponent(btnDescuento)))
 		);
 		panel_1.setLayout(gl_panel_1);
-		
-		limpiarTablas(); //3
-		control.obtenerProductos2();
-		scrollPaneInvent.setViewportView(tabla_inventario);
 		
 	}
 	
@@ -118,6 +119,9 @@ public class VentanaInventario extends JFrame {
 		this.control = control;
 		this.empleado = empleado;
 		setVisible(true);
+		control.llenarTabla();
+		scrollPaneInvent.setViewportView(tabla_inventario);
+		
 	}
 
 
@@ -153,5 +157,4 @@ public class VentanaInventario extends JFrame {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

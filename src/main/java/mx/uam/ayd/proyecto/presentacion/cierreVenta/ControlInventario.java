@@ -46,16 +46,21 @@ public class ControlInventario {
 	private ControlInicioSesion controlInicioSesion;
 	
 	
-	public void inicia2(Empleado empleado) {
+	public void inicia(Empleado empleado) {
 		ventanaI.muestra(this, empleado);
 	}
 	
-	public void obtenerProductos2() {
+	public void llenarTabla() {
 		List<Producto> productos = servicioProducto.obtenerProductos();
+		if(productos.isEmpty()) {
+			ventana.sinProductos("No hay productos para mostrar");
+		} else {
 			for (Producto producto : productos) {
 				ventanaI.agregaProductos(producto);
 			}
+		}
 	}
+	
 	
 
 }

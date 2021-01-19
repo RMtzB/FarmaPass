@@ -20,7 +20,6 @@ import mx.uam.ayd.proyecto.presentacion.venta.ControlVenta;
 public class ControlPrincipalEncargado {
 
 	@Autowired
-	
 	private ControlInventario controlInventario;
 	
 	@Autowired
@@ -82,7 +81,7 @@ public class ControlPrincipalEncargado {
 	}
 
 	public void start(Empleado empleado) {
-		controlInventario.inicia2(empleado);
+		controlInventario.inicia(empleado);
 	}
 	
 

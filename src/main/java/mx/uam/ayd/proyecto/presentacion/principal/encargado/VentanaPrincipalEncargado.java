@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
+import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlInventario;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
@@ -99,11 +101,12 @@ public class VentanaPrincipalEncargado extends JFrame {
 		JButton invent = new JButton("Inventario");
 		invent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				limpiarTablas(); //3
+
     			control.start(empleado);
 //				scrollPaneCierreVenta.setViewportView(tabla_inventario);
 			}
 		});
+		
 		invent.setBounds(199, 77, 89, 23);
 		panel_1.add(invent);
 		contentPane.add(panel_2);
