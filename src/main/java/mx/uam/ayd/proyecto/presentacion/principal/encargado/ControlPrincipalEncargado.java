@@ -67,7 +67,6 @@ public class ControlPrincipalEncargado {
 	public void cerrarSesion() {
 		controlInicioSesion.inicia();
 		ventana.oculta();
-		
 	}
 
 	public void muestraHistorialDeVenta(Empleado empleado) {
@@ -80,7 +79,7 @@ public class ControlPrincipalEncargado {
 		
 	}
 
-	public void start(Empleado empleado) {
+	public void startVentanaInventario(Empleado empleado) {
 		controlInventario.inicia(empleado);
 	}
 	

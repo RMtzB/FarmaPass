@@ -6,7 +6,4 @@ import mx.uam.ayd.proyecto.negocio.modelo.DetalleVenta;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 
 public interface DetalleVentaRepository extends CrudRepository <DetalleVenta, Long>  {
-
-	
-	
 }

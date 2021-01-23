@@ -53,8 +53,6 @@ public class ControlPedidoCliente {
 
 	public List<Producto> obtenerProductosConReceta() {
 		return servicioProducto.obtenerProductosConReceta();
-		
-		
 	}
 
 	public void cancelarPedidoCliente(Empleado empleado) {
@@ -80,6 +78,7 @@ public class ControlPedidoCliente {
 		for (Integer piezasXProd : listaPiezas) {
 			totalProductos += piezasXProd;
 		}
+		
 		servicioCliente.guardarCliente(cliente);
 		PedidoCliente pedidoCliente = new PedidoCliente(fechaCreacion, totalProductos, precioTotal);
 		servicioPedidoCliente.guardar(pedidoCliente);
@@ -87,6 +86,7 @@ public class ControlPedidoCliente {
 		servicioEmpleado.guardarEmpleado(empleado);
 		cliente.addPedidoCliente(pedidoCliente);
 		servicioCliente.guardarCliente(cliente);
+		
 		for (Producto producto : listaProductos) {
 			servicioDetallePedidoCliente.agregarDetallePedidoCliente(pedidoCliente, producto, listaPiezas.get(contador));
 			contador++;

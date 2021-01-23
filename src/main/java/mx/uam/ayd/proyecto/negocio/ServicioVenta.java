@@ -19,10 +19,10 @@ import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 @Slf4j
 @Service
 public class ServicioVenta {
-	
 	@Autowired
 	private VentaRepository ventaRepository;
 
+	
 	public void creaVenta() {
 		
 	}

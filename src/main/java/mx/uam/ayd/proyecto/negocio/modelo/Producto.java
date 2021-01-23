@@ -66,7 +66,6 @@ public class Producto {
 	 */
 	
 	public boolean addDetalleVenta(DetalleVenta detalleVenta) {
-
 		if (detalleVenta == null) {
 			throw new IllegalArgumentException("El detalle de venta no puede ser null");
 		}

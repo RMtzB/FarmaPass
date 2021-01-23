@@ -12,7 +12,6 @@ import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
  * Repositorio para Asistencias
  * 
  * @author Cesar
- *
  */
 public interface AsistenciaRepository extends CrudRepository<Asistencia, Long> {
 	

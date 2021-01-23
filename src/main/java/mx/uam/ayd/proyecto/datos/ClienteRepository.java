@@ -8,7 +8,5 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.PedidoCliente;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
-
 	public List<Cliente> findByPedidosCliente(PedidoCliente pedidoCliente);
-
 }
