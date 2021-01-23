@@ -37,7 +37,7 @@ public class VentanaInventario extends JFrame {
 
 	private JPanel contentPane;
 
-	private ControlInventario control;
+	private ControlInventario controlInventario;
 	
 	//private ControlCierreVenta control2;
 	
@@ -56,7 +56,7 @@ public class VentanaInventario extends JFrame {
 	 */
 	public VentanaInventario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 599, 308);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -90,13 +90,24 @@ public class VentanaInventario extends JFrame {
 		
 		JButton retur = new JButton("Regresar");
 		
-		JButton btnNewButton_1 = new JButton("Agregar Producto");
+		JButton btnAgregarProducto = new JButton("Agregar Producto");
+		
+		/**
+		 * 
+		 * Listenar btnAgregarProducto
+		 * 
+		 */
+		btnAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlInventario.showAddProductWindow();
+			}
+		});
 		
 		JButton btnDescuento = new JButton("Agregar Descuento");
 		
 		btnDescuento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.nuevoDescuento( getNombreSeleccionado() );
+				controlInventario.nuevoDescuento( getNombreSeleccionado() );
 			}
 		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -106,7 +117,7 @@ public class VentanaInventario extends JFrame {
 					.addContainerGap()
 					.addComponent(btnDescuento)
 					.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1)
+					.addComponent(btnAgregarProducto)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(retur))
 		);
@@ -116,7 +127,7 @@ public class VentanaInventario extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(retur)
-						.addComponent(btnNewButton_1)
+						.addComponent(btnAgregarProducto)
 						.addComponent(btnDescuento)))
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -125,7 +136,7 @@ public class VentanaInventario extends JFrame {
 	
 	
 	public void muestra(ControlInventario control, Empleado empleado) {
-		this.control = control;
+		this.controlInventario = control;
 		this.empleado = empleado;
 		setVisible(true);
 		control.llenarTabla();
@@ -135,7 +146,7 @@ public class VentanaInventario extends JFrame {
 
 
 	
-	private void limpiarTablas() { //3 
+	public void limpiarTablas() { //3 
 		if (tabla_inventario.getRowCount() > 0) { // solo esto
 			int filas = tabla_inventario.getRowCount();
 			try {

@@ -15,6 +15,7 @@ import mx.uam.ayd.proyecto.presentacion.descuentos.ControlDescuentos;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.principal.empleado.ControlPrincipalEmpleados;
 import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
+import mx.uam.ayd.proyecto.presentacion.agregarProducto.ControlAgregarProductoAInventario;
 
 @Component
 public class ControlInventario {
@@ -27,6 +28,9 @@ public class ControlInventario {
 
 	@Autowired
 	private ServicioVenta servicioVenta;
+	
+	@Autowired
+	private ControlAgregarProductoAInventario addProductControl;
 
 	@Autowired
 	private ServicioProducto servicioProducto;
@@ -64,6 +68,17 @@ public class ControlInventario {
 			}
 		}
 	}
+	
+	public void refreshTable() {
+		ventanaI.limpiarTablas();
+		llenarTabla();
+	}
+	
+	public void showAddProductWindow() {
+		addProductControl.showWindow(this);
+	}
+	
+	
 	
 	public void nuevoDescuento(String nombre) {
 		ctrlDesc.iniciar(nombre);
