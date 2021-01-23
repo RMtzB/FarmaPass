@@ -36,6 +36,7 @@ public class Producto {
 	private String compuesto;
 	private String receta;
 	private String ubicacion;
+	private String descuento;
 	private float precio;
 	private int piezas;
 
@@ -53,6 +54,7 @@ public class Producto {
 		this.ubicacion = ubicacion;
 		this.precio = precio;
 		this.piezas = piezas;
+		descuento="";
 	}
 	
 	/**

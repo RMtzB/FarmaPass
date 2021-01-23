@@ -11,6 +11,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.ServicioVenta;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
+import mx.uam.ayd.proyecto.presentacion.descuentos.ControlDescuentos;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.principal.empleado.ControlPrincipalEmpleados;
 import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
@@ -45,6 +46,9 @@ public class ControlInventario {
 	@Autowired
 	private ControlInicioSesion controlInicioSesion;
 	
+	@Autowired
+	private ControlDescuentos ctrlDesc;
+	
 	
 	public void inicia(Empleado empleado) {
 		ventanaI.muestra(this, empleado);
@@ -60,6 +64,11 @@ public class ControlInventario {
 			}
 		}
 	}
+	
+	public void nuevoDescuento(String nombre) {
+		ctrlDesc.iniciar(nombre);
+	}
+	
 	
 	
 

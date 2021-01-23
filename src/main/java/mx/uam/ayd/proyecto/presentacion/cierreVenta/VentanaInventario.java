@@ -29,6 +29,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 @Component
 public class VentanaInventario extends JFrame {
@@ -71,6 +73,7 @@ public class VentanaInventario extends JFrame {
 		modeloInventario.addColumn("Total\n Productos");
 		modeloInventario.addColumn("Precio");
 		modeloInventario.addColumn("Receta");
+		modeloInventario.addColumn("Descuento");
 		
 		Panel panel = new Panel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -90,6 +93,12 @@ public class VentanaInventario extends JFrame {
 		JButton btnNewButton_1 = new JButton("Agregar Producto");
 		
 		JButton btnDescuento = new JButton("Agregar Descuento");
+		
+		btnDescuento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				control.nuevoDescuento( getNombreSeleccionado() );
+			}
+		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
@@ -140,19 +149,30 @@ public class VentanaInventario extends JFrame {
 	}
 	
 	public void agregaProductos(Producto producto) {
-		String a[] = new String[5];
+		String a[] = new String[6];
 		a[0] = producto.getNombre();
 		a[1] = producto.getCompuesto();
 		a[2] = String.valueOf(producto.getPiezas());
 		a[3] = String.valueOf(producto.getPrecio());
 		a[4] = producto.getReceta();
+		a[5] = descuento(producto);
 		modeloInventario.addRow(a);
 		tabla_inventario.setModel(modeloInventario);
 		RowsRenderer rr = new RowsRenderer(2);
 		tabla_inventario.setDefaultRenderer(Object.class, rr);
 	}
 
-
+	public String getNombreSeleccionado() {
+		int row=tabla_inventario.getSelectedRow();
+		return tabla_inventario.getValueAt(row, 0).toString() + " Con unprecio de " + tabla_inventario.getValueAt(row, 3).toString();
+	}
+	
+	private String descuento(Producto p) {
+		if(p.getDescuento().equals(""))
+			return "Sin descuento";
+		return p.getDescuento();
+	}
+	
 	public void sinProductos(String string) {
 		// TODO Auto-generated method stub
 		
