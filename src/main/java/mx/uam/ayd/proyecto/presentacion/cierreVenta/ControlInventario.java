@@ -5,45 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mx.uam.ayd.proyecto.negocio.ServicioCliente;
-import mx.uam.ayd.proyecto.negocio.ServicioPedidoCliente;
 import mx.uam.ayd.proyecto.negocio.ServicioProducto;
-import mx.uam.ayd.proyecto.negocio.ServicioVenta;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
-import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
-import mx.uam.ayd.proyecto.presentacion.principal.empleado.ControlPrincipalEmpleados;
-import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
+import mx.uam.ayd.proyecto.presentacion.agregarProducto.ControlAgregarProductoAInventario;
 
 @Component
 public class ControlInventario {
-	
 	@Autowired
-	private VentanaCierreVenta ventana;
+	private ControlAgregarProductoAInventario addProductControl;
 	
 	@Autowired
 	private VentanaInventario ventanaI;
 
 	@Autowired
-	private ServicioVenta servicioVenta;
-
-	@Autowired
 	private ServicioProducto servicioProducto;
 	
-	@Autowired
-	private ServicioPedidoCliente servicioPedidoCliente;
-	
-	@Autowired
-	private ServicioCliente servicioCliente;
-	
-	@Autowired
-	private ControlPrincipalEmpleados controlPrincipalEmpleado;
-	
-	@Autowired
-	private ControlPrincipalEncargado controlPrincipalEncargado;
-	
-	@Autowired
-	private ControlInicioSesion controlInicioSesion;
 	
 	
 	public void inicia(Empleado empleado) {
@@ -52,8 +29,9 @@ public class ControlInventario {
 	
 	public void llenarTabla() {
 		List<Producto> productos = servicioProducto.obtenerProductos();
+		
 		if(productos.isEmpty()) {
-			ventana.sinProductos("No hay productos para mostrar");
+			ventanaI.sinProductos("No hay productos para mostrar");
 		} else {
 			for (Producto producto : productos) {
 				ventanaI.agregaProductos(producto);
@@ -61,6 +39,12 @@ public class ControlInventario {
 		}
 	}
 	
-	
+	public void refreshTable() {
+		ventanaI.limpiarTablas();
+		llenarTabla();
+	}
 
+	public void showAddProductWindow() {
+		addProductControl.showWindow(this);
+	}
 }

@@ -1,8 +1,5 @@
 package mx.uam.ayd.proyecto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +16,10 @@ import mx.uam.ayd.proyecto.negocio.ServicioDetallePedidoCliente;
 import mx.uam.ayd.proyecto.negocio.ServicioDetalleVenta;
 import mx.uam.ayd.proyecto.negocio.ServicioPedidoCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
-import mx.uam.ayd.proyecto.negocio.modelo.DetalleVenta;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.PedidoCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
-import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 

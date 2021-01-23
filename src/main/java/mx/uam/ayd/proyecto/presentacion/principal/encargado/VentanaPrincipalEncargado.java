@@ -23,7 +23,7 @@ import java.awt.Color;
 public class VentanaPrincipalEncargado extends JFrame {
 
 	private JPanel contentPane;
-	private ControlPrincipalEncargado control;
+	private ControlPrincipalEncargado controlPrincipalEncargado;
 	private Empleado empleado;
 	private JTextField txtNombreEmpleado;
 	private JTextField txtNivel;
@@ -49,7 +49,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		JButton btnCierreVenta = new JButton("Inicia cierre de venta");
 		btnCierreVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.iniciaCierreVenta(empleado);
+				controlPrincipalEncargado.iniciaCierreVenta(empleado);
 			}
 		});
 		btnCierreVenta.setForeground(new Color(255, 255, 255));
@@ -61,9 +61,15 @@ public class VentanaPrincipalEncargado extends JFrame {
 		JButton btnVenta = new JButton("Venta");
 		btnVenta.setBounds(10, 30, 97, 23);
 		panel_1.add(btnVenta);
+		
+		/**
+		 * 
+		 * Listener Venta
+		 * 
+		 */
 		btnVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.agregarProductos();
+				controlPrincipalEncargado.agregarProductos();
 			}
 		});
 		contentPane.setLayout(null);
@@ -85,9 +91,15 @@ public class VentanaPrincipalEncargado extends JFrame {
 		contentPane.add(panel_1);
 
 		JButton btnhistorial = new JButton("Historial de ventas");
+		
+		/**
+		 * 
+		 * Listener Historial de ventas
+		 * 
+		 */
 		btnhistorial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				control.muestraHistorialDeVenta(empleado);
+				controlPrincipalEncargado.muestraHistorialDeVenta(empleado);
 			}
 		});
 		btnhistorial.setBounds(146, 30, 128, 23);
@@ -99,10 +111,16 @@ public class VentanaPrincipalEncargado extends JFrame {
 		panel_1.add(btnpedido);
 		
 		JButton invent = new JButton("Inventario");
+		
+		/**
+		 * 
+		 * Listener Inventario
+		 * 
+		 */
 		invent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-    			control.start(empleado);
+    			controlPrincipalEncargado.startVentanaInventario(empleado);
 //				scrollPaneCierreVenta.setViewportView(tabla_inventario);
 			}
 		});
@@ -114,7 +132,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		JButton btnCerrarSesion = new JButton("Cerrar sesion");
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.cerrarSesion();
+				controlPrincipalEncargado.cerrarSesion();
 			}
 		});
 		btnCerrarSesion.setBounds(10, 11, 124, 23);
@@ -122,14 +140,14 @@ public class VentanaPrincipalEncargado extends JFrame {
 	
 		btnpedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				control.crearPedido(empleado);
+				controlPrincipalEncargado.crearPedido(empleado);
 			}
 		});
 		
 	}
 
 	public void muestra(ControlPrincipalEncargado control, Empleado empleado) {
-		this.control = control;
+		this.controlPrincipalEncargado = control;
 		this.empleado = empleado;
 		this.txtNombreEmpleado
 				.setText(empleado.getNombre() + " " + empleado.getApellidoP() + " " + empleado.getApellidoM());

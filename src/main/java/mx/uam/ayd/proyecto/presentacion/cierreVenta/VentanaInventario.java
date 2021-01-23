@@ -1,7 +1,6 @@
 package mx.uam.ayd.proyecto.presentacion.cierreVenta;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,15 +9,12 @@ import javax.swing.table.DefaultTableModel;
 
 import org.springframework.stereotype.Component;
 
-import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
-import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlCierreVenta;
-import mx.uam.ayd.proyecto.presentacion.cierreVenta.RowsRenderer;
-import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
 
 import java.awt.Panel;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,15 +25,15 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+
 @SuppressWarnings("serial")
 @Component
 public class VentanaInventario extends JFrame {
 
 	private JPanel contentPane;
 
-	private ControlInventario control;
-	
-	//private ControlCierreVenta control2;
+	private ControlInventario controlInventario;
 	
 	DefaultTableModel modeloInventario = new DefaultTableModel(); // 1
 	
@@ -87,7 +83,18 @@ public class VentanaInventario extends JFrame {
 		
 		JButton retur = new JButton("Regresar");
 		
-		JButton btnNewButton_1 = new JButton("Agregar Producto");
+		JButton btnAgregarProducto = new JButton("Agregar Producto");
+		
+		/**
+		 * 
+		 * Listenar btnAgregarProducto
+		 * 
+		 */
+		btnAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlInventario.showAddProductWindow();
+			}
+		});
 		
 		JButton btnDescuento = new JButton("Agregar Descuento");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -97,7 +104,7 @@ public class VentanaInventario extends JFrame {
 					.addContainerGap()
 					.addComponent(btnDescuento)
 					.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1)
+					.addComponent(btnAgregarProducto)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(retur))
 		);
@@ -107,7 +114,7 @@ public class VentanaInventario extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(retur)
-						.addComponent(btnNewButton_1)
+						.addComponent(btnAgregarProducto)
 						.addComponent(btnDescuento)))
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -116,19 +123,19 @@ public class VentanaInventario extends JFrame {
 	
 	
 	public void muestra(ControlInventario control, Empleado empleado) {
-		this.control = control;
+		this.controlInventario = control;
 		this.empleado = empleado;
 		setVisible(true);
 		control.llenarTabla();
 		scrollPaneInvent.setViewportView(tabla_inventario);
-		
 	}
 
 
 	
-	private void limpiarTablas() { //3 
-		if (tabla_inventario.getRowCount() > 0) { // solo esto
+	public void limpiarTablas() {
+		if (tabla_inventario.getRowCount() > 0) {
 			int filas = tabla_inventario.getRowCount();
+			
 			try {
 				for (int i = 0; filas > i; i++) {
 					modeloInventario.removeRow(0);
@@ -154,7 +161,5 @@ public class VentanaInventario extends JFrame {
 
 
 	public void sinProductos(String string) {
-		// TODO Auto-generated method stub
-		
 	}
 }
