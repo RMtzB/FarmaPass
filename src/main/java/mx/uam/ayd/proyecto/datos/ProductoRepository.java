@@ -22,4 +22,6 @@ public interface ProductoRepository extends CrudRepository <Producto, Long> {
 	public List<Producto> findByReceta(String receta);
 
 	public Producto findByCompuesto(String compuesto);
+	
+	public List<Producto> findByFecha(String fecha);
 }

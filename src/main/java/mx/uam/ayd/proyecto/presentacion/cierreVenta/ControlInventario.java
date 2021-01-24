@@ -64,6 +64,7 @@ public class ControlInventario {
 			ventana.sinProductos("No hay productos para mostrar");
 		} else {
 			for (Producto producto : productos) {
+				
 				ventanaI.agregaProductos(producto);
 			}
 		}
@@ -78,13 +79,9 @@ public class ControlInventario {
 		addProductControl.showWindow(this);
 	}
 	
-	
-	
-	public void nuevoDescuento(String nombre) {
-		ctrlDesc.iniciar(nombre);
+	public void nuevoDescuento(String nombre,String precio) {
+		ctrlDesc.iniciar(nombre,precio);
 	}
-	
-	
 	
 
 }
