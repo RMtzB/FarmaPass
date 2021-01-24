@@ -37,6 +37,7 @@ public class Producto {
 	private String receta;
 	private String ubicacion;
 	private String descuento;
+	private String fecha;
 	private float precio;
 	private int piezas;
 

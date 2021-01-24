@@ -96,6 +96,8 @@ public class ProyectoApplication {
 
 		Producto producto1 = new Producto("DICLOFENACO", "Diclofenaco Sodico", "No", "Estante 2, tercer anaquel", 45,
 				10);
+		producto1.setDescuento("50");
+		producto1.setFecha("2021-01-24");
 		productoRepository.save(producto1);
 
 		Producto producto2 = new Producto("XL3XTRA", "Parecetamol-fenilefina-clorfenamina", "No",

@@ -73,7 +73,7 @@ public class VentanaInventario extends JFrame {
 		modeloInventario.addColumn("Total\n Productos");
 		modeloInventario.addColumn("Precio");
 		modeloInventario.addColumn("Receta");
-		modeloInventario.addColumn("Descuento");
+		modeloInventario.addColumn("Descuento         ");
 		
 		Panel panel = new Panel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -107,7 +107,10 @@ public class VentanaInventario extends JFrame {
 		
 		btnDescuento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlInventario.nuevoDescuento( getNombreSeleccionado() );
+				if(tabla_inventario.getSelectedRow()!=-1)
+					controlInventario.nuevoDescuento( getNombreSeleccionado(), getPrecioSeleccionado());
+				else
+					JOptionPane.showMessageDialog(null, "Es necesario seleccionar un producto");
 			}
 		});
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -175,13 +178,18 @@ public class VentanaInventario extends JFrame {
 
 	public String getNombreSeleccionado() {
 		int row=tabla_inventario.getSelectedRow();
-		return tabla_inventario.getValueAt(row, 0).toString() + " Con unprecio de " + tabla_inventario.getValueAt(row, 3).toString();
+		return tabla_inventario.getValueAt(row, 0).toString();
+	}
+	public String getPrecioSeleccionado() {
+		int row=tabla_inventario.getSelectedRow();
+		return tabla_inventario.getValueAt(row, 3).toString();
 	}
 	
 	private String descuento(Producto p) {
 		if(p.getDescuento().equals(""))
 			return "Sin descuento";
-		return p.getDescuento();
+		else
+			return p.getDescuento()+"% -"+p.getFecha();
 	}
 	
 	public void sinProductos(String string) {
