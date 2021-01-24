@@ -38,6 +38,7 @@ public class VentanaAgregarProductoAInventario extends JFrame implements Agregar
 	 */
 	public VentanaAgregarProductoAInventario() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setResizable(false);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,10 +121,10 @@ public class VentanaAgregarProductoAInventario extends JFrame implements Agregar
 		btnCancelar.setBounds(12, 226, 117, 25);
 		contentPane.add(btnCancelar);
 		
+		
+		
 		/**
-		 * 
 		 * Listener para el boton cancelar
-		 * 
 		 */
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,10 +138,10 @@ public class VentanaAgregarProductoAInventario extends JFrame implements Agregar
 		btnAgregar.setBounds(321, 226, 117, 25);
 		contentPane.add(btnAgregar);
 		
+		
+		
 		/**
-		 * 
 		 * Listener para el boton agregar producto
-		 * 
 		 */
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,6 +155,15 @@ public class VentanaAgregarProductoAInventario extends JFrame implements Agregar
 		});
 	}
 
+	
+	/**
+	 * Método encargado de mostrar un diálogo con el cual el usuario podrá decidir
+	 * si continua o no con la operación (Agregar producto)
+	 * 
+	 * @param mensaje Detalle de los datos ingresados
+	 * @return true Si el usurio elike la opción "Si"
+	 * @return false Si el usuario elige la opción "No"
+	 */
 	@Override
 	public boolean showMessagetoConfirmData(String mensaje) {
 		return JOptionPane.showOptionDialog(this,
@@ -167,18 +177,31 @@ public class VentanaAgregarProductoAInventario extends JFrame implements Agregar
 	}
 
 
+	/**
+	 * Método encargado de mostrar, y conectar la ventana con su control
+	 * 
+	 * @param addProductControl
+	 */
 	@Override
 	public void show(ControlAgregarProductoAInventario addProductControl) {
 		this.addProductControl = addProductControl;
-		this.setResizable(false);
 		this.setVisible(true);
 	}
 
+	/**
+	 * Método encargado de mostrar un mensaje
+	 * de error (cuando algun dato ingresado es incorrecto)
+	 * 
+	 * @param message
+	 */
 	@Override
 	public void showMessage(String message) {
 		JOptionPane.showMessageDialog(this, message);
 	}
-
+	
+	/**
+	 * Método encargado de borrar de limpiar la ventana cuando es cerrada
+	 */
 	@Override
 	public void resetWindow() {
 		tfNombre.setText("");
