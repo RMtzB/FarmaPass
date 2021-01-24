@@ -4,6 +4,7 @@ package mx.uam.ayd.proyecto.presentacion.inicioSesion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.ServicioDescuentos;
 import mx.uam.ayd.proyecto.negocio.ServicioEmpleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.presentacion.agregarUsuario.ControlAgregarUsuario;
@@ -41,7 +42,9 @@ public class ControlInicioSesion {
 	
 	@Autowired
 	private ControlMonitoreo controlmonitoreo;
-
+	
+	@Autowired
+	private ServicioDescuentos servDesc;
 	
 	
 	/**
@@ -74,6 +77,7 @@ public class ControlInicioSesion {
 	public void validaUsuario(String usuario, String password) {
 		try {
 			Empleado empleado = servicioEmpleado.validaUsuario(usuario, password);
+			servDesc.verificarDescuentosVencidos();
 			if(empleado.getNivel().equals("empleado")) {
 				controlmonitoreo.registrarInicio(empleado);
 				controlPrincipalEmpleados.inicia(empleado);

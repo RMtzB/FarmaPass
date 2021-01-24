@@ -1,13 +1,10 @@
 package mx.uam.ayd.proyecto.presentacion.descuentos;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.MaskFormatter;
-
 import org.springframework.stereotype.Component;
 
 import javax.swing.JLabel;
@@ -17,13 +14,16 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
+import java.sql.Date;
 import java.awt.event.KeyEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+
+@SuppressWarnings("serial")
 @Component
 public class VentanaDescuentos extends JFrame {
 	ControlDescuentos ctrlDesc;
@@ -31,6 +31,7 @@ public class VentanaDescuentos extends JFrame {
 	private JLabel lblInformacion;
 	private JDateChooser dttxtFecha;
 	private JTextField txtDescuento;
+	private String nombre;
 	JCheckBox chbxDuracion;
 	/**
 	 * Launch the application.
@@ -54,7 +55,7 @@ public class VentanaDescuentos extends JFrame {
 	public VentanaDescuentos() {
 		setTitle("Agregar Descuento");
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setBounds(100, 100, 467, 300);
+		setBounds(100, 100, 513, 312);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,6 +72,14 @@ public class VentanaDescuentos extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		chbxDuracion = new JCheckBox("Activar duracion");
+		chbxDuracion.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if( chbxDuracion.isSelected())
+					dttxtFecha.setEnabled(true);
+				else
+					dttxtFecha.setEnabled(false);
+			}
+		});
 		chbxDuracion.setBounds(20, 186, 122, 23);
 		contentPane.add(chbxDuracion);
 		
@@ -79,24 +88,29 @@ public class VentanaDescuentos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 		if(validado()) {
-					if(chbxDuracion.isSelected())								
-						ctrlDesc.agregarDescConDuracion(Integer.parseInt( txtDescuento.getText()) , dttxtFecha.getDate()+"");
+					if(chbxDuracion.isSelected()) {
+						long d= dttxtFecha.getDate().getTime();
+						java.sql.Date date = new  java.sql.Date(d);
+						ctrlDesc.agregarDescConDuracion(nombre,txtDescuento.getText(), date+"");
+					}
 					else
-						ctrlDesc.agregarDesc(Integer.parseInt( txtDescuento.getText()));
+						ctrlDesc.agregarDesc(nombre,txtDescuento.getText());
+					reset();
 		}		
 				
 			}
 		});
-		btnConfirmar.setBounds(345, 227, 89, 23);
+		btnConfirmar.setBounds(345, 227, 101, 23);
 		contentPane.add(btnConfirmar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				reset();
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(246, 227, 89, 23);
+		btnCancelar.setBounds(235, 227, 89, 23);
 		contentPane.add(btnCancelar);
 		
 		JLabel lblNewLabel_2 = new JLabel("Termina el");
@@ -107,6 +121,7 @@ public class VentanaDescuentos extends JFrame {
 		dttxtFecha = new JDateChooser();
 		dttxtFecha.setBounds(278, 95, 141, 20);
 		contentPane.add(dttxtFecha);
+		dttxtFecha.setEnabled(false);
 		
 			txtDescuento = new JTextField();
 			txtDescuento.addKeyListener(new KeyAdapter() {
@@ -124,9 +139,10 @@ public class VentanaDescuentos extends JFrame {
 			contentPane.add(txtDescuento);
 	}
 
-	public void mostrar(ControlDescuentos ctrlDesc,String producto) {
+	public void mostrar(ControlDescuentos ctrlDesc,String nombre,String precio) {
+		this.nombre=nombre;
 		this.ctrlDesc=ctrlDesc;
-		lblInformacion.setText(producto);
+		lblInformacion.setText(nombre+" Con un precio de "+precio);
 		this.setVisible(true);
 	}
 	
@@ -149,6 +165,12 @@ public class VentanaDescuentos extends JFrame {
 			JOptionPane.showMessageDialog(null, "No se permiten descuentos mayores al 100%");
 		}
 	return r;	
+	}
+	
+	private void reset(){
+		txtDescuento.setText("");
+		chbxDuracion.setSelected(false);
+		
 	}
 	
 }
