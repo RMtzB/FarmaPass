@@ -106,9 +106,23 @@ public class ServicioProducto {
 		
 	}
 	
-	public void modificar(String producto,String nombre, String compuesto,String receta,String ubicacion, float precio, int piezas) {
+	/***
+	 * Permite modificar/actualizar el producto buscando el producto guardado y despues le envia los nuevos parametros
+	 * @param producto
+	 * @param nombre
+	 * @param compuesto
+	 * @param receta
+	 * @param ubicacion
+	 * @param precio
+	 * @param piezas
+	 */
+	
+	public void modificar(String productoG,String nombre, String compuesto,String receta,String ubicacion, float precio, int piezas) {
 		
-		Producto productoN= productoRepository.findByNombre(producto);
+		Producto productoN= productoRepository.findByNombre(productoG);
+		if (productoN == null) {
+			throw new IllegalArgumentException("No se encuentra el producto");
+		} else {
 		productoN.setNombre(nombre);
 		productoN.setCompuesto(compuesto);
 		productoN.setReceta(receta);
@@ -117,6 +131,8 @@ public class ServicioProducto {
 		productoN.setPiezas(piezas); 
 		System.out.println("paso");
 		productoRepository.save(productoN);
+		
+		}
 		
 	}
 }
