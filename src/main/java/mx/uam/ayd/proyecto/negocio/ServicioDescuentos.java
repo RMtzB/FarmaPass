@@ -25,7 +25,6 @@ public class ServicioDescuentos {
 	public void verificarDescuentosVencidos() {
 		Date fecha1 = new Date();
 		SimpleDateFormat ff= new SimpleDateFormat("YYYY-MM-DD");
-		//String fecha="2021-01-23";
 		String fecha= ff.format(fecha1);
 		List<Producto> aux=repProducto.findByFecha(fecha);
 		for(Producto p:aux ) {
