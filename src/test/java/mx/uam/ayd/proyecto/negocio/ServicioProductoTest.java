@@ -105,4 +105,26 @@ class ServicioProductoTest {
 		assertNotEquals(8,o);
 	}
 	
+	@Test
+	void testModificar() {
+		//Prueba 1: Se modifica un producro
+		Producto p1 = new Producto();
+		p1.setNombre("aspirina");
+		p1.setCompuesto("ff");
+		p1.setReceta("Si");
+		p1.setUbicacion("aqui");
+		p1.setPrecio(20);
+		p1.setPiezas(5);
+		productoRepository.save(p1);
+		
+		// modificamos el precio
+		float cambio= 30;
+		p1.setPrecio(cambio);
+		productoRepository.save(p1);
+
+		assertEquals(cambio, p1.getPrecio());
+		
+		
+		
+	}
 }

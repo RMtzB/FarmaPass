@@ -45,7 +45,7 @@ public class VentanaDescuentos extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+			} 
 		});
 	}
 

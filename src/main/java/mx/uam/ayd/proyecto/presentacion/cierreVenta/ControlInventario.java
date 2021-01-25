@@ -13,6 +13,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.presentacion.descuentos.ControlDescuentos;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
+import mx.uam.ayd.proyecto.presentacion.modificar.ControlModificarProducto;
 import mx.uam.ayd.proyecto.presentacion.principal.empleado.ControlPrincipalEmpleados;
 import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
 import mx.uam.ayd.proyecto.presentacion.agregarProducto.ControlAgregarProductoAInventario;
@@ -53,6 +54,9 @@ public class ControlInventario {
 	@Autowired
 	private ControlDescuentos ctrlDesc;
 	
+	@Autowired
+	private ControlModificarProducto controlmodificar;
+	
 	
 	public void inicia(Empleado empleado) {
 		ventanaI.muestra(this, empleado);
@@ -83,5 +87,24 @@ public class ControlInventario {
 		ctrlDesc.iniciar(nombre,precio);
 	}
 	
+<<<<<<< Updated upstream
+=======
+	
+	public Producto buscarProducto(String nombre) {
+		return servicioProducto.buscarProducto(nombre);
+	}
+	
+	/***
+	 * Inicia historia de usuario 4
+	 * @param producto
+	 */
+	public void iniciaModificar(Producto producto) {
+		controlmodificar.iniciaM(producto);
+	}
+	
+	public void termina() {
+		ventanaI.setVisible(false);
+	}
+>>>>>>> Stashed changes
 
 }

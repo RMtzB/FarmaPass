@@ -46,9 +46,11 @@ public class VentanaInventario extends JFrame {
 	private Empleado empleado;
 
 	private JTable tabla_inventario;//1.1
-
+	
 	
 	JScrollPane scrollPaneInvent;
+	
+	Producto producto;
 
 	
 	/**
@@ -89,6 +91,11 @@ public class VentanaInventario extends JFrame {
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
 		JButton retur = new JButton("Regresar");
+		retur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlInventario.termina();
+			}
+		});
 		
 		JButton btnAgregarProducto = new JButton("Agregar Producto");
 		
@@ -113,13 +120,26 @@ public class VentanaInventario extends JFrame {
 					JOptionPane.showMessageDialog(null, "Es necesario seleccionar un producto");
 			}
 		});
+		
+		JButton btnNewButton = new JButton("Modificar Producto");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 producto= controlInventario.buscarProducto(getNombre());
+				 controlInventario.iniciaModificar(producto);	 
+			}
+		});
+		
+		
+		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnDescuento)
-					.addPreferredGap(ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+					.addGap(26)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
 					.addComponent(btnAgregarProducto)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(retur))
@@ -131,7 +151,8 @@ public class VentanaInventario extends JFrame {
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(retur)
 						.addComponent(btnAgregarProducto)
-						.addComponent(btnDescuento)))
+						.addComponent(btnDescuento)
+						.addComponent(btnNewButton)))
 		);
 		panel_1.setLayout(gl_panel_1);
 		
@@ -142,7 +163,7 @@ public class VentanaInventario extends JFrame {
 		this.controlInventario = control;
 		this.empleado = empleado;
 		setVisible(true);
-		control.llenarTabla();
+		control.refreshTable();;
 		scrollPaneInvent.setViewportView(tabla_inventario);
 		
 	}
@@ -183,6 +204,13 @@ public class VentanaInventario extends JFrame {
 	public String getPrecioSeleccionado() {
 		int row=tabla_inventario.getSelectedRow();
 		return tabla_inventario.getValueAt(row, 3).toString();
+	}
+	
+	
+	public String getNombre() {
+		
+		int row=tabla_inventario.getSelectedRow();
+		return tabla_inventario.getValueAt(row, 0).toString();
 	}
 	
 	private String descuento(Producto p) {

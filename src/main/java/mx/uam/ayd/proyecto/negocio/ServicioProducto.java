@@ -105,4 +105,18 @@ public class ServicioProducto {
 		}
 		
 	}
+	
+	public void modificar(String producto,String nombre, String compuesto,String receta,String ubicacion, float precio, int piezas) {
+		
+		Producto productoN= productoRepository.findByNombre(producto);
+		productoN.setNombre(nombre);
+		productoN.setCompuesto(compuesto);
+		productoN.setReceta(receta);
+		productoN.setUbicacion(ubicacion);
+		productoN.setPrecio(precio);
+		productoN.setPiezas(piezas); 
+		System.out.println("paso");
+		productoRepository.save(productoN);
+		
+	}
 }
