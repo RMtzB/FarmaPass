@@ -87,8 +87,7 @@ public class ControlInventario {
 		ctrlDesc.iniciar(nombre,precio);
 	}
 	
-<<<<<<< Updated upstream
-=======
+
 	
 	public Producto buscarProducto(String nombre) {
 		return servicioProducto.buscarProducto(nombre);
@@ -105,6 +104,6 @@ public class ControlInventario {
 	public void termina() {
 		ventanaI.setVisible(false);
 	}
->>>>>>> Stashed changes
+
 
 }
