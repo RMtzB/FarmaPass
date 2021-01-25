@@ -11,6 +11,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.presentacion.GenerarPedido.ControlGenerarPedido;
 import mx.uam.ayd.proyecto.presentacion.HistorialDeVentas.ControlHistorialDeVentas;
+import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.ControlAltaYBajaUsuarios;
 import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlCierreVenta;
 import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlInventario;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
@@ -39,6 +40,9 @@ public class ControlPrincipalEncargado {
 	
 	@Autowired
 	private ControlGenerarPedido controlGenerarPedido;
+	
+	@Autowired
+	private ControlAltaYBajaUsuarios controlAltaYBajaUsuarios;
 	
 	
 
@@ -81,6 +85,9 @@ public class ControlPrincipalEncargado {
 
 	public void startVentanaInventario(Empleado empleado) {
 		controlInventario.inicia(empleado);
+	}
+	public void iniciarVentanaEmpleados() {
+		controlAltaYBajaUsuarios.inicia();
 	}
 	
 

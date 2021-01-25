@@ -102,7 +102,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 				controlPrincipalEncargado.muestraHistorialDeVenta(empleado);
 			}
 		});
-		btnhistorial.setBounds(146, 30, 128, 23);
+		btnhistorial.setBounds(117, 30, 128, 23);
 		panel_1.add(btnhistorial);
 		
 		JButton btnpedido = new JButton("Generar pedido");
@@ -125,8 +125,17 @@ public class VentanaPrincipalEncargado extends JFrame {
 			}
 		});
 		
-		invent.setBounds(199, 77, 89, 23);
+		invent.setBounds(144, 77, 89, 23);
 		panel_1.add(invent);
+		
+		JButton btnEmpleados = new JButton("Empleados");
+		btnEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlPrincipalEncargado.iniciarVentanaEmpleados();
+			}
+		});
+		btnEmpleados.setBounds(270, 54, 89, 23);
+		panel_1.add(btnEmpleados);
 		contentPane.add(panel_2);
 
 		JButton btnCerrarSesion = new JButton("Cerrar sesion");
@@ -159,7 +168,5 @@ public class VentanaPrincipalEncargado extends JFrame {
 	public void oculta() {
 		setVisible(false);
 	}
-	
-	
 }
 

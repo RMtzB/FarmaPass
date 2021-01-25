@@ -34,5 +34,17 @@ public class ServicioEmpleado {
 	public Empleado guardarEmpleado(Empleado empleado) {
 		return empleadoRepository.save(empleado);
 	}
+	public Iterable<Empleado> obtenerEmpleados(){
+		return empleadoRepository.findAll();
+	}
+
+	public boolean EliminarEmpleado(String usuarioSeleccionado) {
+		Empleado aux=empleadoRepository.findByUsuario(usuarioSeleccionado);
+		if(aux.getNivel().equals("encargado"))
+			return false;
+		empleadoRepository.delete(aux);
+		return true;
+		
+	}
 
 }
