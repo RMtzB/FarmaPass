@@ -46,9 +46,8 @@ public class VentanaInventario extends JFrame {
 	private Empleado empleado;
 
 	private JTable tabla_inventario;//1.1
-	
-	
-	JScrollPane scrollPaneInvent;
+	private JScrollPane scrollPaneInvent;
+	JPanel panel;
 	
 	Producto producto;
 
@@ -58,10 +57,9 @@ public class VentanaInventario extends JFrame {
 	 */
 	public VentanaInventario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 599, 308);
+		setBounds(100, 100, 703, 317);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		tabla_inventario = new JTable(modeloInventario) { //1.2
@@ -70,25 +68,15 @@ public class VentanaInventario extends JFrame {
 			}
 		};
 		
-		modeloInventario.addColumn("Nombre"); //2
-		modeloInventario.addColumn("Compuesto");
-		modeloInventario.addColumn("Total\n Productos");
-		modeloInventario.addColumn("Precio");
-		modeloInventario.addColumn("Receta");
-		modeloInventario.addColumn("Descuento         ");
-		
-		Panel panel = new Panel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		
-		scrollPaneInvent = new JScrollPane();
-		panel.add(scrollPaneInvent);
 		
 		JLabel inventariotxt = new JLabel("Inventario");
+		inventariotxt.setBounds(5, 5, 573, 14);
 		inventariotxt.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(inventariotxt, BorderLayout.NORTH);
+		contentPane.add(inventariotxt);
 		
 		Panel panel_1 = new Panel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
+		panel_1.setBounds(5, 230, 672, 40);
+		contentPane.add(panel_1);
 		
 		JButton retur = new JButton("Regresar");
 		retur.addActionListener(new ActionListener() {
@@ -142,19 +130,38 @@ public class VentanaInventario extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
 					.addComponent(btnAgregarProducto)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(retur))
+					.addComponent(retur)
+					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-						.addComponent(retur)
-						.addComponent(btnAgregarProducto)
 						.addComponent(btnDescuento)
-						.addComponent(btnNewButton)))
+						.addComponent(btnNewButton)
+						.addComponent(btnAgregarProducto)
+						.addComponent(retur))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
+		
+		panel = new JPanel();
+		panel.setBounds(5, 30, 672, 196);
+		contentPane.add(panel);
+		
+		scrollPaneInvent = new JScrollPane();
+		panel.add(scrollPaneInvent);
+		
+		
+		modeloInventario.addColumn("Nombre"); //2
+		modeloInventario.addColumn("Compuesto");
+		modeloInventario.addColumn("Total\n Productos");
+		modeloInventario.addColumn("Precio");
+		modeloInventario.addColumn("Receta");
+		modeloInventario.addColumn("Descuento         ");
+		contentPane.setLayout(null);
+		tabla_inventario.setPreferredScrollableViewportSize(panel.getSize());
 		
 	}
 	
