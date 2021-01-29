@@ -9,6 +9,11 @@ import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlInventario;
 import mx.uam.ayd.proyecto.utils.AgregarProductoAInventario;
 import mx.uam.ayd.proyecto.utils.Constants;
 
+/**
+ * 
+ * @author RaulMb
+ *
+ */
 @Component
 public class ControlAgregarProductoAInventario implements AgregarProductoAInventario.ControlAddProduct{
 	@Autowired

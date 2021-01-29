@@ -8,13 +8,18 @@ import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.utils.AgregarProductoAInventario;
 import mx.uam.ayd.proyecto.utils.Constants;
 
+/**
+ * 
+ * @author RaulMb
+ *
+ */
 @Service
 public class ServicioAgregarProductoInventario implements AgregarProductoAInventario.ServicioAddProduct {
 	@Autowired
 	private ProductoRepository productRepository;
 	
 	/**
-	 * Método encargado de verificar si los datos ingresados son correctos
+	 * Método encargado de verificar si los datos ingresados son correctos.
 	 * 
 	 * @param name
 	 * @param location
@@ -23,10 +28,10 @@ public class ServicioAgregarProductoInventario implements AgregarProductoAInvent
 	 * @param pieces
 	 * @return THERE_ARE_FIELDS_EMPTY = 3 Si alguno de los campos
 	 * name, location, componente activo esta vacío.
-	 * @return PRICE_IS_NOT_A_NUMBER = 1 Si el campo precio no es un número o esta vacío
+	 * @return PRICE_IS_NOT_A_NUMBER = 1 Si el campo precio no es un número o esta vacío.
 	 * @return PIECES_IS_NOT_A_INTEGER_NUMBER = 2 Si el campo piezas 
-	 * es un número entero o esta vacío
-	 * @return FIELDS_ARE_CORRECT = 0 Si todos los campos son correctos
+	 * es un número entero o esta vacío.
+	 * @return FIELDS_ARE_CORRECT = 0 Si todos los campos son correctos.
 	 */
 	@Override
 	public int areFieldsCorrect(String name, String location, String price, String activeSubstance, String pieces) {

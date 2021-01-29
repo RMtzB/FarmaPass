@@ -18,6 +18,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
+/**
+ * 
+ * @author RaulMb
+ *
+ */
 @SuppressWarnings("serial")
 @Component
 public class VentanaAgregarProductoAInventario extends JFrame implements AgregarProductoAInventario.VentanaAddProduct {
