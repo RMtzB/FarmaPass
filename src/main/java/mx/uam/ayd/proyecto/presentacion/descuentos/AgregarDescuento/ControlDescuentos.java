@@ -1,4 +1,4 @@
-package mx.uam.ayd.proyecto.presentacion.descuentos;
+package mx.uam.ayd.proyecto.presentacion.descuentos.AgregarDescuento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

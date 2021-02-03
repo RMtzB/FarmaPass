@@ -11,12 +11,13 @@ import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.ServicioVenta;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
-import mx.uam.ayd.proyecto.presentacion.descuentos.ControlDescuentos;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.modificar.ControlModificarProducto;
 import mx.uam.ayd.proyecto.presentacion.principal.empleado.ControlPrincipalEmpleados;
 import mx.uam.ayd.proyecto.presentacion.principal.encargado.ControlPrincipalEncargado;
 import mx.uam.ayd.proyecto.presentacion.agregarProducto.ControlAgregarProductoAInventario;
+import mx.uam.ayd.proyecto.presentacion.descuentos.AgregarDescuento.ControlDescuentos;
+import mx.uam.ayd.proyecto.presentacion.descuentos.EliminarDescuentos.ControlEliminarDescuento;
 
 @Component
 public class ControlInventario {
@@ -56,7 +57,8 @@ public class ControlInventario {
 	
 	@Autowired
 	private ControlModificarProducto controlmodificar;
-	
+	@Autowired
+	private ControlEliminarDescuento controlEliminarDescuento;
 	
 	public void inicia(Empleado empleado) {
 		ventanaI.muestra(this, empleado);
@@ -87,7 +89,12 @@ public class ControlInventario {
 		ctrlDesc.iniciar(nombre,precio);
 	}
 	
-
+	public void EliminarDescuento(String nombre) {
+		Producto aux=servicioProducto.buscarProducto(nombre);
+		
+		
+		controlEliminarDescuento.iniciar(aux.getNombre(),aux.getDescuento(),aux.getFecha());
+	}
 	
 	public Producto buscarProducto(String nombre) {
 		return servicioProducto.buscarProducto(nombre);
