@@ -93,6 +93,11 @@ public class VentanaVenta extends JFrame {
 		contentPane.add(btnQuitarDeLista);
 
 		JButton btnRecarga = new JButton("Recarga");
+		btnRecarga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlVenta.iniciarecarga();
+			}
+		});
 		btnRecarga.setBounds(10, 228, 89, 23);
 		contentPane.add(btnRecarga);
 

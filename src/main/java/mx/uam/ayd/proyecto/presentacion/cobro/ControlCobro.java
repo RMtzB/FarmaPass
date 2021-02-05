@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.presentacion.recarga.ControlRecarga;
 import mx.uam.ayd.proyecto.presentacion.venta.ControlVenta;
 
 /*
@@ -21,6 +22,9 @@ public class ControlCobro {
 	private VentanaCobro ventanaCobro;
 	@Autowired
 	private ControlVenta controlVenta;
+	
+	@Autowired
+	private ControlRecarga controlRecarga;
 
 	/**
 	 * 
@@ -60,5 +64,15 @@ public class ControlCobro {
 	/**
 	 * Termina historia de usuario: Forma de Cobro
 	 */
+	
+	
+	/**
+	 * Termina/cierra las ventanas para una recarga
+	 */
+	public void terminaRecarga() {
+		controlRecarga.terminaE();
+		controlRecarga.termina();
+		
+	}
 
 }
