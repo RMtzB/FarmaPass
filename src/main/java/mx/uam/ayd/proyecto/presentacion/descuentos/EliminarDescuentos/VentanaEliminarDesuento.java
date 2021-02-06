@@ -6,6 +6,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.springframework.stereotype.Component;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -59,6 +61,8 @@ public class VentanaEliminarDesuento extends JFrame {
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlEliminarDescuento.EliminarDescuento(lblNombre.getText());
+				setVisible(false);
+				JOptionPane.showMessageDialog(null, "Descuento Eliminado correctamente");
 				dispose();
 			}
 		});
@@ -79,7 +83,14 @@ public class VentanaEliminarDesuento extends JFrame {
 		lblNewLabel_1_2.setBounds(79, 149, 342, 21);
 		contentPane.add(lblNewLabel_1_2);
 	}
-
+/**
+ * Muestra la instancia de VentanaEliminarDescuento
+ * 
+ * @param controlEliminarDescuento - Instancia de ControlEliminarDescuento
+ * @param producto - Nombre del producto seleccionado, sobre el cual se consultara el elimiar descuento 
+ * @param descuento - Descuento actual que tiene este producto
+ * @param fecha - Fecha en la que este descuento terminara
+ */
 	public void mostrar(ControlEliminarDescuento controlEliminarDescuento, String producto, String descuento,
 			String fecha) {
 		this.controlEliminarDescuento=controlEliminarDescuento;
