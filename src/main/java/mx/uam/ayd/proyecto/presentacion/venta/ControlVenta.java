@@ -17,6 +17,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
+import mx.uam.ayd.proyecto.presentacion.venta.busquedaActivo.ControlBusquedaPorActivo;
 
 /*
  * Esta clase lleva el flujo de la ventana de venta
@@ -39,6 +40,9 @@ public class ControlVenta {
 
 	@Autowired
 	private ServicioDetalleVenta servicioDetalleVenta;
+	
+	@Autowired
+	private ControlBusquedaPorActivo controlBusquedaPorActivo;
 
 	private List<Producto> listaProductos = new ArrayList<>();
 
@@ -59,12 +63,13 @@ public class ControlVenta {
 	public void buscarProducto(String nombre) {
 
 		try {
-			ventanaProducto.muestra(this);
 			ventanaProducto.llena(servicioProducto.buscarProducto(nombre));
+			ventanaProducto.muestra(this);
 
 		} catch (Exception ex) {
-			termina();
-			ventanaVenta.muestraDialogoConMensaje("El nombre del producto esta mal escrito o no esta en el sistema");
+			controlBusquedaPorActivo.inicia(nombre);
+			//termina();
+			//ventanaVenta.muestraDialogoConMensaje("El nombre del producto esta mal escrito o no esta en el sistema");
 		}
 	}
 
