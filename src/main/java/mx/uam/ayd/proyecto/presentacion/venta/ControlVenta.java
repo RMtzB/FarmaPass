@@ -17,6 +17,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
+import mx.uam.ayd.proyecto.presentacion.registrarCliente.ControlAgregarCliente;
 
 /*
  * Esta clase lleva el flujo de la ventana de venta
@@ -24,6 +25,8 @@ import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
 
 @Component
 public class ControlVenta {
+	@Autowired
+	ControlAgregarCliente addClientControl; 
 
 	@Autowired
 	private VentanaVenta ventanaVenta;
@@ -171,7 +174,10 @@ public class ControlVenta {
 
 	public void limpiarTabla() {
 		ventanaVenta.limpia();
-
+	}
+	
+	public void showAddClientWindow() {
+		addClientControl.showWindow(this);
 	}
 
 }

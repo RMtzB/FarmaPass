@@ -42,6 +42,7 @@ public class ControlAgregarProductoAInventario implements AgregarProductoAInvent
 	public void showWindow(ControlInventario inventaryControl) {
 		this.inventaryControl = inventaryControl;
 		addProductWindow.show(this);
+		addProductWindow.resetWindow();
 	}
 
 	/**
