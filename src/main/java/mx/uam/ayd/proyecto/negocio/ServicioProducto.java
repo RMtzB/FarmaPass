@@ -71,18 +71,6 @@ public class ServicioProducto {
 
 	}
 
-	public Producto buscarProductoCompuesto(String compuesto) {
-
-		Producto producto = productoRepository.findByCompuesto(compuesto);
-
-		System.out.print(producto);
-		if (producto == null) {
-			throw new IllegalArgumentException("No se encuentra el producto");
-		} else {
-			return producto;
-		}
-	}
-
 	public List<Producto> obtenerProductos() {
 		return (List<Producto>) productoRepository.findAll();
 	}
@@ -105,6 +93,11 @@ public class ServicioProducto {
 		}
 		
 	}
+	
+	public List<Producto> obtenerProductosPorActivo(String activo){
+		return productoRepository.findByCompuesto(activo);
+	}
+	
 	
 	/***
 	 * Permite modificar/actualizar el producto buscando el producto guardado y despues le envia los nuevos parametros
