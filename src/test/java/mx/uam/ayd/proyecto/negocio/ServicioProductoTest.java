@@ -3,9 +3,8 @@ package mx.uam.ayd.proyecto.negocio;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -44,8 +43,6 @@ class ServicioProductoTest {
 	void testBuscarProductos() {
 		
 		Producto producto = new Producto();
-		List<Producto> ListaProductos = new ArrayList<Producto>();
-		
 		Producto p1 = new Producto();
 		p1.setNombre("aspirina");
 		p1.setCompuesto("ff");
@@ -54,18 +51,8 @@ class ServicioProductoTest {
 		p1.setPrecio(20);
 		p1.setPiezas(5);
 		
-		Producto p2 = new Producto();
-		p2.setNombre("Pepto");
-		p2.setCompuesto("ff");
-		p2.setReceta("Si");
-		p2.setUbicacion("aqui");
-		p2.setPrecio(20);
-		p2.setPiezas(5);
-		ListaProductos.add(p1);
-		ListaProductos.add(p2);
-		
 		when(productoRepository.findByNombre("aspirina")).thenReturn(p1);
-		// Prueba 2: El método regresa el producto 
+		// Prueba 1: El método regresa el producto 
 		//si lo encuantra
 		Producto p = new Producto(); 
 		p=servicio.buscarProducto("aspirina");
@@ -73,31 +60,9 @@ class ServicioProductoTest {
 		assertEquals(p1, p);
 		
 		//Prueba 2: El método regresa null si no encuantra el producto
-		/*p=servicio.buscarProducto("dualgos");
+		p=servicio.buscarProducto("dualgos");
 		
-		assertNull(null);
-		//Prueba 3: El método se le pase un null
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-
-			servicio.buscarProducto(null);*/
-			
-
-		
-		
-		//Prueba pt 2
-		
-		when(productoRepository.findByCompuesto("ff")).thenReturn(ListaProductos);
-		// Prueba 1: El método regresa el producto 
-		//si lo encuantra
-		List<Producto> Lista = new ArrayList<Producto>();
-		Lista=servicio.obtenerProductosPorActivo("ff");
-		
-		assertEquals(ListaProductos, Lista);
-		
-		//Prueba 2: El método regresa null si no encuantra el producto
-		Lista=servicio.obtenerProductosPorActivo("dualgos");
-		
-		assertNull(Lista);
+		assertNull(p);
 		//Prueba 3: El método se le pase un null
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 
