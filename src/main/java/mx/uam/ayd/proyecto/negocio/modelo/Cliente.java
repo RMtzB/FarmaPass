@@ -33,6 +33,7 @@ public class Cliente {
 	private String correo;
 	private String telefono;
 
+	
 	@OneToMany(targetEntity = PedidoCliente.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCliente")
 	private final List<PedidoCliente> pedidosCliente = new ArrayList<>();

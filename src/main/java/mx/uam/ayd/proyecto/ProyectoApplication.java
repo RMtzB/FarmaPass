@@ -80,7 +80,6 @@ public class ProyectoApplication {
 
 		inicializaBD();
 		controlInicioSesion.inicia();
-		// controlPrincipal.inicia();
 	}
 
 	/**
