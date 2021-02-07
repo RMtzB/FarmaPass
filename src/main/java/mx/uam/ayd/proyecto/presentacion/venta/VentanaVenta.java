@@ -29,6 +29,8 @@ import javax.swing.table.DefaultTableModel;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
+import javax.swing.JList;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 @Component
@@ -51,7 +53,7 @@ public class VentanaVenta extends JFrame {
 	
 	public VentanaVenta() {
 		setTitle("Venta");
-		setBounds(100, 100, 619, 342);
+		setBounds(100, 100, 650, 342);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,17 +77,17 @@ public class VentanaVenta extends JFrame {
 
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTotal.setBounds(412, 232, 51, 14);
+		lblTotal.setBounds(467, 231, 51, 14);
 		contentPane.add(lblTotal);
 
 		textTotal = new JTextField();
 		textTotal.setEditable(false);
-		textTotal.setBounds(473, 229, 96, 20);
+		textTotal.setBounds(528, 228, 96, 20);
 		contentPane.add(textTotal);
 		textTotal.setColumns(10);
 
 		JButton btnCobrar = new JButton("Cobrar");
-		btnCobrar.setBounds(480, 271, 89, 23);
+		btnCobrar.setBounds(535, 269, 89, 23);
 		contentPane.add(btnCobrar);
 
 		JButton btnQuitarDeLista = new JButton("Quitar de lista");
@@ -102,7 +104,7 @@ public class VentanaVenta extends JFrame {
 		contentPane.add(btnRecarga);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 63, 574, 150);
+		scrollPane.setBounds(10, 63, 614, 150);
 		contentPane.add(scrollPane);
 
 		table = new JTable(modelo);
@@ -113,6 +115,17 @@ public class VentanaVenta extends JFrame {
 		modelo.addColumn("Seleccionar");
 
 		scrollPane.setViewportView(table);
+		
+		JButton btnRegisterClient = new JButton("Registrar Cliente");
+		btnRegisterClient.setBounds(503, 27, 121, 23);
+		contentPane.add(btnRegisterClient);
+		
+		btnRegisterClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlVenta.showAddClientWindow();
+			}
+		});
 
 		// listener
 		btnBuscar.addActionListener(new ActionListener() {
@@ -125,7 +138,6 @@ public class VentanaVenta extends JFrame {
 		txtIngresaProducto.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				btnBuscar.setEnabled(txtIngresaProducto.getText().length() != 0);
-
 			}
 
 		});
@@ -259,6 +271,4 @@ public class VentanaVenta extends JFrame {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }	
 	}
-
-
 }

@@ -15,13 +15,25 @@ public class ServicioDescuentos {
 	
 	@Autowired
 	private ProductoRepository repProducto;
-	
+	/**
+	 * Metodo para agregar un descuento a un producto dado
+	 * @param nombre Nombre del producto al que se le cambiara el descuento y fecha
+	 * @param descuento Porcentaje del descuento que se agregara
+	 * @param fecha Fecha hasta la que durara el descuento/
+	 * @apiNote Este metodo podria ser utilizado para cambiar un producto a sin descuento
+	 * dando como valor a los parametros descuento = "" y fecha = ""
+	 * 
+	 */
 	public void cambiarDescuento(String nombre,String descuento,String fecha) {
 		Producto aux=repProducto.findByNombre(nombre);
 		aux.setDescuento(descuento);
 		aux.setFecha(fecha);
 		repProducto.save(aux);
 	}
+	/**
+	 * Este metodo verifica si hay descuentos activos que vencen en este dia
+	 * asi mismo los eliminalos descuentos que caigan en este caso
+	 */
 	public void verificarDescuentosVencidos() {
 		Date fecha1 = new Date();
 		SimpleDateFormat ff= new SimpleDateFormat("YYYY-MM-DD");
@@ -36,5 +48,4 @@ public class ServicioDescuentos {
 		
 		
 	}
-
 }
