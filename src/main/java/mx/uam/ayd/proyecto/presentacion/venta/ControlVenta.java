@@ -17,6 +17,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
+import mx.uam.ayd.proyecto.presentacion.recarga.ControlRecarga;
 import mx.uam.ayd.proyecto.presentacion.registrarCliente.ControlAgregarCliente;
 
 /*
@@ -36,6 +37,9 @@ public class ControlVenta {
 
 	@Autowired
 	private ControlCobro controlCobro;
+	
+	@Autowired
+	private ControlRecarga controlRecarga;
 
 	@Autowired
 	private ServicioProducto servicioProducto;
@@ -170,6 +174,10 @@ public class ControlVenta {
 		actulizaInventarioMenos(listaProductos);
 		servicioDetalleVenta.agregarDetalleVenta(venta, listaProductos);
 		controlCobro.muestraDialogo();
+	}
+	
+	public void iniciarecarga() {
+		controlRecarga.iniciaRecarga();
 	}
 
 	public void limpiarTabla() {
