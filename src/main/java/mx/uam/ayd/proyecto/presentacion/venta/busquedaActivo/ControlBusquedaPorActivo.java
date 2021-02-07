@@ -26,7 +26,6 @@ public class ControlBusquedaPorActivo {
 			return false;
 		} else {
 			for (Producto producto : productos) {
-				
 				ventanaBusquedaPorActivo.agregaProductos(producto);
 			}
 		}
