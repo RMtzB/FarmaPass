@@ -96,6 +96,9 @@ public class VentanaConfirmacion extends JFrame {
 		lblNewLabel.setBounds(160, 10, 266, 34);
 		contentPane.add(lblNewLabel);
 		
+		/*
+		 * Cuando se acepta se carga la recarga
+		 */
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -123,6 +126,9 @@ public class VentanaConfirmacion extends JFrame {
 		btnNewButton.setBounds(472, 304, 95, 30);
 		contentPane.add(btnNewButton);
 		
+		/**
+		 * Cierra la ventana de confirmacion para regresar a ventana de recarga
+		 */
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

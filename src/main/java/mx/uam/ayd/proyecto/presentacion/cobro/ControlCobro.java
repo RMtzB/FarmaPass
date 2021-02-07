@@ -67,7 +67,7 @@ public class ControlCobro {
 	
 	
 	/**
-	 * Termina/cierra las ventanas para una recarga
+	 * Termina/cierra las ventanas para una recarga y acaba HU-6
 	 */
 	public void terminaRecarga() {
 		controlRecarga.terminaE();

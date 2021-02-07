@@ -24,6 +24,12 @@ public class ControlRecarga {
 		ventanaRecarga.muestra(this);
 	}
 	
+	/**
+	 * Abre ventana de confirmacion  pasandole los datos de la recarga 
+	 * @param numero
+	 * @param compañia
+	 * @param monto
+	 */
 	public void iniciaConfirmacion(int numero, String compañia,int monto) {
 		ventanaConfirmacion.muestra(this, numero, compañia, monto);
 		
