@@ -15,6 +15,7 @@ import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.ControlAltaYBajaUsuario
 import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlCierreVenta;
 import mx.uam.ayd.proyecto.presentacion.cierreVenta.ControlInventario;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
+import mx.uam.ayd.proyecto.presentacion.monitoreo.ControlMonitoreo;
 import mx.uam.ayd.proyecto.presentacion.venta.ControlVenta;
 
 @Component
@@ -22,6 +23,9 @@ public class ControlPrincipalEncargado {
 
 	@Autowired
 	private ControlInventario controlInventario;
+	
+	@Autowired
+	private ControlMonitoreo controlMonitoreo;
 	
 	@Autowired
 	private ControlVenta controlVenta;
@@ -68,7 +72,8 @@ public class ControlPrincipalEncargado {
 		
 	}
 
-	public void cerrarSesion() {
+	public void cerrarSesion(Empleado empleado) {
+		controlMonitoreo.registrarCerrar(empleado);
 		controlInicioSesion.inicia();
 		ventana.oculta();
 	}
@@ -91,7 +96,10 @@ public class ControlPrincipalEncargado {
 	}
 	
 
-	
+	public void monitoreo(Empleado empleado) {
+		controlMonitoreo.inicia(empleado);
+		
+	}
 	
 
 }

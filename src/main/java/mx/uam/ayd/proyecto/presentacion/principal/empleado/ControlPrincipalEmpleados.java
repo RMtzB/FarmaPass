@@ -58,7 +58,7 @@ public class ControlPrincipalEmpleados {
 	public void iniciaCierreVenta(Empleado empleado) {
 		controlCierreVenta.inicia(empleado);
 		ventana.oculta();
-		
+		controlMonitoreo.registrarCerrar(empleado);
 	}
 
 	public void cerrarSesion(Empleado empleado) {

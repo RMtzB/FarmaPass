@@ -21,7 +21,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Asistencia;
 @ExtendWith(MockitoExtension.class)
 class ServicioAsistenciasTest {
 	
-	
+	//prueba de los metodos del ServicioAsistencia
 	@BeforeEach
 	void setUp() throws Exception {
 	}
