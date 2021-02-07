@@ -1,7 +1,4 @@
-package mx.uam.ayd.proyecto.presentacion.descuentos;
-
-import java.awt.EventQueue;
-
+package mx.uam.ayd.proyecto.presentacion.descuentos.AgregarDescuento;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -32,22 +29,6 @@ public class VentanaDescuentos extends JFrame {
 	private JTextField txtDescuento;
 	private String nombre;
 	JCheckBox chbxDuracion;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaDescuentos frame = new VentanaDescuentos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} 
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
