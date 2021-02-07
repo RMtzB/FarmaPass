@@ -56,25 +56,6 @@ public class ControlVenta {
 	public void inicia() {
 		ventanaVenta.muestra(this);
 	}
-
-	/**
-	 * Método que busca invoca al servio de producto para buscar el producto por
-	 * nombre.
-	 * 
-	 * @param nombre
-	 */
-	public void buscarProducto(String nombre) {
-
-		try {
-			ventanaProducto.muestra(this);
-			ventanaProducto.llena(servicioProducto.buscarProducto(nombre));
-
-		} catch (Exception ex) {
-			termina();
-			ventanaVenta.muestraDialogoConMensaje("El nombre del producto esta mal escrito o no esta en el sistema");
-		}
-	}
-
 	/**
 	 * Método que invoca al servicio de producto para producto por nombre
 	 * 
@@ -187,5 +168,14 @@ public class ControlVenta {
 	public void showAddClientWindow() {
 		addClientControl.showWindow(this);
 	}
-
 }
+	public void buscarProducto(String nombre) {
+
+		try {
+			ventanaProducto.llena(servicioProducto.buscarProducto(nombre));
+			ventanaProducto.muestra(this);
+
+		} catch (Exception ex) {
+			controlBusquedaPorActivo.inicia(nombre);
+		}
+	}

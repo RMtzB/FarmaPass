@@ -130,7 +130,7 @@ public class VentanaVenta extends JFrame {
 		// listener
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlVenta.buscarProducto(txtIngresaProducto.getText().toUpperCase());
+				controlVenta.buscarProducto(txtIngresaProducto.getText());
 
 			}
 		});

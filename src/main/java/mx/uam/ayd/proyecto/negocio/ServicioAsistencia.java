@@ -34,7 +34,7 @@ public class ServicioAsistencia {
 	 * 
 	 * @return
 	 */
-
+    // Metodo que recupera las asistencias 
 	public List<Asistencia> recuperarasistencia() {
 		List<Asistencia> asistencias = new ArrayList<>();
 

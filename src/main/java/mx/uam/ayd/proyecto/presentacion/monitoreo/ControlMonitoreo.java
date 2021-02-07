@@ -28,7 +28,7 @@ public class ControlMonitoreo {
 		
 	
 	//Inicia la ventana de Monitoreo y carga las asistencias
-	public void inicia() {
+	public void inicia(Empleado empleado) {
 		this.iniciaAsistencias();
 	     ventanamonitoreo.muestra(this);
 	}//Fin del metodo inicia
@@ -46,7 +46,9 @@ public class ControlMonitoreo {
 		
 		String horainical= hora+":"+minuto+":"+segundo;
 		String fech=dia+"/"+mes+"/"+anio;
-	    servicioAsistencia.registroAsistencia(horainical,null,fech,empleado);
+		if (empleado.getUsuario() != "alma") {
+			servicioAsistencia.registroAsistencia(horainical, null, fech, empleado);
+		}
 
 	    //servicioasistencia.registroAsistencia(horainical, "", fech, empleado.getNombre());
 		

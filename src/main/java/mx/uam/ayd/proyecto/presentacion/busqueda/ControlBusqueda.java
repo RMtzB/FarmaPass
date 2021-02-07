@@ -42,16 +42,9 @@ public class ControlBusqueda {
 			ventanabusqueda.muestra(this);
 			ventanabusqueda.llena(servicioProducto.buscarProducto(nombre));
 
-		} catch(Exception excep) {
+		} catch(Exception e) {
 			//Metodo que buscar el producto por el criterio de Compuesto
-				try {
-					ventanabusqueda.muestra(this);
-					ventanabusqueda.llena(servicioProducto.buscarProductoCompuesto(nombre));
-
-				} catch(Exception e) {
 					ventanabusqueda.muestraDialogoConMensaje("El producto no existente : "+e.getMessage());
-					
-				}
 		    }
 	}
     
