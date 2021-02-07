@@ -76,7 +76,9 @@ public class VentanaRecarga extends JFrame {
 		textNumero.setBounds(122, 214, 243, 30);
 		contentPane.add(textNumero);
 		textNumero.setColumns(1);
-		
+		 /**
+		  * Verifica el sistema si no hay campos vacios, cuando hayan se muestran mensajes hasta que se llenen 
+		  */
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,6 +128,10 @@ public class VentanaRecarga extends JFrame {
 		lblNewLabel_1_1.setBounds(10, 10, 65, 13);
 		contentPane.add(lblNewLabel_1_1);
 		
+		
+		/**
+		 * Botones de compañia cuando se oprime uno se habilita la casilla de numeros
+		 */
 		JButton btnTelcel = new JButton("");
 		JLabel lblTelcel = new JLabel("");	
 		lblTelcel.setAutoscrolls(true);
