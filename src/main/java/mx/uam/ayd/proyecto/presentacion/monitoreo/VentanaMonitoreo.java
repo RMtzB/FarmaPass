@@ -74,7 +74,7 @@ public class VentanaMonitoreo extends JFrame {
 		
 		table = new JTable(modelo);
 		
-		modelo.addColumn("ID");
+		modelo.addColumn("Nombre");
 		modelo.addColumn("Hora de Inicio");
 		modelo.addColumn("Hora de Cerrar");
 		modelo.addColumn("Fecha");
@@ -94,7 +94,7 @@ public class VentanaMonitoreo extends JFrame {
 	
 	public void llenaTabla(Asistencia asistencia) {
 		String a[] = new String[4];
-		a[0] = String.valueOf(asistencia.getIdAsistencia());
+		a[0] = asistencia.getEmpleado().getNombre();
 		a[1] = asistencia.getHoraInicial();
 		a[2] = asistencia.getHoraFinal();
 		a[3] = asistencia.getFecha();

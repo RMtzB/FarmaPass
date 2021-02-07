@@ -107,7 +107,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		
 		JButton btnpedido = new JButton("Generar pedido");
 		
-		btnpedido.setBounds(10, 77, 128, 23);
+		btnpedido.setBounds(0, 77, 128, 23);
 		panel_1.add(btnpedido);
 		
 		JButton invent = new JButton("Inventario");
@@ -125,7 +125,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 			}
 		});
 		
-		invent.setBounds(144, 77, 89, 23);
+		invent.setBounds(136, 77, 89, 23);
 		panel_1.add(invent);
 		
 		JButton btnEmpleados = new JButton("Empleados");
@@ -134,14 +134,23 @@ public class VentanaPrincipalEncargado extends JFrame {
 				controlPrincipalEncargado.iniciarVentanaEmpleados();
 			}
 		});
-		btnEmpleados.setBounds(270, 54, 89, 23);
+		btnEmpleados.setBounds(255, 30, 89, 23);
 		panel_1.add(btnEmpleados);
+		
+		JButton btnNewButton = new JButton("Monitoreo Empleados");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controlPrincipalEncargado.monitoreo(empleado);
+			}
+		});
+		btnNewButton.setBounds(235, 77, 134, 23);
+		panel_1.add(btnNewButton);
 		contentPane.add(panel_2);
 
 		JButton btnCerrarSesion = new JButton("Cerrar sesion");
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlPrincipalEncargado.cerrarSesion();
+				controlPrincipalEncargado.cerrarSesion(empleado);
 			}
 		});
 		btnCerrarSesion.setBounds(10, 11, 124, 23);
