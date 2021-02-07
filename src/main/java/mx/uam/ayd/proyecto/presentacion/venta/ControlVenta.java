@@ -19,6 +19,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
 import mx.uam.ayd.proyecto.presentacion.recarga.ControlRecarga;
 import mx.uam.ayd.proyecto.presentacion.registrarCliente.ControlAgregarCliente;
+import mx.uam.ayd.proyecto.presentacion.venta.busquedaActivo.ControlBusquedaPorActivo;
 
 /*
  * Esta clase lleva el flujo de la ventana de venta
@@ -46,7 +47,10 @@ public class ControlVenta {
 
 	@Autowired
 	private ServicioDetalleVenta servicioDetalleVenta;
-
+	
+	@Autowired
+	private ControlBusquedaPorActivo controlBusquedaPorActivo;
+	
 	private List<Producto> listaProductos = new ArrayList<>();
 
 	/**
@@ -168,7 +172,7 @@ public class ControlVenta {
 	public void showAddClientWindow() {
 		addClientControl.showWindow(this);
 	}
-}
+
 	public void buscarProducto(String nombre) {
 
 		try {
@@ -179,3 +183,4 @@ public class ControlVenta {
 			controlBusquedaPorActivo.inicia(nombre);
 		}
 	}
+}
