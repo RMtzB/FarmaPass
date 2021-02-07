@@ -17,7 +17,8 @@ import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
-import mx.uam.ayd.proyecto.presentacion.venta.busquedaActivo.ControlBusquedaPorActivo;
+import mx.uam.ayd.proyecto.presentacion.recarga.ControlRecarga;
+import mx.uam.ayd.proyecto.presentacion.registrarCliente.ControlAgregarCliente;
 
 /*
  * Esta clase lleva el flujo de la ventana de venta
@@ -25,6 +26,8 @@ import mx.uam.ayd.proyecto.presentacion.venta.busquedaActivo.ControlBusquedaPorA
 
 @Component
 public class ControlVenta {
+	@Autowired
+	ControlAgregarCliente addClientControl; 
 
 	@Autowired
 	private VentanaVenta ventanaVenta;
@@ -34,15 +37,15 @@ public class ControlVenta {
 
 	@Autowired
 	private ControlCobro controlCobro;
+	
+	@Autowired
+	private ControlRecarga controlRecarga;
 
 	@Autowired
 	private ServicioProducto servicioProducto;
 
 	@Autowired
 	private ServicioDetalleVenta servicioDetalleVenta;
-	
-	@Autowired
-	private ControlBusquedaPorActivo controlBusquedaPorActivo;
 
 	private List<Producto> listaProductos = new ArrayList<>();
 
@@ -53,26 +56,6 @@ public class ControlVenta {
 	public void inicia() {
 		ventanaVenta.muestra(this);
 	}
-
-	/**
-	 * Método que busca invoca al servio de producto para buscar el producto por
-	 * nombre.
-	 * 
-	 * @param nombre
-	 */
-	public void buscarProducto(String nombre) {
-
-		try {
-			ventanaProducto.llena(servicioProducto.buscarProducto(nombre));
-			ventanaProducto.muestra(this);
-
-		} catch (Exception ex) {
-			controlBusquedaPorActivo.inicia(nombre);
-			//termina();
-			//ventanaVenta.muestraDialogoConMensaje("El nombre del producto esta mal escrito o no esta en el sistema");
-		}
-	}
-
 	/**
 	 * Método que invoca al servicio de producto para producto por nombre
 	 * 
@@ -173,10 +156,26 @@ public class ControlVenta {
 		servicioDetalleVenta.agregarDetalleVenta(venta, listaProductos);
 		controlCobro.muestraDialogo();
 	}
+	
+	public void iniciarecarga() {
+		controlRecarga.iniciaRecarga();
+	}
 
 	public void limpiarTabla() {
 		ventanaVenta.limpia();
-
 	}
-
+	
+	public void showAddClientWindow() {
+		addClientControl.showWindow(this);
+	}
 }
+	public void buscarProducto(String nombre) {
+
+		try {
+			ventanaProducto.llena(servicioProducto.buscarProducto(nombre));
+			ventanaProducto.muestra(this);
+
+		} catch (Exception ex) {
+			controlBusquedaPorActivo.inicia(nombre);
+		}
+	}

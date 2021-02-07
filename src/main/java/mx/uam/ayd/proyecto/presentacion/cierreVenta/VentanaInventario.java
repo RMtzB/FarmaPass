@@ -98,12 +98,17 @@ public class VentanaInventario extends JFrame {
 			}
 		});
 		
-		JButton btnDescuento = new JButton("Agregar Descuento");
+		JButton btnDescuento = new JButton("Agregar/Eliminar Descuento");
 		
 		btnDescuento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(tabla_inventario.getSelectedRow()!=-1)
-					controlInventario.nuevoDescuento( getNombreSeleccionado(), getPrecioSeleccionado());
+				int row=tabla_inventario.getSelectedRow();
+				if(row!=-1) {
+					if(tabla_inventario.getValueAt(row, 5).toString().equals("Sin descuento"))
+						controlInventario.nuevoDescuento( getNombreSeleccionado(), getPrecioSeleccionado());
+					else
+						controlInventario.EliminarDescuento(getNombreSeleccionado());
+				}
 				else
 					JOptionPane.showMessageDialog(null, "Es necesario seleccionar un producto");
 			}
@@ -125,23 +130,23 @@ public class VentanaInventario extends JFrame {
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnDescuento)
-					.addGap(26)
+					.addGap(56)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
 					.addComponent(btnAgregarProducto)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(retur)
 					.addContainerGap())
 		);
 		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnDescuento)
-						.addComponent(btnNewButton)
 						.addComponent(btnAgregarProducto)
-						.addComponent(retur))
+						.addComponent(retur)
+						.addComponent(btnNewButton))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_1.setLayout(gl_panel_1);
@@ -212,7 +217,6 @@ public class VentanaInventario extends JFrame {
 		int row=tabla_inventario.getSelectedRow();
 		return tabla_inventario.getValueAt(row, 3).toString();
 	}
-	
 	
 	public String getNombre() {
 		

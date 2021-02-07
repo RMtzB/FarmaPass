@@ -163,10 +163,10 @@ public class VentanaAgregarProductoAInventario extends JFrame implements Agregar
 	
 	/**
 	 * Método encargado de mostrar un diálogo con el cual el usuario podrá decidir
-	 * si continua o no con la operación (Agregar producto)
+	 * si continua o no con la operación (Registrar producto)
 	 * 
 	 * @param mensaje Detalle de los datos ingresados
-	 * @return true Si el usurio elike la opción "Si"
+	 * @return true Si el usurio elige la opción "Si"
 	 * @return false Si el usuario elige la opción "No"
 	 */
 	@Override
