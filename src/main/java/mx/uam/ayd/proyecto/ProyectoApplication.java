@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import mx.uam.ayd.proyecto.datos.AsistenciaRepository;
 import mx.uam.ayd.proyecto.datos.DetalleVentaRepository;
 import mx.uam.ayd.proyecto.datos.EmpleadoRepository;
 import mx.uam.ayd.proyecto.datos.GrupoRepository;
@@ -15,6 +16,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioCliente;
 import mx.uam.ayd.proyecto.negocio.ServicioDetallePedidoCliente;
 import mx.uam.ayd.proyecto.negocio.ServicioDetalleVenta;
 import mx.uam.ayd.proyecto.negocio.ServicioPedidoCliente;
+import mx.uam.ayd.proyecto.negocio.modelo.Asistencia;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
@@ -53,6 +55,9 @@ public class ProyectoApplication {
 
 	@Autowired
 	GrupoRepository grupoRepository;
+	
+	@Autowired
+	AsistenciaRepository asistenciaRepository;
 
 	@Autowired
 	ServicioDetallePedidoCliente servicioDetallePedidoCliente;
@@ -154,6 +159,20 @@ public class ProyectoApplication {
 		Grupo grupoOps = new Grupo();
 		grupoOps.setNombre("Operadores");
 		grupoRepository.save(grupoOps);
-
+		
+		
+		Asistencia asistencia = new Asistencia();
+		asistencia.setHoraInicial("08:00:45");
+		asistencia.setHoraFinal("18:30:24");
+		asistencia.setFecha("7/2/2021");
+		asistencia.setEmpleado(pruebaEmpleado);
+		asistenciaRepository.save(asistencia);
+		
+		Asistencia asistencia1 = new Asistencia();
+		asistencia1.setHoraInicial("08:00:45");
+		asistencia1.setHoraFinal("18:30:24");
+		asistencia1.setFecha("5/2/2021");
+		asistencia1.setEmpleado(pruebaEmpleado);
+		asistenciaRepository.save(asistencia1);
 	}
 }
