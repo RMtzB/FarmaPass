@@ -32,6 +32,7 @@ public class Cliente {
 	private String apellidoMaterno;
 	private String correo;
 	private String telefono;
+	private ArrayList<String> historial; 
 
 	
 	@OneToMany(targetEntity = PedidoCliente.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -39,6 +40,7 @@ public class Cliente {
 	private final List<PedidoCliente> pedidosCliente = new ArrayList<>();
 
 	public Cliente() {
+		historial = new ArrayList<String>();
 	}
 
 	public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String telefono) {
@@ -47,6 +49,7 @@ public class Cliente {
 		this.apellidoMaterno = apellidoMaterno;
 		this.correo = correo;
 		this.telefono = telefono;
+		historial = new ArrayList<String>();
 	}
 
 	/**
@@ -66,6 +69,9 @@ public class Cliente {
 			return false;
 		}
 		return pedidosCliente.add(pedidoCliente);
+	}
+	public void agregarVent(String fecha, double total,int cantidad) {
+		historial.add(fecha+"?"+total+"?"+cantidad);
 	}
 
 }
