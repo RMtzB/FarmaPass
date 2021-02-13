@@ -30,13 +30,13 @@ class ServicioAgregarClienteTest {
 		when(clientRepository.save(client)).thenReturn(client);
 		
 		System.out.println("Prueba 1: Regresa true (si el cliente es guardado)");
-		assertEquals(true, addClientService.addClient(client));
+		assertEquals(client.getIdCliente(), addClientService.addClient(client));
 		
 		
 		when(clientRepository.save(client)).thenReturn(null);
 		
 		System.out.println("Prueba 2: Regresa el false (si el cliente no es guardado)");
-		assertEquals(false, addClientService.addClient(client));
+		assertEquals(-1, addClientService.addClient(client));
 	}
 	
 	

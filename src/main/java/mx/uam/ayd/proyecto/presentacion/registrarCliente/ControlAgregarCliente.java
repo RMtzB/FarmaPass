@@ -63,14 +63,15 @@ public class ControlAgregarCliente implements RegistrarCliente.AddClientControl 
 														"\nTeléfono:\n" + number)) {
 				String[] apellido = apellidos.split(" ");
 				String lastName = apellido.length == 2 ? apellido[1] : "";
+				long clientId = addClientService.addClient(new Cliente(name,
+																		apellido[0],
+																		lastName, 
+																		email,
+																		number));
 				
-				if(addClientService.addClient(new Cliente(name,
-															apellido[0],
-															lastName, 
-															email,
-															number))) {
-					
-					addClientWindow.showMessage("El cliente fue guardado correctamente");
+				if(0 < clientId) {
+					addClientWindow.showMessage("El cliente fue guardado correctamente"
+												+ "\n N° de Cliente: " + clientId);
 					closeWindow();
 				}
 			}

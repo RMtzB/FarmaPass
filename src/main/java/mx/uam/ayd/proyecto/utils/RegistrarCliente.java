@@ -28,6 +28,6 @@ public class RegistrarCliente {
 	public interface AddClientService {
 		public int areFieldsCorrect(String nombre, String apellidos, String correo, String numero);
 		
-		public boolean addClient(Cliente cliente);
+		public long addClient(Cliente cliente);
 	}
 }

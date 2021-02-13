@@ -63,11 +63,16 @@ public class ServicioAgregarCliente implements RegistrarCliente.AddClientService
 	 * Método encardado de comunicarse con el repositorio para guardar el cliente
 	 * 
 	 * @param cliente
-	 * @return true Si el cliente se guardó correctamente
-	 * @return false Si el cliente no pudo ser guardado
+	 * @return idCliente == -1 Si el Cliente no pudo ser guardado
+	 * @return idCliente != -1 Si el Cliente fue guardado correctamente
 	 */
 	@Override
-	public boolean addClient(Cliente cliente) {
-		return clientRepository.save(cliente) != null;
+	public long addClient(Cliente cliente) {
+		Cliente client = clientRepository.save(cliente);
+		if (client != null) {
+			return client.getIdCliente();
+		} else {
+			return -1;
+		}
 	}
 }
