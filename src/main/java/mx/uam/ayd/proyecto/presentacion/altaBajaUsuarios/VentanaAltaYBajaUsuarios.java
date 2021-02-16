@@ -45,7 +45,7 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 		scrollPaneAltaBayaClientes = new JScrollPane();		
 		panel.add(scrollPaneAltaBayaClientes);
 		
-		JLabel lblNewLabel = new JLabel("Usuarios regstrados");
+		JLabel lblNewLabel = new JLabel("Usuarios registrados");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(296, 6, 141, 24);
 		contentPane.add(lblNewLabel);
@@ -79,6 +79,17 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 		});
 		btnSalir.setBounds(10, 339, 89, 23);
 		contentPane.add(btnSalir);
+		
+		JButton btnVentasEmpleado = new JButton("Ver Ventas ");
+		btnVentasEmpleado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlAltaYBaja.iniciaVerVentas(getUsuarioSeleccionado());
+				
+			}
+		});
+		btnVentasEmpleado.setBounds(254, 339, 89, 23);
+		contentPane.add(btnVentasEmpleado);
+		
 		
 		tablaAltaBajaUsuarios = new JTable(modeloAltaBajaUsuario) { //1.2
 			public boolean isCellEditable(int rowIndex, int vColIndex) {
@@ -143,6 +154,4 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 
 		
 	}
-	
-	
 }
