@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import mx.uam.ayd.proyecto.datos.ClienteRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.PedidoCliente;
 
 @Service
@@ -24,5 +25,11 @@ public class ServicioCliente {
 
 	public List<Cliente> obtenerClientePorPedido(PedidoCliente pedidoCliente) {
 		return clienteRepository.findByPedidosCliente(pedidoCliente);
+	}
+	public Iterable<Cliente> obtenerClientes(){
+		return clienteRepository.findAll();
+	}
+	public Cliente obtenerCliente(int id) {
+		return clienteRepository.findById(id);
 	}
 }
