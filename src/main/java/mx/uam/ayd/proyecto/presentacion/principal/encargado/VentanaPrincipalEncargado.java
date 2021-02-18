@@ -69,7 +69,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		 */
 		btnVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlPrincipalEncargado.agregarProductos();
+				controlPrincipalEncargado.agregarProductos(empleado.getUsuario());
 			}
 		});
 		contentPane.setLayout(null);

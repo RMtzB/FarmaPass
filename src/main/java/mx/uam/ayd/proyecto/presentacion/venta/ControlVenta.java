@@ -57,8 +57,8 @@ public class ControlVenta {
 	 * Inicia la historia de usuario: Agregar productos para la venta
 	 * 
 	 */
-	public void inicia() {
-		ventanaVenta.muestra(this);
+	public void inicia(String nom) {
+		ventanaVenta.muestra(this,nom);
 	}
 	/**
 	 * Método que invoca al servicio de producto para producto por nombre
@@ -127,8 +127,8 @@ public class ControlVenta {
 	 * 
 	 * @param total
 	 */
-	public void muentraCobro(float total) {
-		controlCobro.inicia(total);
+	public void muentraCobro(float total,String responsabl) {
+		controlCobro.inicia(total,responsabl);
 	}
 
 	/**
@@ -145,24 +145,26 @@ public class ControlVenta {
 	 * 
 	 * @param total
 	 */
-	public void obtenerLista(float total) {
+	public void obtenerLista(float total,String responsable) {
 
 		listaProductos = ventanaVenta.recorrerTabla();
 		Venta venta = new Venta();
 		Calendar fecha = new GregorianCalendar();
 		int ano = fecha.get(Calendar.YEAR);
-		int mes = fecha.get(Calendar.MONTH);
+		int mes = fecha.get(Calendar.MONTH)+1;
 		int dia = fecha.get(Calendar.DAY_OF_MONTH);
-		String fechaF = ano + "/" + mes + "/" + dia;
+		String fechaF = dia + "/" + mes + "/" + ano;
 		venta.setFecha(fechaF);
 		venta.setTotal(total);
+		venta.setCantidad(listaProductos.size());
+		venta.setResponsable(responsable);
 		actulizaInventarioMenos(listaProductos);
 		servicioDetalleVenta.agregarDetalleVenta(venta, listaProductos);
 		controlCobro.muestraDialogo();
 	}
 	
-	public void iniciarecarga() {
-		controlRecarga.iniciaRecarga();
+	public void iniciarecarga(String usuario) {
+		controlRecarga.iniciaRecarga(usuario);
 	}
 
 	public void limpiarTabla() {

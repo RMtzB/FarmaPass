@@ -31,6 +31,8 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAltaYBajaUsuarios() {
+		
+		setTitle("Empleados");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 748, 412);
 		contentPane = new JPanel();
@@ -74,7 +76,7 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				controlAltaYBaja.termina();
 			}
 		});
 		btnSalir.setBounds(10, 339, 89, 23);
@@ -87,7 +89,7 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 				
 			}
 		});
-		btnVentasEmpleado.setBounds(254, 339, 89, 23);
+		btnVentasEmpleado.setBounds(236, 339, 121, 23);
 		contentPane.add(btnVentasEmpleado);
 		
 		

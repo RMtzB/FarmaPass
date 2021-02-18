@@ -45,4 +45,12 @@ public class ServicioVenta {
 		return ventas;
 		
 	}
+	
+	public List<Venta> obtenerVentasPorEmpleado(String usuario) {
+		List<Venta> ventas =  new ArrayList<>();
+		for (Venta venta : ventaRepository.findByResponsable(usuario) ) {
+			ventas.add(venta);
+		}
+		return ventas;
+	}
 }

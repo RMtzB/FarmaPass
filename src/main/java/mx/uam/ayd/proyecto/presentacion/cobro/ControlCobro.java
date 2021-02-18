@@ -30,8 +30,8 @@ public class ControlCobro {
 	 * 
 	 * Inicia historia de usuario: Forma de cobro
 	 */
-	public void inicia(float total) {
-		ventanaCobro.muestra(this, total);
+	public void inicia(float total, String responsable) {
+		ventanaCobro.muestra(this, total,responsable);
 	}
 
 	public void termina() {
@@ -43,8 +43,8 @@ public class ControlCobro {
 	 * 
 	 * @param total
 	 */
-	public void obtenerLista(float total) {
-		controlVenta.obtenerLista(total);
+	public void obtenerLista(float total,String responsable) {
+		controlVenta.obtenerLista(total,responsable);
 	}
 	/**
 	 * Método que muestra los dialogos de la ventana

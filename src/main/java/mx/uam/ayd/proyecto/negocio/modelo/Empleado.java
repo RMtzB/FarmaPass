@@ -51,6 +51,7 @@ public class Empleado {
 		this.nivel = nivel;
 		this.usuario = usuario;
 		this.password = password;
+
 	}
 	
 	/**

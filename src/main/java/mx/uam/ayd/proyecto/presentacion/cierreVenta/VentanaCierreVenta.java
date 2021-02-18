@@ -50,9 +50,9 @@ public class VentanaCierreVenta extends JFrame {
 
 	private Calendar fecha = new GregorianCalendar();
 	private int ano = fecha.get(Calendar.YEAR);
-	private int mes = fecha.get(Calendar.MONTH);
+	private int mes = fecha.get(Calendar.MONTH)+1;
 	private int dia = fecha.get(Calendar.DAY_OF_MONTH);
-	private String fechaF = ano + "/" + mes + "/" + dia;
+	private String fechaF = dia + "/" + mes + "/" + ano;
 	private JTextField txtError;
 
 	public VentanaCierreVenta() {

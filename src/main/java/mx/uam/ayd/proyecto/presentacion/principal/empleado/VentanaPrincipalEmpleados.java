@@ -61,7 +61,7 @@ public class VentanaPrincipalEmpleados extends JFrame {
 		panel_1.add(btnVenta);
 		btnVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.agregarProductos();
+				control.agregarProductos(empleado.getUsuario());
 			}
 		});
 		contentPane.setLayout(null);

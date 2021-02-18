@@ -62,5 +62,8 @@ public class ControlAltaYBajaUsuarios {
 		
 	}
 	
+	public void termina() {
+		ventanaAltaYBaja.setVisible(false);
+	}
 
 }

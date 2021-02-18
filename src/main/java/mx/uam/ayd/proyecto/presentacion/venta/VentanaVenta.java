@@ -41,6 +41,7 @@ public class VentanaVenta extends JFrame {
 	private JTextField textTotal;
 	private ControlVenta controlVenta;
 	private JTable table;
+	private String responsable;
 	float total = 0;
 	Producto producto;
 
@@ -97,7 +98,7 @@ public class VentanaVenta extends JFrame {
 		JButton btnRecarga = new JButton("Recarga");
 		btnRecarga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlVenta.iniciarecarga();
+				controlVenta.iniciarecarga(responsable);
 			}
 		});
 		btnRecarga.setBounds(10, 228, 89, 23);
@@ -161,7 +162,7 @@ public class VentanaVenta extends JFrame {
 
 		btnCobrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()));
+				controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),responsable);
 				btnBuscar.setEnabled(false);
 			}
 		});
@@ -202,10 +203,10 @@ public class VentanaVenta extends JFrame {
 	}
 
 	// Muestra la ventana
-	public void muestra(ControlVenta controlVenta) {
+	public void muestra(ControlVenta controlVenta,String responsable) {
 
 		this.controlVenta = controlVenta;
-
+		this.responsable=responsable;
 		setVisible(true);
 
 	}
