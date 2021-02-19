@@ -51,21 +51,20 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
 		panel = new JPanel();
 		panel.setBounds(10, 114, 587, 219);
 		contentPane.add(panel);
 		scrollPaneVentasEmpleado = new JScrollPane();		
 		panel.add(scrollPaneVentasEmpleado);
 		
-		
-		
-		
 		JLabel lblNewLabel = new JLabel("Ventas de empleado");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel.setBounds(222, 11, 141, 24);
 		contentPane.add(lblNewLabel);
 		
+		/**
+		 * muestra  todas las ventas del mes del empleado
+		 */
 		JButton btnMes = new JButton("Mes");
 		btnMes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,6 +112,9 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		btnAño.setBounds(378, 65, 89, 23);
 		contentPane.add(btnAño);
 		
+		/**
+		 * muestra  todas las ventas del dia de empleado
+		 */
 		JButton btnDia = new JButton("Dia");
 		btnDia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,7 +138,9 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		lblVerVentasPor.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblVerVentasPor.setBounds(10, 62, 166, 24);
 		contentPane.add(lblVerVentasPor);
-		
+		/**
+		 * muestra  todas las ventas del empleado
+		 */
 		JButton btnTodo = new JButton("Todo");
 		btnTodo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -223,12 +227,10 @@ public class VentanaVentasdeEmpleados extends JFrame {
 	public void agregaVentasdeEmpleados(Venta e) {
 		
 		String a[] = new String[6];
-		
 		a[0] = e.getFecha();
 		a[1] =  String.valueOf(e.getCantidad());
 		a[2] = String.valueOf(e.getTotal());
 		ventaTotal=  ventaTotal+ e.getTotal();
-		
 		modeloVentasEmpleado.addRow(a);
 		tablaVentas.setModel(modeloVentasEmpleado);
 		RowsRenderer rr = new RowsRenderer(2);

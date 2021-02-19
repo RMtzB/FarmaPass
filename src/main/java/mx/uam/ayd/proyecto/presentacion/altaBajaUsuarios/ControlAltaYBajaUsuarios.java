@@ -56,6 +56,11 @@ public class ControlAltaYBajaUsuarios {
 			ventanaAltaYBaja.EliminarGerente();
 	}
 	
+	/***
+	 * Inicia HU-8
+	 * Pasa como parametro el nombre de usuario 
+	 * @param usuarioSeleccionado
+	 */
 	public void iniciaVerVentas(String usuarioSeleccionado) {
 		Empleado aux= servicioEmpleado.buscarEmpleado(usuarioSeleccionado);
 		controlVentasdeEmpleados.inicia(aux);

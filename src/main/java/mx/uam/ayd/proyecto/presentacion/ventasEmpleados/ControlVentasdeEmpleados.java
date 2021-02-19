@@ -24,10 +24,18 @@ public class ControlVentasdeEmpleados {
 	@Autowired
 	private ControlAltaYBajaUsuarios controlAltaUsuario;
 	
+	/**
+	 * inicia ventana e ventas de empleado
+	 * @param product
+	 */
 	public void inicia(Empleado product) {
 		ventanaVentasdeEmpleados.muestra(this, product);
 	}
 
+	/***
+	 * Recupera ventas(en una lista) del empleado seleccionado pasando el nombre de usuario(manera mas rapida de distinguir las ventas)
+	 * @param usuario
+	 */
 	public void obtenerVentasEmpleado(String usuario) {
 		List<Venta> ventasEmpleado = servicioVenta.obtenerVentasPorEmpleado(usuario);
 		
@@ -39,6 +47,12 @@ public class ControlVentasdeEmpleados {
 			}
 		}
 	}
+	
+	/**
+	 * Regresa lista de ventas por la fecha que se pasa por parametro del empleado/usuario seleccionado
+	 * @param fechaF
+	 * @param usuario
+	 */
 	
 	public void obtenerVentas(String fechaF,String usuario) {
 		List<Venta> ventasEmpleado = servicioVenta.obtenerVentasPorEmpleado(usuario);
@@ -65,4 +79,8 @@ public class ControlVentasdeEmpleados {
 		ventanaVentasdeEmpleados.setVisible(false);
 		controlAltaUsuario.termina();
 	}
+	
+	/**
+	 * Termina Historia de usuario 8
+	 */
 }

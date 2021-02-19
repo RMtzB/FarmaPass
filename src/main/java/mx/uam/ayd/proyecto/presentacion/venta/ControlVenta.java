@@ -123,9 +123,9 @@ public class ControlVenta {
 	 */
 
 	/**
-	 * Método que se comunica con el control cobro para mostrar la ventana.
-	 * 
+	 * Inicia ventana de cobro pasando el total de ventas y el responsable de venta
 	 * @param total
+	 * @param responsabl
 	 */
 	public void muentraCobro(float total,String responsabl) {
 		controlCobro.inicia(total,responsabl);
@@ -140,10 +140,10 @@ public class ControlVenta {
 		ventanaVenta.textTotal(precio);
 	}
 
-	/**
-	 * Método que obtien los producto de la venta
-	 * 
+	/***
+	 * Guarda detalle de venta 
 	 * @param total
+	 * @param responsable
 	 */
 	public void obtenerLista(float total,String responsable) {
 

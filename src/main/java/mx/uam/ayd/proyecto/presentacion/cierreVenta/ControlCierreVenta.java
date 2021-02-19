@@ -65,6 +65,10 @@ public class ControlCierreVenta {
 	}
 	
 
+	/**
+	 * Obtine las ventas por la fecha que se le pasa
+	 * @param fechaF
+	 */
 	public void obtenerVentasDia(String fechaF) {
 		
 		List<Venta> ventasDia = servicioVenta.obtenerVentasPorFecha(fechaF);
