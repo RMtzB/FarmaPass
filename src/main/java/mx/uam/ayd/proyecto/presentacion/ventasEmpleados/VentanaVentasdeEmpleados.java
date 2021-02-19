@@ -205,6 +205,7 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		 this.empleado= empleado;
 		 setVisible(true);
 		 limpiarTabla();
+		 ventaTotal=0;
 		 controlVentasdeEmpleados.obtenerVentasEmpleado(empleado.getUsuario());
 		 textTotal.setText( String.valueOf(ventaTotal));
 		 scrollPaneVentasEmpleado.setViewportView(tablaVentas);
@@ -228,7 +229,12 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		
 		String a[] = new String[6];
 		a[0] = e.getFecha();
-		a[1] =  String.valueOf(e.getCantidad());
+		if(e.getCantidad()==0) {
+			a[1] = "Recarga";
+		}else {
+			a[1] =  String.valueOf(e.getCantidad());
+		}
+		
 		a[2] = String.valueOf(e.getTotal());
 		ventaTotal=  ventaTotal+ e.getTotal();
 		modeloVentasEmpleado.addRow(a);
