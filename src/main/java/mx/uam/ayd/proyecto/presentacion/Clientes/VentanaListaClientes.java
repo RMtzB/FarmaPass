@@ -122,7 +122,7 @@ public class VentanaListaClientes extends JFrame {
 		a[1] = e.getNombre()+" "+e.getNombre()+" "+e.getApellidoPaterno()+" "+ e.getApellidoMaterno();
 		a[2] = e.getCorreo();
 		a[3] = e.getTelefono();
-		a[4] = e.getDescuentoCliente()+"";
+		a[4] = e.getDescuentoCliente()+" %";
 		modeloListaClientes.addRow(a);
 		tablaListaClientes.setModel(modeloListaClientes);
 	}

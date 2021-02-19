@@ -32,4 +32,10 @@ public class ServicioCliente {
 	public Cliente obtenerCliente(int id) {
 		return clienteRepository.findById(id);
 	}
+	
+	public void actualizarDescuento(int id,int desc) {
+		Cliente aux = clienteRepository.findById(id);
+		aux.setDescuentoCliente(desc);
+		clienteRepository.save(aux);
+	}
 }

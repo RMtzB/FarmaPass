@@ -13,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import org.springframework.stereotype.Component;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 @Component
@@ -25,6 +27,8 @@ public class VentanaHistorialCliente extends JFrame {
 	private JTable tablaHistorial;
 	DefaultTableModel modeloHistorial = new DefaultTableModel();
 	private JTextField txtDescuento;
+	JButton btnModificar;
+	int id;
 
 	/**
 	 * Create the frame.
@@ -52,6 +56,17 @@ public class VentanaHistorialCliente extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( verificar() ) {					
+					txtDescuento.setEditable(false);
+					btnConfirmar.setEnabled(false);
+					btnModificar.setEnabled(true);
+					controlHistorialCliente.actualizarDescuentoActual(txtDescuento.getText());
+				}
+			}
+		});
+		btnConfirmar.setEnabled(false);
 		btnConfirmar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnConfirmar.setBounds(523, 11, 89, 23);
 		panel_1.add(btnConfirmar);
@@ -72,11 +87,19 @@ public class VentanaHistorialCliente extends JFrame {
 		panel_2.add(lblNewLabel);
 		
 		txtDescuento = new JTextField();
+		txtDescuento.setEditable(false);
 		txtDescuento.setBounds(191, 20, 22, 20);
 		panel_2.add(txtDescuento);
 		txtDescuento.setColumns(10);
 		
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtDescuento.setEditable(true);
+				btnConfirmar.setEnabled(true);
+				btnModificar.setEnabled(false);
+			}
+		});
 		btnModificar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnModificar.setBounds(236, 19, 89, 23);
 		panel_2.add(btnModificar);
@@ -130,5 +153,21 @@ public class VentanaHistorialCliente extends JFrame {
 		a[2] = e[2];
 		modeloHistorial.addRow(a);
 		tablaHistorial.setModel(modeloHistorial);
+	}
+	private boolean verificar(){
+		String aux =txtDescuento.getText();
+		if(aux=="") {
+			JOptionPane.showMessageDialog(null, "Ingresa un valor");
+			return false;
+		}
+		else {
+			int auxili =Integer.parseInt(aux);
+			if((auxili < 5 || auxili > 15 )&& auxili!=0) {
+				JOptionPane.showMessageDialog(null, "El valor debe estar en el rango 5 a 15 o 0 para eliminar descuento de clente");
+				return false;
+			}
+			else 
+				return true;
+		}
 	}
 }

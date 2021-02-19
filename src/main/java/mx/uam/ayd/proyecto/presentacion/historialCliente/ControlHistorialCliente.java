@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+import mx.uam.ayd.proyecto.presentacion.Clientes.ControlListaClientes;
 
 @Component
 public class ControlHistorialCliente {
@@ -11,6 +12,8 @@ public class ControlHistorialCliente {
 		private VentanaHistorialCliente ventanaHistorialCliente;
 	@Autowired
 		private ServicioCliente servicioCliente;
+	@Autowired
+		private ControlListaClientes controlListaClientes;
 	
 	private int id;
 	
@@ -29,5 +32,11 @@ public class ControlHistorialCliente {
 	public void refreshTable() {
 		ventanaHistorialCliente.limpiarTabla();
 		llenarTabla(id);
+	}
+	
+	public void actualizarDescuentoActual(String descuento){
+		servicioCliente.actualizarDescuento(id,Integer.parseInt(descuento));
+		ventanaHistorialCliente.dispose();
+		controlListaClientes.refreshTable();
 	}
 }
