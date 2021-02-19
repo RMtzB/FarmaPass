@@ -67,6 +67,17 @@ public class VentanaListaClientes extends JFrame {
 		btnCancelar.setBounds(408, 11, 89, 23);
 		panel_1.add(btnCancelar);
 		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlListaClientes.eliminarCliente(getIdSeleccionado());
+			}
+		});
+		
+		btnEliminar.setBounds(4, 11, 89, 23);
+		panel_1.add(btnEliminar);
+		
 		JLabel lblNewLabel = new JLabel("Selecciona un cliente para ver su historial completo");
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 		lblNewLabel.setBounds(30, 11, 487, 22);

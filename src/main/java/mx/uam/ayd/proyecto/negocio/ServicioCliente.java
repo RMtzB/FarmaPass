@@ -33,6 +33,14 @@ public class ServicioCliente {
 		return clienteRepository.findById(id);
 	}
 	
+	/**
+	*	eliminarCliente: Elimina un cliente seleccionado de acuerdo a su identificador. 
+	*	@param idSeleccionado: Es un entero que corresponde al identificador del cliente.
+	*/
+	public void eliminarCliente(int id) {
+		clienteRepository.delete(obtenerCliente(id));
+	}
+	
 	public void actualizarDescuento(int id,int desc) {
 		Cliente aux = clienteRepository.findById(id);
 		aux.setDescuentoCliente(desc);

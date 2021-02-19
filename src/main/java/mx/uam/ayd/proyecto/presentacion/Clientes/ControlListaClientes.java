@@ -33,8 +33,19 @@ public class ControlListaClientes {
 		}
 	}
 	
+	
 	public void refreshTable() {
 		ventanaListaClientes.limpiarTabla();
 		llenarTabla();
+	}
+
+	/**
+	*	eliminarCliente: Elimina un cliente seleccionado de la tabla, comunicandose con la clase ServicioCliente.
+	*	@param idSeleccionado: Es un entero que corresponde al identificador del cliente en la tabla.
+	*
+	*/
+	public void eliminarCliente(int idSeleccionado) {
+		servicioCliente.eliminarCliente(idSeleccionado);
+		refreshTable();
 	}
 }
