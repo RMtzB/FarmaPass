@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 @Component
@@ -27,6 +28,8 @@ public class VentanaPrincipalEmpleados extends JFrame {
 	private JTextField txtNivel;
 
 	public VentanaPrincipalEmpleados() {
+		
+		setTitle("Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 395, 272);
 		contentPane = new JPanel();
@@ -45,6 +48,7 @@ public class VentanaPrincipalEmpleados extends JFrame {
 		panel_2.setLayout(null);
 
 		JButton btnCierreVenta = new JButton("Inicia cierre de venta");
+		btnCierreVenta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnCierreVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				control.iniciaCierreVenta(empleado);
@@ -57,6 +61,7 @@ public class VentanaPrincipalEmpleados extends JFrame {
 		panel_1.setLayout(null);
 
 		JButton btnVenta = new JButton("Venta");
+		btnVenta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnVenta.setBounds(10, 44, 349, 23);
 		panel_1.add(btnVenta);
 		btnVenta.addActionListener(new ActionListener() {
@@ -83,6 +88,7 @@ public class VentanaPrincipalEmpleados extends JFrame {
 		contentPane.add(panel_1);
 		
 		JButton btnNuevoPedidoCliente = new JButton("Pedido cliente");
+		btnNuevoPedidoCliente.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnNuevoPedidoCliente.setEnabled(false);
 		btnNuevoPedidoCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,6 +99,7 @@ public class VentanaPrincipalEmpleados extends JFrame {
 		panel_1.add(btnNuevoPedidoCliente);
 		
 		JButton btnNewButtonBusqueda = new JButton("Busqueda");
+		btnNewButtonBusqueda.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnNewButtonBusqueda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				control.busqueda();
@@ -102,6 +109,7 @@ public class VentanaPrincipalEmpleados extends JFrame {
 		panel_1.add(btnNewButtonBusqueda);
 		
 		JButton btnRecepcionMercancia = new JButton("Recepcion de Mercancia");
+		btnRecepcionMercancia.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnRecepcionMercancia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				control.iniciaRecepcionMercancia(empleado);

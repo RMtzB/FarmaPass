@@ -42,17 +42,18 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 		
 		
 		panel = new JPanel();
-		panel.setBounds(10, 31, 712, 270);
+		panel.setBounds(10, 42, 712, 270);
 		contentPane.add(panel);
 		scrollPaneAltaBayaClientes = new JScrollPane();		
 		panel.add(scrollPaneAltaBayaClientes);
 		
 		JLabel lblNewLabel = new JLabel("Usuarios registrados");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(296, 6, 141, 24);
+		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 22));
+		lblNewLabel.setBounds(264, 11, 216, 23);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnAgregar = new JButton("Agregar Empleado");
+		btnAgregar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlAltaYBaja.iniciaVentanaAltaUsuario();
@@ -62,6 +63,7 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 		contentPane.add(btnAgregar);
 		
 		JButton btnEliminar = new JButton("Eliminar Empleado");
+		btnEliminar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tablaAltaBajaUsuarios.getSelectedRow()!=-1) {
@@ -70,10 +72,11 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 				}
 			}
 		});
-		btnEliminar.setBounds(389, 339, 165, 23);
+		btnEliminar.setBounds(379, 339, 165, 23);
 		contentPane.add(btnEliminar);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlAltaYBaja.termina();
@@ -83,9 +86,17 @@ public class VentanaAltaYBajaUsuarios extends JFrame {
 		contentPane.add(btnSalir);
 		
 		JButton btnVentasEmpleado = new JButton("Ver Ventas ");
+		btnVentasEmpleado.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnVentasEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlAltaYBaja.iniciaVerVentas(getUsuarioSeleccionado());
+				int valida;
+				valida=tablaAltaBajaUsuarios.getSelectedRowCount();
+				if(valida==1) {
+					controlAltaYBaja.iniciaVerVentas(getUsuarioSeleccionado());
+				}else {
+					JOptionPane.showMessageDialog(null, "Seleccione empleado de la tabla",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});

@@ -17,6 +17,7 @@ import javax.swing.border.EtchedBorder;
 
 import org.springframework.stereotype.Component;
 import javax.swing.border.TitledBorder;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 @Component
@@ -43,10 +44,12 @@ public class VentanaInicioSesion extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicioSesion() {
+		
+		setTitle("Inicio de sesión");
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 222);
+		setBounds(100, 100, 352, 246);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,30 +57,34 @@ public class VentanaInicioSesion extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		panel.setBounds(0, 0, 334, 28);
+		panel.setBounds(10, 0, 314, 34);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
 		JLabel lblFarmapass = new JLabel("FARMAPASS");
-		lblFarmapass.setBounds(0, 11, 309, 10);
+		lblFarmapass.setFont(new Font("Berlin Sans FB", Font.PLAIN, 22));
+		lblFarmapass.setBounds(10, 11, 309, 17);
 		panel.add(lblFarmapass);
 		lblFarmapass.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JPanel panel_form = new JPanel();
 		panel_form.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_form.setBounds(10, 66, 314, 76);
+		panel_form.setBounds(10, 84, 314, 80);
 		contentPane.add(panel_form);
 		panel_form.setLayout(null);
 
 		JLabel lblUsuario = new JLabel("USUARIO:");
+		lblUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		lblUsuario.setBounds(32, 17, 62, 14);
 		panel_form.add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("CONTRASEÑA:");
+		lblPassword.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		lblPassword.setBounds(10, 45, 84, 14);
 		panel_form.add(lblPassword);
 
 		txtUsuario = new JTextField();
+		txtUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		txtUsuario.setBounds(104, 11, 200, 20);
 		panel_form.add(txtUsuario);
 		txtUsuario.setColumns(10);
@@ -98,15 +105,16 @@ public class VentanaInicioSesion extends JFrame {
 			}
 		});
 		btnIniciaSesion.setBackground(new Color(50, 205, 50));
-		btnIniciaSesion.setBounds(200, 153, 124, 23);
+		btnIniciaSesion.setBounds(201, 175, 124, 23);
 		contentPane.add(btnIniciaSesion);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 32, 314, 28);
+		panel_1.setBounds(10, 45, 314, 28);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
 		JLabel lblLeyenda = new JLabel("Ingresa tu usuario y contraseña para iniciar sesion: ");
+		lblLeyenda.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		lblLeyenda.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLeyenda.setBounds(0, 0, 314, 28);
 		panel_1.add(lblLeyenda);

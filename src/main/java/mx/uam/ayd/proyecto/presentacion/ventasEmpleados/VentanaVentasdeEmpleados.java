@@ -45,27 +45,28 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		
 		setTitle("Ventas de Empleado");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 623, 497);
+		setBounds(100, 100, 623, 435);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(10, 114, 587, 219);
+		panel.setBounds(10, 114, 587, 171);
 		contentPane.add(panel);
 		scrollPaneVentasEmpleado = new JScrollPane();		
 		panel.add(scrollPaneVentasEmpleado);
 		
 		JLabel lblNewLabel = new JLabel("Ventas de empleado");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(222, 11, 141, 24);
+		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 22));
+		lblNewLabel.setBounds(193, 11, 227, 24);
 		contentPane.add(lblNewLabel);
 		
 		/**
 		 * muestra  todas las ventas del mes del empleado
 		 */
 		JButton btnMes = new JButton("Mes");
+		btnMes.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnMes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiarTabla();
@@ -88,6 +89,7 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		contentPane.add(btnMes);
 		
 		JButton btnAño = new JButton("Año");
+		btnAño.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnAño.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -115,7 +117,8 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		/**
 		 * muestra  todas las ventas del dia de empleado
 		 */
-		JButton btnDia = new JButton("Dia");
+		JButton btnDia = new JButton("Día");
+		btnDia.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnDia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -135,7 +138,7 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		contentPane.add(btnDia);
 		
 		JLabel lblVerVentasPor = new JLabel("Ver ventas por:");
-		lblVerVentasPor.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblVerVentasPor.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 		lblVerVentasPor.setBounds(10, 62, 166, 24);
 		contentPane.add(lblVerVentasPor);
 		/**
@@ -155,31 +158,34 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		contentPane.add(btnTodo);
 		
 		JLabel lblTotal = new JLabel("Total:");
-		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTotal.setBounds(407, 344, 60, 24);
+		lblTotal.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		lblTotal.setBounds(439, 296, 52, 24);
 		contentPane.add(lblTotal);
 		
 		textTotal = new JTextField();
-		textTotal.setBounds(483, 348, 105, 20);
+		textTotal.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		textTotal.setBounds(492, 300, 105, 20);
 		contentPane.add(textTotal);
 		textTotal.setColumns(10);
 		
-		JButton btnRegresar = new JButton("Regresar");
+		JButton btnRegresar = new JButton("Cancelar");
+		btnRegresar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVentasdeEmpleados.termina();
 			}
 		});
-		btnRegresar.setBounds(335, 424, 89, 23);
+		btnRegresar.setBounds(391, 351, 89, 23);
 		contentPane.add(btnRegresar);
 		
-		JButton btnTerminar = new JButton("Terminar");
+		JButton btnTerminar = new JButton("Confirmar");
+		btnTerminar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnTerminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVentasdeEmpleados.terminaVentas();
 				}
 		});
-		btnTerminar.setBounds(466, 424, 89, 23);
+		btnTerminar.setBounds(508, 351, 89, 23);
 		contentPane.add(btnTerminar);
 		
 		tablaVentas = new JTable(modeloVentasEmpleado) { 

@@ -70,7 +70,9 @@ public class ControlVentasdeEmpleados {
 			}
 		
 	}
-	
+	/**
+	 * Cierra ventana
+	 */
 	public void termina() {
 		ventanaVentasdeEmpleados.setVisible(false);
 	}

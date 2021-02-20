@@ -189,8 +189,8 @@ public class ProyectoApplication {
 		Venta venta3 = new Venta("17/2/2021",45,2,"alma");
 		ventaRepository.save(venta3);
 		
-		Venta venta11 = new Venta("18/2/2021",95,2,"anver");
-		ventaRepository.save(venta11);
+		Venta venta4 = new Venta("18/2/2021",95,2,"anver");
+		ventaRepository.save(venta4);
 		
 
 		
