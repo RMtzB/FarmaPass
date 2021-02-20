@@ -71,7 +71,9 @@ public class VentanaListaClientes extends JFrame {
 		btnEliminar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (tablaListaClientes.getSelectedRow() != -1) {
 				controlListaClientes.eliminarCliente(getIdSeleccionado());
+				}
 			}
 		});
 		
@@ -147,5 +149,8 @@ public class VentanaListaClientes extends JFrame {
 		return Integer.parseInt(tablaListaClientes.getValueAt(row, 4).toString());
 	}
 	
+	public void muestraDialogoConMensaje(String mensaje ) {
+		JOptionPane.showMessageDialog(this , mensaje);
+	}
 	
 }

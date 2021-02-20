@@ -38,7 +38,7 @@ public class ServicioCliente {
 	*	@param idSeleccionado: Es un entero que corresponde al identificador del cliente.
 	*/
 	public void eliminarCliente(int id) {
-		clienteRepository.delete(obtenerCliente(id));
+			clienteRepository.delete(obtenerCliente(id));
 	}
 	
 	public void actualizarDescuento(int id,int desc) {

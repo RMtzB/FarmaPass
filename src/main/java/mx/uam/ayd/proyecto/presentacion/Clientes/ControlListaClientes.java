@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+import mx.uam.ayd.proyecto.presentacion.agregarUsuario.VentanaAgregarUsuario;
 import mx.uam.ayd.proyecto.presentacion.historialCliente.ControlHistorialCliente;
 
 @Component
@@ -17,7 +18,7 @@ public class ControlListaClientes {
 	private ServicioCliente servicioCliente;
 	@Autowired
 	private ControlHistorialCliente controlHistorialCliente;
-
+	
 	public void inicia() {
 		ventanaListaClientes.muestra(this);
 	}
@@ -47,5 +48,6 @@ public class ControlListaClientes {
 	public void eliminarCliente(int idSeleccionado) {
 		servicioCliente.eliminarCliente(idSeleccionado);
 		refreshTable();
+		ventanaListaClientes.muestraDialogoConMensaje("Cliente eliminado");
 	}
 }
