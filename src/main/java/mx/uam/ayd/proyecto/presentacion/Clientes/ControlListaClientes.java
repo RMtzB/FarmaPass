@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+import mx.uam.ayd.proyecto.presentacion.agregarUsuario.VentanaAgregarUsuario;
 import mx.uam.ayd.proyecto.presentacion.historialCliente.ControlHistorialCliente;
 
 /**
@@ -22,9 +23,11 @@ public class ControlListaClientes {
 	@Autowired
 	private ControlHistorialCliente controlHistorialCliente;
 
+
 	/**
 	 * inicia : inicia la ventana VentanaListaCliente
 	 */
+
 	public void inicia() {
 		ventanaListaClientes.muestra(this);
 	}
@@ -47,12 +50,25 @@ public class ControlListaClientes {
 		}
 	}
 
+
 	/**
 	 * refreshTable: este metodo re-llena la informacion de la tabla.
 	 * se utiliza cuando se han modificado valores de la db y se desean mostrar actualizados
 	 */
+
 	public void refreshTable() {
 		ventanaListaClientes.limpiarTabla();
 		llenarTabla();
+	}
+
+	/**
+	*	eliminarCliente: Elimina un cliente seleccionado de la tabla, comunicandose con la clase ServicioCliente.
+	*	@param idSeleccionado: Es un entero que corresponde al identificador del cliente en la tabla.
+	*
+	*/
+	public void eliminarCliente(int idSeleccionado) {
+		servicioCliente.eliminarCliente(idSeleccionado);
+		refreshTable();
+		ventanaListaClientes.muestraDialogoConMensaje("Cliente eliminado");
 	}
 }

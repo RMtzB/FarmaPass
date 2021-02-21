@@ -35,6 +35,14 @@ public class ServicioCliente {
 	}
 
 	/**
+	*	eliminarCliente: Elimina un cliente seleccionado de acuerdo a su identificador. 
+	*	@param idSeleccionado: Es un entero que corresponde al identificador del cliente.
+	*/
+	public void eliminarCliente(int id) {
+			clienteRepository.delete(obtenerCliente(id));
+	}
+
+	/**
 	 * actualizarDescuento : cambia el valor del descuento de cliente del cliente con el id dado
 	 * @param id : id del cliente del cual se cambiara el descuento
 	 * @param desc : valor del nuevo descuento, el cual sera guardado

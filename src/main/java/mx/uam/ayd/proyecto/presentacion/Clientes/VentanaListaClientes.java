@@ -77,6 +77,21 @@ public class VentanaListaClientes extends JFrame {
 		btnCancelar.setBounds(408, 11, 89, 23);
 		panel_1.add(btnCancelar);
 
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tablaListaClientes.getSelectedRow() != -1) {
+				controlListaClientes.eliminarCliente(getIdSeleccionado());
+				}
+			}
+		});
+		
+		btnEliminar.setBounds(4, 11, 89, 23);
+		panel_1.add(btnEliminar);
+		
+
 		JLabel lblNewLabel = new JLabel("Selecciona un cliente para ver su historial completo");
 		lblNewLabel.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 		lblNewLabel.setBounds(30, 11, 487, 22);
@@ -154,5 +169,15 @@ public class VentanaListaClientes extends JFrame {
 		int row = tablaListaClientes.getSelectedRow();
 		return Integer.parseInt(tablaListaClientes.getValueAt(row, 0).toString());
 	}
+
+	private int getdescSeleccionado(){
+		int row=tablaListaClientes.getSelectedRow();
+		return Integer.parseInt(tablaListaClientes.getValueAt(row, 4).toString());
+	}
+	
+	public void muestraDialogoConMensaje(String mensaje ) {
+		JOptionPane.showMessageDialog(this , mensaje);
+	}
+	
 
 }
