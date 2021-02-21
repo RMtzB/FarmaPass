@@ -5,16 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-//import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.ServicioAsistencia;
 import mx.uam.ayd.proyecto.negocio.modelo.Asistencia;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
-//import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
-import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 
 
+/**
+ * Clase encargada de controlar la VentanaMonitoreo y comunicarse con la
+ * la capa de negocio (ServicioAsistencia)
+ * 
+ * @author RaulMb
+ * @since 15/02/2021
+ */
 @Component
 public class ControlMonitoreo {
 	
@@ -22,71 +25,75 @@ public class ControlMonitoreo {
 	private ServicioAsistencia servicioAsistencia;
 	
 	@Autowired
-	private VentanaMonitoreo ventanamonitoreo;
+	private VentanaMonitoreo ventanaMonitoreo;
 
-
-		
 	
-	//Inicia la ventana de Monitoreo y carga las asistencias
+	
+	/**
+	 * inicia:
+	 * Método encargado de mostrar la ventana de Monitoreo y cargar las asistencias
+	 * 
+	 * @param empleado
+	 */
 	public void inicia(Empleado empleado) {
 		this.iniciaAsistencias();
-	     ventanamonitoreo.muestra(this);
-	}//Fin del metodo inicia
+	    ventanaMonitoreo.muestra(this);
+	}
 	
 	
-	//Metodo que guarda la hora en se inicio sesion
+
+	/**
+	 * registrarInicio:
+	 * Método que guarda la asistencia del empleado
+	 * 
+	 * @param empleado empleado del cual se requiere registrar la asistencia
+	 */
 	public void registrarInicio(Empleado empleado) {
-		LocalDateTime ahora= LocalDateTime.now();
-		int anio= ahora.getYear();
-		int mes = ahora.getMonthValue();
-		int dia= ahora.getDayOfMonth();
-		int hora= ahora.getHour();
-		int minuto= ahora.getMinute();
-		int segundo=ahora.getSecond();
+		Asistencia asistencia;
+		LocalDateTime ahora = LocalDateTime.now();
+		String horaInical = ahora.getHour() + ":" + ahora.getMinute() + ":" + ahora.getSecond();
+		String fecha = ahora.getDayOfMonth() + "/" + ahora.getMonthValue() + "/" + ahora.getYear();
 		
-		String horainical= hora+":"+minuto+":"+segundo;
-		String fech=dia+"/"+mes+"/"+anio;
+		asistencia = servicioAsistencia.obtenerAsistenciaPorEmpleadoAndFecha(empleado, fecha);
+		
 		if (empleado.getUsuario() != "alma") {
-			servicioAsistencia.registroAsistencia(horainical, null, fech, empleado);
-		}
-
-	    //servicioasistencia.registroAsistencia(horainical, "", fech, empleado.getNombre());
-		
-	}//Fin del metodo registrarInicio
-	
-	
-	//Metodo que modifica la hora final de la asistencia del empleado
-	public void registrarCerrar(Empleado empleado) {
-		LocalDateTime ahora= LocalDateTime.now();
-
-		int hora= ahora.getHour();
-		int minuto= ahora.getMinute();
-		int segundo=ahora.getSecond();
-		
-		String horafinal= hora+":"+minuto+":"+segundo;
-		Asistencia asistenciaAEditar = null;
-	    List<Asistencia> asistenciasPorEmpleado = servicioAsistencia.obtenerAsistenciasPorEmpleado(empleado);
-	    for (Asistencia asistencia : asistenciasPorEmpleado) {
-			if(asistencia.getHoraFinal() == null) {
-				asistenciaAEditar = asistencia;
+			if(asistencia == null) {
+				while(!servicioAsistencia.registroAsistencia(horaInical, fecha, empleado)) {}
 			}
 		}
-	    if(asistenciaAEditar != null) {
-	    	asistenciaAEditar.setHoraFinal(horafinal);
-	    	servicioAsistencia.actualizar(asistenciaAEditar);
-	    }
-	    	
+	}
+	
+	
+	
+	/**
+	 * registrarCerrar:
+	 * Método encargado de registrar la hora de salida del empleado
+	 * 
+	 * @param empleado empleado del cual se requiere registrar la hora de salida
+	 */
+	public void registrarCerrar(Empleado empleado) {
+		LocalDateTime ahora= LocalDateTime.now();
+		String horafinal= ahora.getHour() + ":" + ahora.getMinute() + ":" + ahora.getSecond();
+		String fecha = ahora.getDayOfMonth() + "/" + ahora.getMonthValue() + "/" + ahora.getYear();
+		Asistencia asistencia = servicioAsistencia.obtenerAsistenciaPorEmpleadoAndFecha(empleado, fecha);
+		
+		if(asistencia != null) {
+			asistencia.setHoraFinal(horafinal);
+			servicioAsistencia.actualizar(asistencia);
+		}
 	}
 
-	//Metodo que me recupera las asistencias y me las guarda en una lista
-	public void iniciaAsistencias() {
-		List <Asistencia> asistencias = servicioAsistencia.recuperarasistencia();
-		for(Asistencia asistencia:asistencias) {
-			ventanamonitoreo.llenaTabla(asistencia);
-		}
-		
-	}//Fin del metodo iniciaAsistencias
 	
-
-
-}//Fin de la clase ControlMonitoreo
+	
+	/**
+	 * iniciaAsistencias:
+	 * Metodo encardo de recupera las asistencias y llenar la tabla que las mostrará
+	 */
+	public void iniciaAsistencias() {
+		List <Asistencia> asistencias = servicioAsistencia.recuperarAsistencias();
+		
+		for(Asistencia asistencia:asistencias) {
+			ventanaMonitoreo.llenaTabla(asistencia);
+		}
+	}
+}

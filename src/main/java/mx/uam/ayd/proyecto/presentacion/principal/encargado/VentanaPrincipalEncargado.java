@@ -33,7 +33,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		
 		setTitle("Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 431, 307);
+		setBounds(100, 100, 430, 326);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -43,10 +43,12 @@ public class VentanaPrincipalEncargado extends JFrame {
 		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 
 		JPanel panel_1 = new JPanel();
+
 		panel_1.setBounds(5, 45, 384, 123);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(5, 174, 384, 52);
+
 		panel_2.setLayout(null);
 
 		JButton btnCierreVenta = new JButton("Inicia cierre de venta");
@@ -155,6 +157,15 @@ public class VentanaPrincipalEncargado extends JFrame {
 		});
 		btnNewButton.setBounds(235, 77, 149, 23);
 		panel_1.add(btnNewButton);
+		
+		JButton btnCliente = new JButton("Clientes");
+		btnCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlPrincipalEncargado.iniciarVentanaClientes();
+			}
+		});
+		btnCliente.setBounds(10, 111, 89, 23);
+		panel_1.add(btnCliente);
 		contentPane.add(panel_2);
 
 		JButton btnCerrarSesion = new JButton("Cerrar sesion");

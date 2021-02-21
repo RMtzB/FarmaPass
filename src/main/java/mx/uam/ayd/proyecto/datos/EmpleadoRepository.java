@@ -6,7 +6,5 @@ import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 
 public interface EmpleadoRepository extends CrudRepository<Empleado, Long> {
 	public Empleado findByUsuario(String usuario);
-
 	public Iterable<Empleado> findAll();
-
 }

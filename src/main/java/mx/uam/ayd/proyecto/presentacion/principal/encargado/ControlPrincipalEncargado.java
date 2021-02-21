@@ -1,14 +1,10 @@
 
 package mx.uam.ayd.proyecto.presentacion.principal.encargado;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import mx.uam.ayd.proyecto.negocio.ServicioProducto;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
-import mx.uam.ayd.proyecto.negocio.modelo.Producto;
+import mx.uam.ayd.proyecto.presentacion.Clientes.ControlListaClientes;
 import mx.uam.ayd.proyecto.presentacion.GenerarPedido.ControlGenerarPedido;
 import mx.uam.ayd.proyecto.presentacion.HistorialDeVentas.ControlHistorialDeVentas;
 import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.ControlAltaYBajaUsuarios;
@@ -47,6 +43,9 @@ public class ControlPrincipalEncargado {
 	
 	@Autowired
 	private ControlAltaYBajaUsuarios controlAltaYBajaUsuarios;
+	
+	@Autowired
+	private ControlListaClientes controlListaClientes;
 	
 	
 
@@ -95,7 +94,9 @@ public class ControlPrincipalEncargado {
 		controlAltaYBajaUsuarios.inicia();
 	}
 	
-
+	public void iniciarVentanaClientes() {
+		controlListaClientes.inicia();
+	}
 	public void monitoreo(Empleado empleado) {
 		controlMonitoreo.inicia(empleado);
 		
