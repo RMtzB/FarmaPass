@@ -143,8 +143,8 @@ public class VentanaHistorialDeVentas extends JFrame {
 						String fechaF = ano + "/" + mes + "/" + dia;
 						controlHistorialDeVentas.obtenerVentas(fechaF);
 					}
-
 				}
+				
 			}
 		});
 
@@ -171,7 +171,7 @@ public class VentanaHistorialDeVentas extends JFrame {
 		System.out.println(empleado);
 
 	}
-   // Añade a la tabla de la interfaz los campos correspondientes
+   // Aï¿½ade a la tabla de la interfaz los campos correspondientes
 	public void agregarAtabla(Venta venta, List<Producto> productos) {
 		String a[] = new String[4];
 		for (Producto producto : productos) {

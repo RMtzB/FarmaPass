@@ -9,4 +9,5 @@ import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 
 public interface VentaRepository extends CrudRepository<Venta, Long> {
 	public List<Venta> findByFecha(String fechaF);
+	public List<Venta> findByResponsable(String responsable);
 }

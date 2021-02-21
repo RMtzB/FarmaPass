@@ -22,6 +22,8 @@ public class Venta {
 	private long idVenta;
 	private String fecha;
 	private float total;
+	private int cantidad;
+	private String responsable;
 
 	@OneToMany(targetEntity = DetalleVenta.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idVenta")
@@ -36,9 +38,11 @@ public class Venta {
 	 */
 
 	
-	public Venta(String fecha, float total) {
+	public Venta(String fecha, float total, int cantidad,String responsable) {
 		this.fecha = fecha;
 		this.total = total;
+		this.cantidad=cantidad;
+		this.responsable=responsable;
 	}
 	
 	public Venta() {

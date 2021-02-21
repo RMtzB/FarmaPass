@@ -22,6 +22,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.PedidoCliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
+import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
@@ -70,6 +71,7 @@ public class ProyectoApplication {
 	
 	@Autowired
 	ServicioDetalleVenta servicio;
+	
 
 	public static void main(String[] args) {
 
@@ -176,5 +178,23 @@ public class ProyectoApplication {
 		asistencia1.setFecha("5/2/2021");
 		asistencia1.setEmpleado(pruebaEmpleado);
 		asistenciaRepository.save(asistencia1);
+		
+		Venta venta0 = new Venta("16/2/2020",95,2,"anver");
+		ventaRepository.save(venta0);
+		
+		Venta venta1 = new Venta("16/2/2021",95,2,"anver");
+		ventaRepository.save(venta1);
+
+		Venta venta2 = new Venta("17/2/2021",48,1,"anver");
+		ventaRepository.save(venta2);
+		
+		Venta venta3 = new Venta("17/2/2021",45,2,"alma");
+		ventaRepository.save(venta3);
+		
+		Venta venta4 = new Venta("18/2/2021",95,2,"anver");
+		ventaRepository.save(venta4);
+		
+
+		
 	}
 }

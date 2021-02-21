@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 @Component
@@ -29,6 +30,8 @@ public class VentanaPrincipalEncargado extends JFrame {
 	private JTextField txtNivel;
 
 	public VentanaPrincipalEncargado() {
+		
+		setTitle("Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 430, 326);
 		contentPane = new JPanel();
@@ -36,17 +39,20 @@ public class VentanaPrincipalEncargado extends JFrame {
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 5, 369, 34);
+		panel.setBounds(5, 5, 384, 34);
 		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(5, 45, 369, 168);
+
+		panel_1.setBounds(5, 45, 384, 123);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(5, 224, 369, 52);
+		panel_2.setBounds(5, 174, 384, 52);
+
 		panel_2.setLayout(null);
 
 		JButton btnCierreVenta = new JButton("Inicia cierre de venta");
+		btnCierreVenta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnCierreVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlPrincipalEncargado.iniciaCierreVenta(empleado);
@@ -59,6 +65,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		panel_1.setLayout(null);
 
 		JButton btnVenta = new JButton("Venta");
+		btnVenta.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnVenta.setBounds(10, 30, 97, 23);
 		panel_1.add(btnVenta);
 		
@@ -69,7 +76,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		 */
 		btnVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlPrincipalEncargado.agregarProductos();
+				controlPrincipalEncargado.agregarProductos(empleado.getUsuario());
 			}
 		});
 		contentPane.setLayout(null);
@@ -78,7 +85,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		txtNombreEmpleado = new JTextField();
 		txtNombreEmpleado.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombreEmpleado.setEditable(false);
-		txtNombreEmpleado.setBounds(106, 6, 254, 22);
+		txtNombreEmpleado.setBounds(106, 6, 268, 22);
 		panel.add(txtNombreEmpleado);
 		txtNombreEmpleado.setColumns(10);
 
@@ -91,6 +98,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		contentPane.add(panel_1);
 
 		JButton btnhistorial = new JButton("Historial de ventas");
+		btnhistorial.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		
 		/**
 		 * 
@@ -106,11 +114,13 @@ public class VentanaPrincipalEncargado extends JFrame {
 		panel_1.add(btnhistorial);
 		
 		JButton btnpedido = new JButton("Generar pedido");
+		btnpedido.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		
-		btnpedido.setBounds(0, 77, 128, 23);
+		btnpedido.setBounds(10, 77, 118, 23);
 		panel_1.add(btnpedido);
 		
 		JButton invent = new JButton("Inventario");
+		invent.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		
 		/**
 		 * 
@@ -129,6 +139,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		panel_1.add(invent);
 		
 		JButton btnEmpleados = new JButton("Empleados");
+		btnEmpleados.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlPrincipalEncargado.iniciarVentanaEmpleados();
@@ -138,12 +149,13 @@ public class VentanaPrincipalEncargado extends JFrame {
 		panel_1.add(btnEmpleados);
 		
 		JButton btnNewButton = new JButton("Monitoreo Empleados");
+		btnNewButton.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlPrincipalEncargado.monitoreo(empleado);
 			}
 		});
-		btnNewButton.setBounds(235, 77, 134, 23);
+		btnNewButton.setBounds(235, 77, 149, 23);
 		panel_1.add(btnNewButton);
 		
 		JButton btnCliente = new JButton("Clientes");
@@ -157,6 +169,7 @@ public class VentanaPrincipalEncargado extends JFrame {
 		contentPane.add(panel_2);
 
 		JButton btnCerrarSesion = new JButton("Cerrar sesion");
+		btnCerrarSesion.setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlPrincipalEncargado.cerrarSesion(empleado);

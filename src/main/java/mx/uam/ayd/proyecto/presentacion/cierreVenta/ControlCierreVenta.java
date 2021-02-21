@@ -65,7 +65,12 @@ public class ControlCierreVenta {
 	}
 	
 
+	/**
+	 * Obtine las ventas por la fecha que se le pasa
+	 * @param fechaF
+	 */
 	public void obtenerVentasDia(String fechaF) {
+		
 		List<Venta> ventasDia = servicioVenta.obtenerVentasPorFecha(fechaF);
 		if(ventasDia.isEmpty()) {
 			ventana.sinProductos("No hay ventas para mostrar");
@@ -104,7 +109,6 @@ public class ControlCierreVenta {
 	}
 	
 	
-
 	public void obtenerPedidosClienteDelDia(String fechaF) {
 		List<PedidoCliente> pedidosClienteDia = servicioPedidoCliente.obtenerPedidosPorFechaCreacion(fechaF);
 		if(pedidosClienteDia.isEmpty()) {

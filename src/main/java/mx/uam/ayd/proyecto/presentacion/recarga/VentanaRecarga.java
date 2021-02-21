@@ -31,7 +31,7 @@ public class VentanaRecarga extends JFrame {
 	private JTextField textNumero;
 	private ControlRecarga controlRecarga;
 	private ImageIcon img1 , img2 , img3, img4;
-	private String compañia;
+	private String compañia,usuario;
 	JComboBox <String>comboBox_1;
 
 	/**
@@ -39,7 +39,8 @@ public class VentanaRecarga extends JFrame {
 	 */
 	public VentanaRecarga() {
 		
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Recarga");
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 602, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,7 +96,7 @@ public class VentanaRecarga extends JFrame {
 								muestraDialogoConMensaje("No son diez digitos");
 								
 							}else
-								controlRecarga.iniciaConfirmacion(Integer.valueOf(textNumero.getText()), compañia, Integer.valueOf((String) comboBox_1.getSelectedItem()));
+								controlRecarga.iniciaConfirmacion(Integer.valueOf(textNumero.getText()), compañia, Integer.valueOf((String) comboBox_1.getSelectedItem()),usuario);
 						}
 						
 					}
@@ -228,11 +229,11 @@ public class VentanaRecarga extends JFrame {
 		JOptionPane.showMessageDialog(this, mensaje);
 	}
 	
-	public void muestra(ControlRecarga controlRecarga) {
+	public void muestra(ControlRecarga controlRecarga,String usuario) {
 		this.controlRecarga= controlRecarga;
 		textNumero.setEditable(false);
 		textNumero.setText("");
-
+		this.usuario=usuario;
 		setVisible(true);
 		
 	}
