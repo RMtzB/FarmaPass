@@ -33,6 +33,7 @@ public class Cliente {
 	private String correo;
 	private String telefono;
 	private ArrayList<String> historial; 
+	private int descuentoCliente;
 
 	
 	@OneToMany(targetEntity = PedidoCliente.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -71,7 +72,7 @@ public class Cliente {
 		return pedidosCliente.add(pedidoCliente);
 	}
 	public void agregarVent(String fecha, double total,int cantidad) {
-		historial.add(fecha+"?"+total+"?"+cantidad);
+		historial.add(fecha+"%"+total+"%"+cantidad);
 	}
 
 }
