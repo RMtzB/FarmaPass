@@ -32,7 +32,7 @@ public class ControlInicioSesion {
 	private ControlPrincipalEmpleados controlPrincipalEmpleados;
 	
 	@Autowired
-	private VentanaInicioSesion ventana;
+	private VentanaInicioSesion ventanaInicioSesion;
 	
 	@Autowired
 	private ServicioEmpleado servicioEmpleado;
@@ -49,46 +49,48 @@ public class ControlInicioSesion {
 	
 	/**
 	 * Inicia el flujo de control de la ventana principal
-	 * 
 	 */
 	public void inicia() {
-
-		ventana.muestra(this);
+		ventanaInicioSesion.muestra(this);
 	}
 
 	/**
 	 * Método que arranca la historia de usuario "agregar usuario"
-	 * 
 	 */
 	public void agregarUsuario() {
-		
 		controlAgregarUsuario.inicia();
-		
 	}
 	
 	/**
 	 * Método que arranca la historia de usuario "listar usuarios"
-	 * 
 	 */
 	public void listarUsuarios() {
 		controlListarUsuarios.inicia();
 	}
 
+	/**
+	 * Método encargado de verificar que el usuario y contraseña sean correctos e iniciar sesión,
+	 * así como registra la hora de entrada.
+	 * 
+	 * @param usuario dato ingresado por el "empleado/encargado"
+	 * @param password dato ingresado por el "empleado/encargado"
+	 */
 	public void validaUsuario(String usuario, String password) {
 		try {
 			Empleado empleado = servicioEmpleado.validaUsuario(usuario, password);
+			
 			servDesc.verificarDescuentosVencidos();
+			
 			if(empleado.getNivel().equals("empleado")) {
-				controlmonitoreo.registrarInicio(empleado);
 				controlPrincipalEmpleados.inicia(empleado);
-				ventana.oculta();
-			} if(empleado.getNivel().equals("encargado")) {
-				controlmonitoreo.registrarInicio(empleado);
+			} else {
 				controlPrincipalEncargado.inicia(empleado);
-				ventana.oculta();
 			}
+			
+			controlmonitoreo.registrarInicio(empleado);
+			ventanaInicioSesion.oculta();
 		} catch (Exception e) {
-			ventana.muestraErrorPassword(e);
+			ventanaInicioSesion.muestraErrorPassword(e);
 		}
 		
 	}
