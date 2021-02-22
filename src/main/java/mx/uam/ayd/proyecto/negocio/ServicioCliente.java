@@ -43,7 +43,6 @@ public class ServicioCliente {
 
 	/**
 	 * obtenerCliente: devuelve el Cliente con el id dado.
-	 * 
 	 * @param id: id del cliente que sera devuelto.
 	 * @return Cliente: cliuente con el id dado.
 	 * @apiNote returna null en caso de no existir.

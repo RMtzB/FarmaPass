@@ -284,9 +284,14 @@ public class VentanaCobro extends JFrame {
 
 	}
 	
-	// Métodos que ocupa la ventana
-	//Recibe al cliente y el nombre del empleado para asociarl3es las ventas ademas de mostrar la ventana de cobro 
-	// @param total,responsable,cliente controlCobro
+	/**
+	 * 
+	 * muestra: Metododo que despliega la ventana y recibe los datos correspondientes para asociar ventas
+     * @param total: Representa el precio total de la compra
+	 * @param responsable: Representa el nombre del empleado quien esta haciendo la venta
+	 * @param cliente: Representa al cliente al que se le esta asociando la venta (si se le asocia)
+	 * @param ControlCobro: referencia al control para poder usarlo despues
+	 */
 	
 	public void muestra(ControlCobro controlCobro, float total, String responsable, Cliente cliente) {
 		textFieldTotal.setText(String.valueOf(total));

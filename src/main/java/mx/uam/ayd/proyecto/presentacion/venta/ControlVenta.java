@@ -121,10 +121,11 @@ public class ControlVenta {
 	
 	
 	/**
-	 * muentraCobro: Inicia ventana de cobro pasando el total de ventas y el responsable de venta
+	 * muentraCobro: Inicia ventana de cobro pasando el total de ventas ,el responsable de venta y el cliente al que se le va a asociar (si es que hay)
 	 * 
-	 * @param total
-	 * @param responsabl
+	 * @param total: Representa el precio total de la compra
+	 * @param responsable: Representa el nombre del empleado quien esta haciendo la venta
+	 * @param cliente: Representa al cliente al que se le esta asociando la venta (si se le asocia)
 	 */
 	public void muentraCobro(float total,String responsabl, Cliente cliente) {
 		controlCobro.inicia(total,responsabl, cliente);
@@ -143,9 +144,11 @@ public class ControlVenta {
 
 
 /**
-	 * Método para obtener una lista de los productos de la venta modificado para pasar el cliente de ser necesario y el empleado para poder asociar la venta y mostrarlas despues
+	 *obtenerLista; Método para obtener una lista de los productos de la venta modificado para pasar el cliente de ser necesario y el empleado para poder asociar la venta y mostrarlas despues
 	 * 
-	 * @param total,responsable,cliente
+	 * @param total: Representa el precio total de la compra
+	 * @param responsable: Representa el nombre del empleado quien esta haciendo la venta
+	 * @param cliente: Representa al cliente al que se le esta asociando la venta (si se le asocia)
 	 */
 
 	public void obtenerLista(float total, String responsable, Cliente cliente) {

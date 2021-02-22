@@ -277,9 +277,9 @@ public class VentanaVenta extends JFrame {
 	}
 
 	/**
-	 * Metodo usado para dar mensajes de que una operacion se realizo con exito o fallo  
+	 * muestraDialogoConMensaje: Metodo usado para dar mensajes de que una operacion se realizo con exito o fallo  
 	 * 
-	 * @param mensaje
+	 * @param mensaje recibe un string con el mensaje a mostrar
 	 */
 	public void muestraDialogoConMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);

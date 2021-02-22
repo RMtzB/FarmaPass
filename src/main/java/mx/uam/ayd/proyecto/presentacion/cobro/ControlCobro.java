@@ -28,8 +28,10 @@ public class ControlCobro {
 
 	/**
 	 * 
-	 * Inicia historia de usuario: Forma de cobro modificado para pasar al cliente (si es necesario) y al empleado para asociarles su respectiva venta
-	 * @param total,responsable,cliente inicia la ventana para el cobro
+	 * Inicia: Metododo que hace el cobro modificado para pasar al cliente (si es necesario) y al empleado para asociarles su respectiva venta
+     * @param total: Representa el precio total de la compra
+	 * @param responsable: Representa el nombre del empleado quien esta haciendo la venta
+	 * @param cliente: Representa al cliente al que se le esta asociando la venta (si se le asocia)
 	 */
 
 
@@ -50,9 +52,11 @@ public class ControlCobro {
 	}
 
 	/**
-	 * Método para obtener una lista de los productos de la venta modificado para pasar el cliente de ser necesario y el empleado para poder asociar la venta y mostrarlas despues
+	 * obtenerLista: Metodo que se encarga de llamar al metodo que hace lo necesario para realizar una venta y asociarla si es necesario
 	 * 
-	 * @param total,responsable,cliente
+	 * @param total: Representa el precio total de la compra
+	 * @param responsable: Representa el nombre del empleado quien esta haciendo la venta
+	 * @param cliente: Representa al cliente al que se le esta asociando la venta (si se le asocia)
 	 */
 
 	public void obtenerLista(float total, String responsable, Cliente cliente) {
