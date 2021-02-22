@@ -27,6 +27,12 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Ventana para ver ventas de cliente
+ * 
+ * @author David Castellanos
+ * @since  16/02/2021
+ */
 @SuppressWarnings("serial")
 @Component
 public class VentanaVentasdeEmpleados extends JFrame {
@@ -141,6 +147,7 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		lblVerVentasPor.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
 		lblVerVentasPor.setBounds(10, 62, 166, 24);
 		contentPane.add(lblVerVentasPor);
+		
 		/**
 		 * muestra  todas las ventas del empleado
 		 */
@@ -218,6 +225,7 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		 
 	}
 	
+	//Metodo para limpiar tabla
 	public void limpiarTabla() { //3 
 		if (tablaVentas.getRowCount() > 0) { // solo esto
 			int filas = tablaVentas.getRowCount();
@@ -231,7 +239,8 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		}		
 	}
 	
-	public void agregaVentasdeEmpleados(Venta e) {
+	//Agrega ventas de empleado y los manda a la tabla
+	public void agregaVentasdeEmpleados(Venta e){
 		
 		String a[] = new String[6];
 		a[0] = e.getFecha();
@@ -250,6 +259,7 @@ public class VentanaVentasdeEmpleados extends JFrame {
 		
 	}
 	
+	//Metodo para mostrar si no llega a ver ventas 
 	public void sinProductos(String mensaje) {
 		
 	}
