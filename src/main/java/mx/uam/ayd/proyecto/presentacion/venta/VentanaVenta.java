@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import javax.swing.JList;
 import javax.swing.JComboBox;
@@ -43,6 +44,7 @@ public class VentanaVenta extends JFrame {
 	private JTable table;
 	float total = 0;
 	Producto producto;
+	Cliente cliente;
 
 	private DefaultTableModel modelo = new DefaultTableModel() {
 		@Override 
@@ -120,6 +122,18 @@ public class VentanaVenta extends JFrame {
 		btnRegisterClient.setBounds(503, 27, 121, 23);
 		contentPane.add(btnRegisterClient);
 		
+		//obtiene al cliente de la busqueda para asociarlo a la venta
+		JButton cleinteventa = new JButton("Asociar venta");
+		cleinteventa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				double id = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
+				cliente = controlVenta.buscarPorIdCliente(id);
+//				controlVenta.asociarVenta(cliente);
+			}
+		});
+		cleinteventa.setBounds(331, 27, 136, 23);
+		contentPane.add(cleinteventa);
+		
 		btnRegisterClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -161,8 +175,14 @@ public class VentanaVenta extends JFrame {
 
 		btnCobrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()));
-				btnBuscar.setEnabled(false);
+				if(cliente == null) {
+					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
+					btnBuscar.setEnabled(false);
+				}else {
+					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
+					btnBuscar.setEnabled(false);
+				}
+				
 			}
 		});
 		
@@ -271,4 +291,8 @@ public class VentanaVenta extends JFrame {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }	
 	}
+
+
+
+	
 }

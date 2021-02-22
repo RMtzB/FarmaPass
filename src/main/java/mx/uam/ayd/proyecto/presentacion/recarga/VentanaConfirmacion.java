@@ -119,7 +119,7 @@ public class VentanaConfirmacion extends JFrame {
 				};
 				hilo.start();
 				
-				controlRecarga.iniciaCobro(Integer.valueOf(textMonto.getText()));
+				controlRecarga.iniciaCobro(Integer.valueOf(textMonto.getText()),null);
 				
 			}
 		});

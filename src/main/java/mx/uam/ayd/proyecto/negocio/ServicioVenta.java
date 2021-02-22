@@ -36,7 +36,11 @@ public class ServicioVenta {
 		List<Venta> ventas = ventaRepository.findByFecha(fechaF);
 		return ventas;
 	}
-	
+	/**
+	 * Obtiene todas las ventas hechas
+	 * @param fechaF 
+	 * @return
+	 */
 	public List<Venta> recuperaTodasLasVentas() {
 		List<Venta> ventas = new ArrayList<>();
 		for (Venta venta : ventaRepository.findAll()) {

@@ -21,6 +21,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import org.springframework.stereotype.Component;
+
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSeparator;
@@ -36,6 +39,7 @@ public class VentanaCobro extends JFrame {
 	private JTextField textFieldCambio;
 	private ControlCobro controlCobro;
 	private float total;
+	Cliente cliente;
 	
 
 	
@@ -81,9 +85,9 @@ public class VentanaCobro extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(44)
 					.addComponent(btnRegresar)
-					.addPreferredGap(ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
 					.addComponent(btnFinalizar)
-					.addGap(52))
+					.addGap(43))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -282,9 +286,10 @@ public class VentanaCobro extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				float a = Float.parseFloat(textFieldCambio.getText());
 				if(a<0) {
-					JOptionPane.showMessageDialog(null, "La venta no se puede realizar porque la cantidad Recida es incorrecta");
+					JOptionPane.showMessageDialog(null, "La venta no se puede realizar porque la cantidad Recibida es incorrecta");
 				}else {
-					controlCobro.obtenerLista(total);
+					
+					controlCobro.obtenerLista(total,cliente);
 					textFieldRecibi.setText("");
 					textFieldCambio.setText("");
 					controlCobro.limpiarTabla();
@@ -299,10 +304,11 @@ public class VentanaCobro extends JFrame {
 	
 	
 	//Métodos que ocupa la ventana
-	public void muestra(ControlCobro controlCobro, float total) {
+	public void muestra(ControlCobro controlCobro, float total, Cliente cliente) {
 		textFieldTotal.setText(String.valueOf(total));
 		this.controlCobro = controlCobro;
 		this.total=total;
+		this.cliente = cliente;
 		setVisible(true);
 	}
 
