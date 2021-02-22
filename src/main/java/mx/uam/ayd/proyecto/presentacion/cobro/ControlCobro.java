@@ -32,17 +32,17 @@ public class ControlCobro {
 	 * @param cliente 
 	 */
 
-	public void inicia(float total, Cliente cliente) {
-		ventanaCobro.muestra(this, total, cliente);
+	public void inicia(float total, String responsable, Cliente cliente) {
+		ventanaCobro.muestra(this, total, responsable, cliente);
 	}
 	
 	/**
 	 * 
 	 * Inicia historia de usuario: Forma de cobro
 	 */
-	public void inicia(float total, String responsable) {
-		ventanaCobro.muestra(this, total,responsable);
-	}
+//	public void inicia(float total, String responsable) {
+//		ventanaCobro.muestra(this, total,responsable);
+//	}
 
 	public void termina() {
 		ventanaCobro.setVisible(false);
@@ -53,9 +53,10 @@ public class ControlCobro {
 	 * 
 	 * @param total
 	 */
-	public void obtenerLista(float total,Cliente cliente) {
-		controlVenta.obtenerLista(total,cliente);
+	public void obtenerLista(float total, String responsable, Cliente cliente) {
+		controlVenta.obtenerLista(total, responsable, cliente);
 	}
+	
 	/**
 	 * Método que muestra los dialogos de la ventana
 	 */

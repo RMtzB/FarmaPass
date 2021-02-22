@@ -1,10 +1,5 @@
 package mx.uam.ayd.proyecto.presentacion.venta;
 
-/**
- * VictorSosa
- * 
- */
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,13 +25,13 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
-import javax.swing.JList;
-import javax.swing.JComboBox;
 
+/**
+ * @author VictorSosa
+ */
 @SuppressWarnings("serial")
 @Component
 public class VentanaVenta extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField txtIngresaProducto;
 	private JTextField textTotal;
@@ -44,15 +39,16 @@ public class VentanaVenta extends JFrame {
 	private JTable table;
 	private String responsable;
 	float total = 0;
-	Producto producto;
-	Cliente cliente;
+	private Cliente cliente;
+	private Producto producto;
 
 	private DefaultTableModel modelo = new DefaultTableModel() {
-		@Override 
-		public boolean isCellEditable(int row, int column) { 
-			return false; 
-			} 
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return false;
+		}
 	};
+
 	
 	public VentanaVenta() {
 		setTitle("Venta");
@@ -98,43 +94,54 @@ public class VentanaVenta extends JFrame {
 		contentPane.add(btnQuitarDeLista);
 
 		JButton btnRecarga = new JButton("Recarga");
+		btnRecarga.setBounds(10, 228, 89, 23);
+		contentPane.add(btnRecarga);
+
+
+		
 		btnRecarga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVenta.iniciarecarga(responsable);
 			}
 		});
-		btnRecarga.setBounds(10, 228, 89, 23);
-		contentPane.add(btnRecarga);
+		
+
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 63, 614, 150);
 		contentPane.add(scrollPane);
 
 		table = new JTable(modelo);
-		
+
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Compuesto");
 		modelo.addColumn("Precio del Prodcuto");
 		modelo.addColumn("Seleccionar");
 
 		scrollPane.setViewportView(table);
-		
+
 		JButton btnRegisterClient = new JButton("Registrar Cliente");
 		btnRegisterClient.setBounds(503, 27, 121, 23);
 		contentPane.add(btnRegisterClient);
-		
-		//obtiene al cliente de la busqueda para asociarlo a la venta
+
 		JButton cleinteventa = new JButton("Asociar venta");
-		cleinteventa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				double id = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
-				cliente = controlVenta.buscarPorIdCliente(id);
-//				controlVenta.asociarVenta(cliente);
-			}
-		});
 		cleinteventa.setBounds(331, 27, 136, 23);
 		contentPane.add(cleinteventa);
 		
+		
+		
+		cleinteventa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
+					cliente = controlVenta.buscarPorIdCliente(id);
+				} catch (NumberFormatException e) {
+				}
+			}
+		});
+
+		
+
 		btnRegisterClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -142,7 +149,8 @@ public class VentanaVenta extends JFrame {
 			}
 		});
 
-		// listener
+		
+
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVenta.buscarProducto(txtIngresaProducto.getText());
@@ -150,6 +158,8 @@ public class VentanaVenta extends JFrame {
 			}
 		});
 
+		
+		
 		txtIngresaProducto.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				btnBuscar.setEnabled(txtIngresaProducto.getText().length() != 0);
@@ -157,11 +167,14 @@ public class VentanaVenta extends JFrame {
 
 		});
 
+		
+
+
 		btnQuitarDeLista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int x = table.getSelectedRow();
 				int y = table.getSelectedColumn();
-				
+
 				try {
 					Object a = table.getValueAt(x, y - 1);
 					float r = Float.parseFloat(a.toString());
@@ -174,25 +187,25 @@ public class VentanaVenta extends JFrame {
 			}
 		});
 
+		
+		
+
 		btnCobrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(cliente == null) {
-					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
-					btnBuscar.setEnabled(false);
-				}else {
-					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
-					btnBuscar.setEnabled(false);
-				}
+				controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()), responsable, cliente);
+				btnBuscar.setEnabled(false);
 			}
 		});
+
+		
 		
 		table.addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				if(table.getRowCount() == 0){
+				if (table.getRowCount() == 0) {
 					btnQuitarDeLista.setEnabled(false);
 					btnCobrar.setEnabled(false);
-				}else {
+				} else {
 					btnQuitarDeLista.setEnabled(true);
 					btnCobrar.setEnabled(true);
 				}
@@ -201,36 +214,41 @@ public class VentanaVenta extends JFrame {
 			@Override
 			public void componentMoved(ComponentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void componentShown(ComponentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void componentHidden(ComponentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
-	
-
 	}
 
-	// Muestra la ventana
-	public void muestra(ControlVenta controlVenta,String responsable) {
-
+	/**
+	 * muestra: 
+	 * 
+	 * @param controlVenta
+	 * @param responsable
+	 */
+	public void muestra(ControlVenta controlVenta, String responsable) {
 		this.controlVenta = controlVenta;
-		this.responsable=responsable;
+		this.responsable = responsable;
 		setVisible(true);
-
 	}
 
-	// Metodos para la Ventana
+	/**
+	 * llenaTabla: 
+	 * 
+	 * @param producto
+	 */
 	public void llenaTabla(Producto producto) {
 		String a[] = new String[4];
 		a[0] = producto.getNombre();
@@ -240,59 +258,69 @@ public class VentanaVenta extends JFrame {
 		modelo.addRow(a);
 		table.setModel(modelo);
 		this.producto = producto;
-
 	}
 
+	
+	/**
+	 * muestraDialogoConMensaje: 
+	 * 
+	 * @param mensaje
+	 */
 	public void muestraDialogoConMensaje(String mensaje) {
 		JOptionPane.showMessageDialog(this, mensaje);
 	}
 
+	
+	/**
+	 * textTotal: 
+	 * 
+	 * @param precio
+	 */
 	public void textTotal(float precio) {
-
 		total += precio;
 		textTotal.setText(String.valueOf(total));
-
 	}
 
+	
 	/**
-	 * Método que recorre la tabla
+	 * recorrerTabla: Método que recorre la tabla
 	 * 
-	 * @return venta de tipo lista
+	 * @return lista: lista de productos en "carrito"
 	 */
 	public List<Producto> recorrerTabla() {
 		List<Producto> lista = new ArrayList<>();
 		Producto producto;
-		
+
 		try {
 			for (int i = 0; i < table.getRowCount(); i++) {
-	
+
 				producto = controlVenta.obtenerProducto((String) table.getValueAt(i, 0));
-	
+
 				lista.add(producto);
 			}
 		} catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer la tabla.");
-        }	
+			JOptionPane.showMessageDialog(null, "Error al leer la tabla.");
+		}
 
 		return lista;
-
 	}
 
+	
+	/**
+	 * limpia:
+	 */
 	public void limpia() {
-		textTotal.setText("");
-		txtIngresaProducto.setText("");
-		total=0;
 		int filas = table.getRowCount();
+		this.textTotal.setText("");
+		this.txtIngresaProducto.setText("");
+		this.total = 0;
+
 		try {
-			for (int i = 0; filas>i ; i++) {
+			for (int i = 0; filas > i; i++) {
 				modelo.removeRow(0);
 			}
 		} catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
-        }	
+			JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+		}
 	}
-
-
-
-	
 }

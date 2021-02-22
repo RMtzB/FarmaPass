@@ -26,6 +26,10 @@ public class ServicioCliente {
 	public List<Cliente> obtenerClientePorPedido(PedidoCliente pedidoCliente) {
 		return clienteRepository.findByPedidosCliente(pedidoCliente);
 	}
+	
+	public boolean guardarCompraCliente(Cliente cliente) {
+		return clienteRepository.save(cliente) != null;
+	}
 
 	public Iterable<Cliente> obtenerClientes() {
 		return clienteRepository.findAll();

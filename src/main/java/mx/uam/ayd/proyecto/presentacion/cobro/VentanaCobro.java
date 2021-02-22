@@ -24,15 +24,11 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JSeparator;
 import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 @Component
 public class VentanaCobro extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textFieldTotal;
 	private JTextField textFieldRecibi;
@@ -42,6 +38,10 @@ public class VentanaCobro extends JFrame {
 	private String responsable;
 	private Cliente cliente;
 
+	
+	/**
+	 * VentanaCobro: 
+	 */
 	public VentanaCobro() {
 		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Cobro");
@@ -270,7 +270,8 @@ public class VentanaCobro extends JFrame {
 					JOptionPane.showMessageDialog(null,
 							"La venta no se puede realizar porque la cantidad Recibida es incorrecta");
 				} else {
-					controlCobro.obtenerLista(total, cliente);
+					controlCobro.obtenerLista(total, responsable, cliente);
+//					controlCobro.obtenerLista(total,responsable);
 					textFieldRecibi.setText("");
 					textFieldCambio.setText("");
 					controlCobro.limpiarTabla();
@@ -282,15 +283,15 @@ public class VentanaCobro extends JFrame {
 		});
 
 	}
-
+	
 	// Métodos que ocupa la ventana
-	public void muestra(ControlCobro controlCobro, float total, Cliente cliente) {
+	public void muestra(ControlCobro controlCobro, float total, String responsable, Cliente cliente) {
 		textFieldTotal.setText(String.valueOf(total));
 		this.controlCobro = controlCobro;
 		this.total = total;
 		this.cliente = cliente;
+		this.responsable = responsable;
 		setVisible(true);
-
 	}
 
 	// Métodos que ocupa la ventana

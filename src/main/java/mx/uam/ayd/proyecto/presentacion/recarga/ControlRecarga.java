@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
 
+/**
+ * @author
+ */
 @Component
 public class ControlRecarga {
 
@@ -18,15 +21,18 @@ public class ControlRecarga {
 	@Autowired
 	private ControlCobro controlCobro;
 	
+	
 	/**
-	 * Inicia Historia de Usuario 4
+	 * iniciaRecarga: Inicia Historia de Usuario
+	 * @param usuario
 	 */
 	public void iniciaRecarga(String usuario) {
 		ventanaRecarga.muestra(this,usuario);
 	}
 	
+	
 	/**
-	 * Abre ventana de confirmacion  pasandole los datos de la recarga 
+	 * iniciaConfirmacion: Abre ventana de confirmacion  pasandole los datos de la recarga 
 	 * @param numero
 	 * @param compañia
 	 * @param monto
@@ -35,27 +41,30 @@ public class ControlRecarga {
 		ventanaConfirmacion.muestra(this, numero, compañia, monto,responsable);
 	}
 	
+	
+	/**
+	 * termina: 
+	 */
 	public void termina() {
 		ventanaRecarga.setVisible(false);
 	}
 	
+	
+	/**
+	 * terminaE: 
+	 */
 	public void terminaE() {
 		ventanaConfirmacion.setVisible(false);
 	}
 	
-	/**
-	 * Pasa el cobro de la recarga
-	 * @param monto
-	 */
-	public void iniciaCobro (int monto,Cliente cliente) {
-		controlCobro.inicia(monto, cliente);
-	}
 	
 	/**
-	 * Pasa el cobro de la recarga
+	 * iniciaCobro: Pasa el cobro de la recarga
 	 * @param monto
+	 * @param responsable
+	 * @param cliente
 	 */
-	public void iniciaCobro (int monto, String usuario) {
-		controlCobro.inicia(monto, usuario);
+	public void iniciaCobro (int monto, String responsable,Cliente cliente) {
+		controlCobro.inicia(monto, responsable, cliente);
 	}
 }
