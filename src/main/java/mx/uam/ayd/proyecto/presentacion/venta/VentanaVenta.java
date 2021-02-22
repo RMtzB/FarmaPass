@@ -154,7 +154,6 @@ public class VentanaVenta extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVenta.buscarProducto(txtIngresaProducto.getText());
-
 			}
 		});
 
