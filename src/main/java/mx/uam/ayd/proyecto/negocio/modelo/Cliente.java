@@ -72,12 +72,9 @@ public class Cliente {
 		}
 		return pedidosCliente.add(pedidoCliente);
 	}
-	public void agregarVent(String fecha, double total,int cantidad) {
-		historial.add(fecha+"%"+total+"%"+cantidad);
-	}
 
 	public void agregarVenta(String fecha, double total,int cantidad) {
-		historial.add(fecha+"?"+total+"?"+cantidad);
+		historial.add(fecha+"%"+total+"%"+cantidad);
 	}
 	
 	
