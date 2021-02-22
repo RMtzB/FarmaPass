@@ -89,6 +89,11 @@ public class ControlCobro {
 	public void recibirCliente(Cliente cliente) {
 		
 	}
+
+	public void terminaTodo() {
+		controlVenta.termina();
+		ventanaCobro.dispose();
+	}
 	
 
 }

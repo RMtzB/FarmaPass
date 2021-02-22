@@ -181,8 +181,8 @@ public class VentanaHistorialCliente extends JFrame {
 		String e[] = venta.split("%");
 		String a[] = new String[3];
 		a[0] = e[0];
-		a[1] = e[1];
-		a[2] = e[2];
+		a[2] = e[1];
+		a[1] = e[2];
 		modeloHistorial.addRow(a);
 		tablaHistorial.setModel(modeloHistorial);
 	}

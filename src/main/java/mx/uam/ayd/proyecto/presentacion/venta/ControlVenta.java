@@ -87,6 +87,7 @@ public class ControlVenta {
 	 * termina: Oculta la venta de descripcion del producto
 	 */
 	public void termina() {
+		//limpiarTabla();
 		ventanaProducto.setVisible(false);
 	}
 
@@ -165,6 +166,7 @@ public class ControlVenta {
 		if (cliente != null) {
 			cliente.agregarVenta(fechaF, total, listaProductos.size());
 			servicioCliente.guardarCompraCliente(cliente);
+			//venta terminada y guardada 
 			cliente = null;
 		}
 		
