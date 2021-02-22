@@ -12,6 +12,11 @@ import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.ControlAltaYBajaUsuarios;
 import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.AltaUsuarios.ControlAltaUsuario;
 
+/**
+ * Control para ventas de empleado
+ * @author David Castellanos
+ *
+ */
 @Component
 public class ControlVentasdeEmpleados {
 	
@@ -28,7 +33,7 @@ public class ControlVentasdeEmpleados {
 	 * inicia ventana e ventas de empleado
 	 * @param product
 	 */
-	public void inicia(Empleado product) {
+	public void inicia(Empleado product){
 		ventanaVentasdeEmpleados.muestra(this, product);
 	}
 
@@ -41,8 +46,8 @@ public class ControlVentasdeEmpleados {
 		
 		if(ventasEmpleado.isEmpty()) {
 			ventanaVentasdeEmpleados.sinProductos("No hay productos para mostrar");
-		} else {
-			for (Venta venta : ventasEmpleado) { 
+		}else {
+			for (Venta venta : ventasEmpleado){ 
 				ventanaVentasdeEmpleados.agregaVentasdeEmpleados(venta);
 			}
 		}
