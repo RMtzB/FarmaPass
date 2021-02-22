@@ -12,6 +12,12 @@ import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.ControlAltaYBajaUsuarios;
 import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.AltaUsuarios.ControlAltaUsuario;
 
+/**
+ * Control para ventas de empleado
+ * @author David Castellanos
+ * @since 16/02/2021
+ *
+ */
 @Component
 public class ControlVentasdeEmpleados {
 	
@@ -25,24 +31,24 @@ public class ControlVentasdeEmpleados {
 	private ControlAltaYBajaUsuarios controlAltaUsuario;
 	
 	/**
-	 * inicia ventana e ventas de empleado
-	 * @param product
+	 * inicia ventana de ventas de empleado
+	 * @param empleado: trae al empleado que fue seleccionado 
 	 */
-	public void inicia(Empleado product) {
-		ventanaVentasdeEmpleados.muestra(this, product);
+	public void inicia(Empleado empleado){
+		ventanaVentasdeEmpleados.muestra(this, empleado);
 	}
 
 	/***
 	 * Recupera ventas(en una lista) del empleado seleccionado pasando el nombre de usuario(manera mas rapida de distinguir las ventas)
-	 * @param usuario
+	 * @param usuario: es el usuario que tiene el empleado 
 	 */
 	public void obtenerVentasEmpleado(String usuario) {
 		List<Venta> ventasEmpleado = servicioVenta.obtenerVentasPorEmpleado(usuario);
 		
 		if(ventasEmpleado.isEmpty()) {
 			ventanaVentasdeEmpleados.sinProductos("No hay productos para mostrar");
-		} else {
-			for (Venta venta : ventasEmpleado) { 
+		}else {
+			for (Venta venta : ventasEmpleado){ 
 				ventanaVentasdeEmpleados.agregaVentasdeEmpleados(venta);
 			}
 		}
@@ -50,8 +56,8 @@ public class ControlVentasdeEmpleados {
 	
 	/**
 	 * Regresa lista de ventas por la fecha que se pasa por parametro del empleado/usuario seleccionado
-	 * @param fechaF
-	 * @param usuario
+	 * @param fechaF: Fecha en la que quiere esas ventas
+	 * @param usuario: Ventas con el usuario/responsable correspondiente
 	 */
 	
 	public void obtenerVentas(String fechaF,String usuario) {

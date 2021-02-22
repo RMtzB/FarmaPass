@@ -7,6 +7,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,8 @@ public class VentanaVenta extends JFrame {
 	float total = 0;
 	private Cliente cliente;
 	private Producto producto;
+	private JLabel lblDescuentoDinero;
+	private JLabel lblDescPorcentaje;
 
 	private DefaultTableModel modelo = new DefaultTableModel() {
 		@Override
@@ -48,11 +51,11 @@ public class VentanaVenta extends JFrame {
 			return false;
 		}
 	};
+	private JTextField txtTotalFinal;
 
-	
 	public VentanaVenta() {
 		setTitle("Venta");
-		setBounds(100, 100, 650, 342);
+		setBounds(100, 100, 650, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,9 +77,9 @@ public class VentanaVenta extends JFrame {
 		contentPane.add(txtIngresaProducto);
 		txtIngresaProducto.setColumns(10);
 
-		JLabel lblTotal = new JLabel("Total:");
+		JLabel lblTotal = new JLabel("SubTotal:");
 		lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTotal.setBounds(467, 231, 51, 14);
+		lblTotal.setBounds(451, 229, 70, 14);
 		contentPane.add(lblTotal);
 
 		textTotal = new JTextField();
@@ -86,7 +89,7 @@ public class VentanaVenta extends JFrame {
 		textTotal.setColumns(10);
 
 		JButton btnCobrar = new JButton("Cobrar");
-		btnCobrar.setBounds(535, 269, 89, 23);
+		btnCobrar.setBounds(535, 327, 89, 23);
 		contentPane.add(btnCobrar);
 
 		JButton btnQuitarDeLista = new JButton("Quitar de lista");
@@ -97,15 +100,11 @@ public class VentanaVenta extends JFrame {
 		btnRecarga.setBounds(10, 228, 89, 23);
 		contentPane.add(btnRecarga);
 
-
-		
 		btnRecarga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVenta.iniciarecarga(responsable);
 			}
 		});
-		
-
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 63, 614, 150);
@@ -127,20 +126,50 @@ public class VentanaVenta extends JFrame {
 		JButton cleinteventa = new JButton("Asociar venta");
 		cleinteventa.setBounds(331, 27, 136, 23);
 		contentPane.add(cleinteventa);
-		
-		
-		
+
+		JLabel lblNewLabel_1 = new JLabel("Descuento de cliente :");
+		lblNewLabel_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(388, 271, 136, 14);
+		contentPane.add(lblNewLabel_1);
+
+		lblDescPorcentaje = new JLabel("00 %");
+		lblDescPorcentaje.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		lblDescPorcentaje.setBounds(519, 271, 40, 14);
+		contentPane.add(lblDescPorcentaje);
+
+		JLabel lblNewLabel_3 = new JLabel("Total:");
+		lblNewLabel_3.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(487, 299, 46, 14);
+		contentPane.add(lblNewLabel_3);
+
+		txtTotalFinal = new JTextField();
+		txtTotalFinal.setEditable(false);
+		txtTotalFinal.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		txtTotalFinal.setBounds(538, 296, 86, 20);
+		contentPane.add(txtTotalFinal);
+		txtTotalFinal.setColumns(10);
+
+		lblDescuentoDinero = new JLabel("000");
+		lblDescuentoDinero.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		lblDescuentoDinero.setBounds(578, 271, 46, 14);
+		contentPane.add(lblDescuentoDinero);
+
+		JLabel lblNewLabel_2 = new JLabel("$");
+		lblNewLabel_2.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(569, 271, 12, 14);
+		contentPane.add(lblNewLabel_2);
+
 		cleinteventa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del cliente"));
 					cliente = controlVenta.buscarPorIdCliente(id);
+					lblDescPorcentaje.setText(cliente.getDescuentoCliente() + " %");
+					ajustaDescuento();
 				} catch (NumberFormatException e) {
 				}
 			}
 		});
-
-		
 
 		btnRegisterClient.addActionListener(new ActionListener() {
 			@Override
@@ -149,25 +178,18 @@ public class VentanaVenta extends JFrame {
 			}
 		});
 
-		
-
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVenta.buscarProducto(txtIngresaProducto.getText());
 			}
 		});
 
-		
-		
 		txtIngresaProducto.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
 				btnBuscar.setEnabled(txtIngresaProducto.getText().length() != 0);
 			}
 
 		});
-
-		
-
 
 		btnQuitarDeLista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -186,18 +208,13 @@ public class VentanaVenta extends JFrame {
 			}
 		});
 
-		
-		
-
 		btnCobrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()), responsable, cliente);
+				controlVenta.muentraCobro(Float.parseFloat(txtTotalFinal.getText()), responsable, cliente);
 				btnBuscar.setEnabled(false);
 			}
 		});
 
-		
-		
 		table.addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -232,7 +249,7 @@ public class VentanaVenta extends JFrame {
 	}
 
 	/**
-	 * muestra: 
+	 * muestra:
 	 * 
 	 * @param controlVenta
 	 * @param responsable
@@ -244,7 +261,7 @@ public class VentanaVenta extends JFrame {
 	}
 
 	/**
-	 * llenaTabla: 
+	 * llenaTabla:
 	 * 
 	 * @param producto
 	 */
@@ -259,9 +276,8 @@ public class VentanaVenta extends JFrame {
 		this.producto = producto;
 	}
 
-	
 	/**
-	 * muestraDialogoConMensaje: 
+	 * muestraDialogoConMensaje:
 	 * 
 	 * @param mensaje
 	 */
@@ -269,18 +285,17 @@ public class VentanaVenta extends JFrame {
 		JOptionPane.showMessageDialog(this, mensaje);
 	}
 
-	
 	/**
-	 * textTotal: 
+	 * textTotal:
 	 * 
 	 * @param precio
 	 */
 	public void textTotal(float precio) {
 		total += precio;
 		textTotal.setText(String.valueOf(total));
+		ajustaDescuento();
 	}
 
-	
 	/**
 	 * recorrerTabla: Método que recorre la tabla
 	 * 
@@ -304,7 +319,6 @@ public class VentanaVenta extends JFrame {
 		return lista;
 	}
 
-	
 	/**
 	 * limpia:
 	 */
@@ -313,6 +327,10 @@ public class VentanaVenta extends JFrame {
 		this.textTotal.setText("");
 		this.txtIngresaProducto.setText("");
 		this.total = 0;
+		cliente=null;
+		txtTotalFinal.setText("");
+		lblDescuentoDinero.setText("000");
+		lblDescPorcentaje.setText("00");
 
 		try {
 			for (int i = 0; filas > i; i++) {
@@ -320,6 +338,22 @@ public class VentanaVenta extends JFrame {
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+		}
+	}
+
+	private void ajustaDescuento() {
+		String patron = "#.###";
+		DecimalFormat objDF = new DecimalFormat(patron);
+		if (cliente != null) {
+			double aux = total * cliente.getDescuentoCliente() / 100;
+			String a = objDF.format(aux);
+			lblDescuentoDinero.setText(a);
+			String b = objDF.format(total - aux);
+			txtTotalFinal.setText(b);
+		}
+		else {
+			String b = objDF.format(total);
+			txtTotalFinal.setText(b);
 		}
 	}
 }

@@ -133,7 +133,7 @@ public class ProyectoApplication {
 		servicioCliente.guardarCliente(pruebaCliente0);
 
 		Cliente pruebaCliente = new Cliente("Joana", "Hernandez", "Ruiz", "joana@gmail.com", "5544332211");
-
+		pruebaCliente.setDescuentoCliente(5);
 		servicioCliente.guardarCliente(pruebaCliente);
 
 		pruebaCliente.agregarVenta("20/12/2021", 1952, 7);

@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -114,6 +116,22 @@ public class VentanaListaClientes extends JFrame {
 
 		tablaListaClientes.setPreferredScrollableViewportSize(b);
 		tablaListaClientes.setFont(new Font("Berlin Sans FB", Font.PLAIN, 14));
+		
+		
+		tablaListaClientes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					if(tablaListaClientes.getSelectedRow()!=-1) {
+						controlListaClientes.iniciarHistorial(getIdSeleccionado());
+						//dispose();
+					}
+				}
+			}
+		});
+		
+		
+		
 
 	}
 

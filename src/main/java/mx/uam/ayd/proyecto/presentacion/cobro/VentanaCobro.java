@@ -276,7 +276,7 @@ public class VentanaCobro extends JFrame {
 					textFieldCambio.setText("");
 					controlCobro.limpiarTabla();
 					controlCobro.terminaRecarga();
-					controlCobro.termina();
+					controlCobro.terminaTodo();
 				}
 
 			}
