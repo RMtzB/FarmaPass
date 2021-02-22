@@ -176,16 +176,13 @@ public class VentanaVenta extends JFrame {
 
 		btnCobrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				if(cliente == null) {
-//					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
-//					btnBuscar.setEnabled(false);
-//				}else {
-//					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
-//					btnBuscar.setEnabled(false);
-//				}
-				
-				controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
-				btnBuscar.setEnabled(false);
+				if(cliente == null) {
+					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
+					btnBuscar.setEnabled(false);
+				}else {
+					controlVenta.muentraCobro(Float.parseFloat(textTotal.getText()),cliente);
+					btnBuscar.setEnabled(false);
+				}
 			}
 		});
 		
