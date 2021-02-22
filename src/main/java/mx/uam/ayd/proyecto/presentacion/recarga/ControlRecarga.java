@@ -3,6 +3,7 @@ package mx.uam.ayd.proyecto.presentacion.recarga;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
 
 @Component
@@ -45,8 +46,8 @@ public class ControlRecarga {
 	 * Pasa el cobro de la recarga
 	 * @param monto
 	 */
-	public void iniciaCobro (int monto,String responsable) {
-		controlCobro.inicia(monto,responsable);
+	public void iniciaCobro (int monto,Cliente cliente) {
+		controlCobro.inicia(monto, cliente);
 	}
 	/**
 	 * Termina historia de Usuario 4

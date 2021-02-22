@@ -141,10 +141,15 @@ public class ProyectoApplication {
 		empleadoRepository.save(pruebaEmpleado);
 		empleadoRepository.save(pruebaEncargado);
 
+		Cliente pruebaCliente0 = new Cliente("cliente0", "ventas", "sin", "cliente@Registrado.com", "5544332211");
+		servicioCliente.guardarCliente(pruebaCliente0);
+		
 		Cliente pruebaCliente = new Cliente("Joana", "Hernandez", "Ruiz", "joana@gmail.com", "5544332211");
 		servicioCliente.guardarCliente(pruebaCliente);
+
 		pruebaCliente.agregarVent("20/12/2021", 1952, 7);
 		pruebaCliente.agregarVent("02/01/2021", 900, 5);
+
 		PedidoCliente pruebaPedidoCliente = new PedidoCliente("2020/10/17", 2, 119);
 		servicioPedidoCliente.guardar(pruebaPedidoCliente);
 

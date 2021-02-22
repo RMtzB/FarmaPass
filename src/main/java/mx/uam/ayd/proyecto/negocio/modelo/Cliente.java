@@ -35,6 +35,7 @@ public class Cliente {
 	private ArrayList<String> historial; 
 	private int descuentoCliente;
 
+
 	
 	@OneToMany(targetEntity = PedidoCliente.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCliente")
@@ -74,5 +75,11 @@ public class Cliente {
 	public void agregarVent(String fecha, double total,int cantidad) {
 		historial.add(fecha+"%"+total+"%"+cantidad);
 	}
+
+	public void agregarVenta(String fecha, double total,int cantidad) {
+		historial.add(fecha+"?"+total+"?"+cantidad);
+	}
+	
+	
 
 }

@@ -12,8 +12,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.ServicioCliente;
 import mx.uam.ayd.proyecto.negocio.ServicioDetalleVenta;
 import mx.uam.ayd.proyecto.negocio.ServicioProducto;
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Producto;
 import mx.uam.ayd.proyecto.negocio.modelo.Venta;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
@@ -28,7 +30,7 @@ import mx.uam.ayd.proyecto.presentacion.venta.busquedaActivo.ControlBusquedaPorA
 @Component
 public class ControlVenta {
 	@Autowired
-	ControlAgregarCliente addClientControl; 
+	ControlAgregarCliente addClientControl;
 
 	@Autowired
 	private VentanaVenta ventanaVenta;
@@ -38,7 +40,7 @@ public class ControlVenta {
 
 	@Autowired
 	private ControlCobro controlCobro;
-	
+
 	@Autowired
 	private ControlRecarga controlRecarga;
 
@@ -46,11 +48,14 @@ public class ControlVenta {
 	private ServicioProducto servicioProducto;
 
 	@Autowired
+	private ServicioCliente servicioCliente;
+
+	@Autowired
 	private ServicioDetalleVenta servicioDetalleVenta;
-	
+
 	@Autowired
 	private ControlBusquedaPorActivo controlBusquedaPorActivo;
-	
+
 	private List<Producto> listaProductos = new ArrayList<>();
 
 	/**
@@ -60,6 +65,7 @@ public class ControlVenta {
 	public void inicia(String nom) {
 		ventanaVenta.muestra(this,nom);
 	}
+
 	/**
 	 * Método que invoca al servicio de producto para producto por nombre
 	 * 
@@ -125,10 +131,10 @@ public class ControlVenta {
 	/**
 	 * Inicia ventana de cobro pasando el total de ventas y el responsable de venta
 	 * @param total
-	 * @param responsabl
+	 * @param cliente
 	 */
-	public void muentraCobro(float total,String responsabl) {
-		controlCobro.inicia(total,responsabl);
+	public void muentraCobro(float total, Cliente cliente) {
+		controlCobro.inicia(total, cliente);
 	}
 
 	/**
@@ -140,28 +146,51 @@ public class ControlVenta {
 		ventanaVenta.textTotal(precio);
 	}
 
-	/***
-	 * Guarda detalle de venta 
+
+	/**
+	 * Método que obtien los producto de la venta
+	 * Modificado para poder asociar las ventas a los clintes 
 	 * @param total
 	 * @param responsable
 	 */
-	public void obtenerLista(float total,String responsable) {
-
-		listaProductos = ventanaVenta.recorrerTabla();
-		Venta venta = new Venta();
-		Calendar fecha = new GregorianCalendar();
-		int ano = fecha.get(Calendar.YEAR);
-		int mes = fecha.get(Calendar.MONTH)+1;
-		int dia = fecha.get(Calendar.DAY_OF_MONTH);
-		String fechaF = dia + "/" + mes + "/" + ano;
-		venta.setFecha(fechaF);
-		venta.setTotal(total);
-		venta.setCantidad(listaProductos.size());
-		venta.setResponsable(responsable);
-		actulizaInventarioMenos(listaProductos);
-		servicioDetalleVenta.agregarDetalleVenta(venta, listaProductos);
-		controlCobro.muestraDialogo();
+	public void obtenerLista(float total, Cliente cliente) {
+		if (cliente == null) {
+			System.out.println("entre al if");
+			listaProductos = ventanaVenta.recorrerTabla();
+			Venta venta = new Venta();
+			Calendar fecha = new GregorianCalendar();
+			int ano = fecha.get(Calendar.YEAR);
+			int mes = fecha.get(Calendar.MONTH);
+			int dia = fecha.get(Calendar.DAY_OF_MONTH);
+			String fechaF = ano + "/" + mes + "/" + dia;
+			venta.setFecha(fechaF);
+			venta.setTotal(total);
+			actulizaInventarioMenos(listaProductos);
+			servicioDetalleVenta.agregarDetalleVenta(venta, listaProductos);
+			controlCobro.muestraDialogo();
+			
+		
+		} else {
+			System.out.println("entre else");
+			listaProductos = ventanaVenta.recorrerTabla();
+			Venta venta = new Venta();
+			Calendar fecha = new GregorianCalendar();
+			int ano = fecha.get(Calendar.YEAR);
+			int mes = fecha.get(Calendar.MONTH);
+			int dia = fecha.get(Calendar.DAY_OF_MONTH);
+			String fechaF = ano + "/" + mes + "/" + dia;
+			venta.setFecha(fechaF);
+			venta.setTotal(total);
+			cliente.agregarVenta(fechaF, total, listaProductos.size());
+			System.out.println(cliente.getHistorial().get(0));
+			actulizaInventarioMenos(listaProductos);
+			servicioDetalleVenta.agregarDetalleVenta(venta, listaProductos);
+			controlCobro.muestraDialogo();
+			cliente = null;
+		}
 	}
+
+
 	
 	public void iniciarecarga(String usuario) {
 		controlRecarga.iniciaRecarga(usuario);
@@ -170,7 +199,7 @@ public class ControlVenta {
 	public void limpiarTabla() {
 		ventanaVenta.limpia();
 	}
-	
+
 	public void showAddClientWindow() {
 		addClientControl.showWindow(this);
 	}
@@ -185,4 +214,36 @@ public class ControlVenta {
 			controlBusquedaPorActivo.inicia(nombre);
 		}
 	}
+
+	/**
+	 * Método que obtien al cliente por su ID
+	 * 
+	 * @param total
+	 */
+	
+	public Cliente buscarPorIdCliente(double id) {
+		Cliente cliente = new Cliente();
+		for (int i = 0; i < servicioCliente.buscarClientes().size(); i++) {
+			System.out.println((servicioCliente.buscarClientes().get(i).getNombre()));
+			System.out.println((servicioCliente.buscarClientes().get(i).getCorreo()));
+			System.out.println((servicioCliente.buscarClientes().get(i).getIdCliente()));
+			;
+			if (servicioCliente.buscarClientes().get(i).getIdCliente() == id) {
+				cliente = servicioCliente.buscarClientes().get(i);
+				System.out.println(cliente.getNombre());
+				String encontrado = "Cliente encontrado puede proseguir con la venta";
+				ventanaVenta.muestraDialogoConMensaje(encontrado);
+			}
+		}
+
+		if (cliente.getNombre() == null) {
+			String noencontrado = "Cliente no encontrado verifique el ID";
+			ventanaVenta.muestraDialogoConMensaje(noencontrado);
+		}
+
+		return cliente;
+	}
+
+	
+	
 }

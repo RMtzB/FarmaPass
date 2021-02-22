@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.presentacion.recarga.ControlRecarga;
 import mx.uam.ayd.proyecto.presentacion.venta.ControlVenta;
 
@@ -22,16 +23,17 @@ public class ControlCobro {
 	private VentanaCobro ventanaCobro;
 	@Autowired
 	private ControlVenta controlVenta;
-	
 	@Autowired
 	private ControlRecarga controlRecarga;
 
 	/**
 	 * 
 	 * Inicia historia de usuario: Forma de cobro
+	 * @param cliente 
 	 */
-	public void inicia(float total, String responsable) {
-		ventanaCobro.muestra(this, total,responsable);
+
+	public void inicia(float total, Cliente cliente) {
+		ventanaCobro.muestra(this, total,cliente);
 	}
 
 	public void termina() {
@@ -43,8 +45,8 @@ public class ControlCobro {
 	 * 
 	 * @param total
 	 */
-	public void obtenerLista(float total,String responsable) {
-		controlVenta.obtenerLista(total,responsable);
+	public void obtenerLista(float total,Cliente cliente) {
+		controlVenta.obtenerLista(total,cliente);
 	}
 	/**
 	 * Método que muestra los dialogos de la ventana
@@ -74,5 +76,10 @@ public class ControlCobro {
 		controlRecarga.termina();
 		
 	}
+
+	public void recibirCliente(Cliente cliente) {
+		
+	}
+	
 
 }

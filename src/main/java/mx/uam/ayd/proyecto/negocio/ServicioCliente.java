@@ -12,6 +12,12 @@ public class ServicioCliente {
 	@Autowired
 	private ClienteRepository clienteRepository;
 
+  /**
+	 * Guarda cambios en un cliente
+	 * 
+	 * @param cliente entidad de cliente a guardar
+	 */
+  
 	public void guardarCliente(Cliente cliente) {
 		clienteRepository.save(cliente);
 	}
@@ -71,4 +77,24 @@ public class ServicioCliente {
 		Cliente aux = clienteRepository.findById(id);
 		return aux.getNombre() + " " + aux.getApellidoPaterno();
 	}
+  
+  /**
+	 * Agregar un pedido cliente y lo relaciona con el cliente
+	 * 
+	 * @param pedidoCliente pedido cliente a relacionar
+	 * @return regresa true si el pedido cliente se agrego correctamente y false si
+	 *         no
+	 * @throws IllegalArgumentException si el pedido cliente es nulo
+	 */
+  
+  public List<Cliente> buscarClientes() {
+		List<Cliente> clientes = new ArrayList<>();
+		
+		for(Cliente cliente:clienteRepository.findAll())
+			clientes.add(cliente);
+				
+				
+		return clientes;
+    }
 }
+
