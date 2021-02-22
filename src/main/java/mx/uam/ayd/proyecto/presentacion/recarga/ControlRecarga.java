@@ -33,15 +33,16 @@ public class ControlRecarga {
 	 */
 	public void iniciaConfirmacion(int numero, String compañia,int monto,String responsable) {
 		ventanaConfirmacion.muestra(this, numero, compañia, monto,responsable);
-		
 	}
 	
 	public void termina() {
 		ventanaRecarga.setVisible(false);
 	}
+	
 	public void terminaE() {
 		ventanaConfirmacion.setVisible(false);
 	}
+	
 	/**
 	 * Pasa el cobro de la recarga
 	 * @param monto
@@ -49,7 +50,12 @@ public class ControlRecarga {
 	public void iniciaCobro (int monto,Cliente cliente) {
 		controlCobro.inicia(monto, cliente);
 	}
+	
 	/**
-	 * Termina historia de Usuario 4
+	 * Pasa el cobro de la recarga
+	 * @param monto
 	 */
+	public void iniciaCobro (int monto, String usuario) {
+		controlCobro.inicia(monto, usuario);
+	}
 }

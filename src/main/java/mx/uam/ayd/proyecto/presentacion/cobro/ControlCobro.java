@@ -33,7 +33,15 @@ public class ControlCobro {
 	 */
 
 	public void inicia(float total, Cliente cliente) {
-		ventanaCobro.muestra(this, total,cliente);
+		ventanaCobro.muestra(this, total, cliente);
+	}
+	
+	/**
+	 * 
+	 * Inicia historia de usuario: Forma de cobro
+	 */
+	public void inicia(float total, String responsable) {
+		ventanaCobro.muestra(this, total,responsable);
 	}
 
 	public void termina() {

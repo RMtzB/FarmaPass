@@ -27,7 +27,6 @@ import mx.uam.ayd.proyecto.presentacion.inicioSesion.ControlInicioSesion;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
 /**
- * 
  * Clase principal que arranca la aplicación
  * 
  * @author SosaPiña
@@ -119,20 +118,6 @@ public class ProyectoApplication {
 		Producto producto5 = new Producto("DUALGOS", "Paracetamol-Ubuprofeno", "No", "Estante 2, segundo anaquel", 29,
 				10);
 		productoRepository.save(producto5);
-//
-//		Venta venta1 = new Venta("2019/5/1", 50);
-//
-//		DetalleVenta detalleDeVenta = new DetalleVenta();
-//
-//		ventaRepository.save(venta1);
-//		detalleVentaRepository.save(detalleDeVenta);
-//
-//		List<Producto> productoaux = new ArrayList<>();
-//
-//		productoaux.add(producto1);
-//		productoaux.add(producto2);
-//
-//		servicio.agregarDetalleVenta(venta1, productoaux);
 
 		Empleado pruebaEmpleado = new Empleado("Karina", "Vergara", "Guzman", "karina@gmail.com", "5587388643",
 				"empleado", "anver", "123456789");
@@ -198,8 +183,5 @@ public class ProyectoApplication {
 		
 		Venta venta4 = new Venta("18/2/2021",95,2,"anver");
 		ventaRepository.save(venta4);
-		
-
-		
 	}
 }

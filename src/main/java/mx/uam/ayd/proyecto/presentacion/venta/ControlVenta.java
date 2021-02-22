@@ -117,16 +117,6 @@ public class ControlVenta {
 		servicioProducto.actualizaInventarioMenos(listaProductos);
 	}
 
-	/**
-	 * Termina historia de usuario: Agregar productos para la venta.
-	 * 
-	 * 
-	 */
-
-	/**
-	 * 
-	 * Inicia historia de forma de cobro
-	 */
 
 	/**
 	 * Inicia ventana de cobro pasando el total de ventas y el responsable de venta

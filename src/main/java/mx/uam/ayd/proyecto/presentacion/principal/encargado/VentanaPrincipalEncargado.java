@@ -44,10 +44,10 @@ public class VentanaPrincipalEncargado extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 
-		panel_1.setBounds(5, 45, 384, 123);
+		panel_1.setBounds(5, 45, 384, 154);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(5, 174, 384, 52);
+		panel_2.setBounds(5, 210, 384, 52);
 
 		panel_2.setLayout(null);
 

@@ -1,6 +1,11 @@
 package mx.uam.ayd.proyecto.negocio;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,8 +21,6 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 
 @ExtendWith(MockitoExtension.class)
 class ServicioClienteTest {
-	
-	
 	// Al usar la anotación @Mock, el framework Mockito crea un sustituto
 	// de la clase que regresa valores por default
 	@Mock
@@ -27,14 +30,14 @@ class ServicioClienteTest {
 	// probar para que no haya nullPointerException por que las dependencias
 	// no están satisfechas en tiempo de pruebas
 	@InjectMocks
-	private ServicioCliente servicio;
+	private ServicioCliente servicioCliente;
 
 	@Test
 	void testBuscarClientes() {
 		// Prueba 1: corroborar que regresa una lista vacía si no hay asistencias en la BD
 		
 		// en este momento, la invocación a asistenciarepository.findAll() regresa una lista vacía
-		List <Cliente> cliente = servicio.buscarClientes();
+		List <Cliente> cliente = servicioCliente.buscarClientes();
 		
 		assertTrue(cliente.isEmpty());
 		
@@ -76,8 +79,33 @@ class ServicioClienteTest {
 		// vista como Iterable que tiene dos elementos
 		when(clienteRepository.findAll()).thenReturn(lista);
 		
-		cliente = servicio.buscarClientes();
+		cliente = servicioCliente.buscarClientes();
 		
 		assertEquals(2,cliente.size()); // Corroboro que tenga dos elementos
+	}
+	
+	@Test
+	void actualizarDescuentoTest() {
+		Cliente testCliente = new Cliente("Pedro", "Hernandez", "Lopez", "joana@gmail.com", "5544332211");
+		when(clienteRepository.findById(0)).thenReturn(testCliente);
+		servicioCliente.actualizarDescuento(0, 7);
+		assertEquals(7,testCliente.getDescuentoCliente());
+	}
+
+	@Test
+	void getDescuentoDeClienteTest() {
+		Cliente testCliente = new Cliente("Pedro", "Hernandez", "Lopez", "joana@gmail.com", "5544332211");
+		when(clienteRepository.findById(0)).thenReturn(testCliente);
+		servicioCliente.actualizarDescuento(0, 10);
+		int aux = servicioCliente.getDescuentoDeCliente(0);
+		assertEquals(10,aux);
+	}
+
+	@Test
+	void getNombreDeClienteTest() {
+		Cliente testCliente = new Cliente("Pedro", "Hernandez", "Lopez", "joana@gmail.com", "5544332211");
+		when(clienteRepository.findById(0)).thenReturn(testCliente);
+		String aux= servicioCliente.getNombreDeCliente(0);
+		assertEquals("Pedro Hernandez",aux);
 	}
 }
