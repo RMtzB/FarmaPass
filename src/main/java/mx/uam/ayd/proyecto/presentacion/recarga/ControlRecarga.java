@@ -21,8 +21,8 @@ public class ControlRecarga {
 	/**
 	 * Inicia Historia de Usuario 4
 	 */
-	public void iniciaRecarga() {
-		ventanaRecarga.muestra(this);
+	public void iniciaRecarga(String usuario) {
+		ventanaRecarga.muestra(this,usuario);
 	}
 	
 	/**
@@ -31,8 +31,8 @@ public class ControlRecarga {
 	 * @param compañia
 	 * @param monto
 	 */
-	public void iniciaConfirmacion(int numero, String compañia,int monto) {
-		ventanaConfirmacion.muestra(this, numero, compañia, monto);
+	public void iniciaConfirmacion(int numero, String compañia,int monto,String responsable) {
+		ventanaConfirmacion.muestra(this, numero, compañia, monto,responsable);
 		
 	}
 	

@@ -39,9 +39,8 @@ public class VentanaCobro extends JFrame {
 	private JTextField textFieldCambio;
 	private ControlCobro controlCobro;
 	private float total;
-	Cliente cliente;
-	
 
+	Cliente cliente;
 	
 	public VentanaCobro() {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -288,10 +287,9 @@ public class VentanaCobro extends JFrame {
 				if(a<0) {
 					JOptionPane.showMessageDialog(null, "La venta no se puede realizar porque la cantidad Recibida es incorrecta");
 				}else {
-					
 					controlCobro.obtenerLista(total,cliente);
 					textFieldRecibi.setText("");
-					textFieldCambio.setText("");
+					textFieldCambio.setText(""); 
 					controlCobro.limpiarTabla();
 					controlCobro.terminaRecarga();
 					controlCobro.termina();
@@ -301,15 +299,15 @@ public class VentanaCobro extends JFrame {
 		});
 		
 	}
-	
-	
+
 	//Métodos que ocupa la ventana
 	public void muestra(ControlCobro controlCobro, float total, Cliente cliente) {
 		textFieldTotal.setText(String.valueOf(total));
 		this.controlCobro = controlCobro;
 		this.total=total;
 		this.cliente = cliente;
-		setVisible(true);
+    setVisible(true);
+		
 	}
 
 	public void muestraDialogo() {

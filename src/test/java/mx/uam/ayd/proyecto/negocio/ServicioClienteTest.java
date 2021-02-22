@@ -1,11 +1,6 @@
 package mx.uam.ayd.proyecto.negocio;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -85,5 +80,4 @@ class ServicioClienteTest {
 		
 		assertEquals(2,cliente.size()); // Corroboro que tenga dos elementos
 	}
-
 }

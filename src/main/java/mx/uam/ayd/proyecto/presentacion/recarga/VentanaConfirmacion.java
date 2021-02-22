@@ -32,6 +32,7 @@ public class VentanaConfirmacion extends JFrame {
 	private JTextField textCompañia;
 	private ControlRecarga controlRecarga;
 	private JProgressBar progressBar;
+	private String usuario;
 
 	
 
@@ -39,7 +40,9 @@ public class VentanaConfirmacion extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaConfirmacion() {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setTitle("Confirmacion");
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 626, 427);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -119,7 +122,8 @@ public class VentanaConfirmacion extends JFrame {
 				};
 				hilo.start();
 				
-				controlRecarga.iniciaCobro(Integer.valueOf(textMonto.getText()),null);
+				controlRecarga.iniciaCobro(Integer.valueOf(textMonto.getText()),usuario);
+
 				
 			}
 		});
@@ -147,8 +151,9 @@ public class VentanaConfirmacion extends JFrame {
 	   
 		
 	}
-	public void muestra(ControlRecarga controlRecarga,int numero,String compañia,int monto) {
+	public void muestra(ControlRecarga controlRecarga,int numero,String compañia,int monto,String usuario) {
 		this.controlRecarga = controlRecarga;
+		this.usuario=usuario;
 		textNumero.setText(String.valueOf(numero));
 		textCompañia.setText(compañia);
 		textMonto.setText(String.valueOf(monto));

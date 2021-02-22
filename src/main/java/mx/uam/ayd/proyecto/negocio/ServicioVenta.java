@@ -37,8 +37,7 @@ public class ServicioVenta {
 		return ventas;
 	}
 	/**
-	 * Obtiene todas las ventas hechas
-	 * @param fechaF 
+	 * Recupera todas las ventas
 	 * @return
 	 */
 	public List<Venta> recuperaTodasLasVentas() {
@@ -48,5 +47,18 @@ public class ServicioVenta {
 		}
 		return ventas;
 		
+	}
+	
+	/**
+	 * Obtiene las ventas del usuario que se le pase
+	 * @param usuario
+	 * @return
+	 */
+	public List<Venta> obtenerVentasPorEmpleado(String usuario) {
+		List<Venta> ventas =  new ArrayList<>();
+		for (Venta venta : ventaRepository.findByResponsable(usuario) ) {
+			ventas.add(venta);
+		}
+		return ventas;
 	}
 }

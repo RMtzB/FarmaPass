@@ -14,11 +14,11 @@ import lombok.Data;
 /**
  * Entidad de negocio Asistencias
  * 
- *
+ * @author Raul Mb
+ * @since 15/02/2021
  */
 @Entity
 @Data
-
 public class Asistencia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +31,12 @@ public class Asistencia {
 	private Empleado empleado;
 	
 	public Asistencia() {}
-	public Asistencia(String horaInicial, String horaFinal,String fecha) {
-		this.horaInicial= horaInicial;
-		this.horaFinal= horaFinal;
-		this.fecha=fecha;
-		
+	
+	public Asistencia(Empleado empleado, String horaInicial,String fecha) {
+		this.horaInicial = horaInicial;
+		this.horaFinal = null;
+		this.fecha = fecha;
+		this.empleado = empleado;
 	}
 	
 }

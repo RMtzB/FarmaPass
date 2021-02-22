@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.ServicioEmpleado;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 import mx.uam.ayd.proyecto.presentacion.altaBajaUsuarios.AltaUsuarios.ControlAltaUsuario;
+import mx.uam.ayd.proyecto.presentacion.ventasEmpleados.ControlVentasdeEmpleados;
 
 @Component
 public class ControlAltaYBajaUsuarios {
@@ -20,6 +21,10 @@ public class ControlAltaYBajaUsuarios {
 	
 	@Autowired
 	private ControlAltaUsuario controlAltaUsuario;
+	
+	@Autowired
+	private ControlVentasdeEmpleados controlVentasdeEmpleados;
+	
 	public void inicia() {
 		ventanaAltaYBaja.muestra(this);
 	}
@@ -51,7 +56,19 @@ public class ControlAltaYBajaUsuarios {
 			ventanaAltaYBaja.EliminarGerente();
 	}
 	
+	/***
+	 * Inicia HU-8
+	 * Pasa como parametro el nombre de usuario 
+	 * @param usuarioSeleccionado
+	 */
+	public void iniciaVerVentas(String usuarioSeleccionado) {
+		Empleado aux= servicioEmpleado.buscarEmpleado(usuarioSeleccionado);
+		controlVentasdeEmpleados.inicia(aux);
+		
+	}
 	
-	
+	public void termina() {
+		ventanaAltaYBaja.setVisible(false);
+	}
 
 }

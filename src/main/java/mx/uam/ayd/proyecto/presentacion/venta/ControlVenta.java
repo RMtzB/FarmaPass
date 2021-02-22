@@ -62,8 +62,8 @@ public class ControlVenta {
 	 * Inicia la historia de usuario: Agregar productos para la venta
 	 * 
 	 */
-	public void inicia() {
-		ventanaVenta.muestra(this);
+	public void inicia(String nom) {
+		ventanaVenta.muestra(this,nom);
 	}
 
 	/**
@@ -129,8 +129,7 @@ public class ControlVenta {
 	 */
 
 	/**
-	 * Método que se comunica con el control cobro para mostrar la ventana.
-	 * 
+	 * Inicia ventana de cobro pasando el total de ventas y el responsable de venta
 	 * @param total
 	 * @param cliente
 	 */
@@ -147,10 +146,12 @@ public class ControlVenta {
 		ventanaVenta.textTotal(precio);
 	}
 
+
 	/**
 	 * Método que obtien los producto de la venta
 	 * Modificado para poder asociar las ventas a los clintes 
 	 * @param total
+	 * @param responsable
 	 */
 	public void obtenerLista(float total, Cliente cliente) {
 		if (cliente == null) {
@@ -189,8 +190,10 @@ public class ControlVenta {
 		}
 	}
 
-	public void iniciarecarga() {
-		controlRecarga.iniciaRecarga();
+
+	
+	public void iniciarecarga(String usuario) {
+		controlRecarga.iniciaRecarga(usuario);
 	}
 
 	public void limpiarTabla() {

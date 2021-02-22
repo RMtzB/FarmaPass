@@ -31,6 +31,7 @@ public class ControlCobro {
 	 * Inicia historia de usuario: Forma de cobro
 	 * @param cliente 
 	 */
+
 	public void inicia(float total, Cliente cliente) {
 		ventanaCobro.muestra(this, total,cliente);
 	}
@@ -79,9 +80,6 @@ public class ControlCobro {
 	public void recibirCliente(Cliente cliente) {
 		
 	}
-
-
-
 	
 
 }
