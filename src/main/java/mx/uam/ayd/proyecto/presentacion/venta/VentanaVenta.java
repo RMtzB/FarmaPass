@@ -277,7 +277,7 @@ public class VentanaVenta extends JFrame {
 	}
 
 	/**
-	 * muestraDialogoConMensaje:
+	 * Metodo usado para dar mensajes de que una operacion se realizo con exito o fallo  
 	 * 
 	 * @param mensaje
 	 */

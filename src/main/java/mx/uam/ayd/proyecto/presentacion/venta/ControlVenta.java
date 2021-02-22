@@ -141,13 +141,13 @@ public class ControlVenta {
 	}
 
 
-	/**
-	 * obtenerLista: Método que obtien los producto de la venta
-	 * Modificado para poder asociar las ventas a los clintes
+
+/**
+	 * Método para obtener una lista de los productos de la venta modificado para pasar el cliente de ser necesario y el empleado para poder asociar la venta y mostrarlas despues
 	 * 
-	 * @param total
-	 * @param responsable
+	 * @param total,responsable,cliente
 	 */
+
 	public void obtenerLista(float total, String responsable, Cliente cliente) {
 		listaProductos = ventanaVenta.recorrerTabla();
 		Venta venta = new Venta();
@@ -217,9 +217,9 @@ public class ControlVenta {
 
 	
 	/**
-	 * buscarPorIdCliente: Método que obtien al cliente por su ID
+	 * buscarPorIdCliente: Método que a partir del ID del cliente lo busca y lo regresa de entre todos los clientes registrados
 	 * 
-	 * @param total
+	 * @param id
 	 */
 	public Cliente buscarPorIdCliente(int id) {
 		Cliente cliente = servicioCliente.obtenerCliente(id);

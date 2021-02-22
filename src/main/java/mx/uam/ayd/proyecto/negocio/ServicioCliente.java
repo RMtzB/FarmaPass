@@ -27,6 +27,12 @@ public class ServicioCliente {
 		return clienteRepository.findByPedidosCliente(pedidoCliente);
 	}
 	
+	/**
+	 * Guarda al cliente si es que se le asocio la venta 
+	 * 
+	 * @param cliente entidad de cliente a guardar
+	 */
+	
 	public boolean guardarCompraCliente(Cliente cliente) {
 		return clienteRepository.save(cliente) != null;
 	}

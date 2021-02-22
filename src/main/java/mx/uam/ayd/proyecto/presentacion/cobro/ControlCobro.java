@@ -28,9 +28,10 @@ public class ControlCobro {
 
 	/**
 	 * 
-	 * Inicia historia de usuario: Forma de cobro
-	 * @param cliente 
+	 * Inicia historia de usuario: Forma de cobro modificado para pasar al cliente (si es necesario) y al empleado para asociarles su respectiva venta
+	 * @param total,responsable,cliente inicia la ventana para el cobro
 	 */
+
 
 	public void inicia(float total, String responsable, Cliente cliente) {
 		ventanaCobro.muestra(this, total, responsable, cliente);
@@ -49,10 +50,11 @@ public class ControlCobro {
 	}
 
 	/**
-	 * Método para obtener un lista de los productos de la venta.
+	 * Método para obtener una lista de los productos de la venta modificado para pasar el cliente de ser necesario y el empleado para poder asociar la venta y mostrarlas despues
 	 * 
-	 * @param total
+	 * @param total,responsable,cliente
 	 */
+
 	public void obtenerLista(float total, String responsable, Cliente cliente) {
 		controlVenta.obtenerLista(total, responsable, cliente);
 	}
