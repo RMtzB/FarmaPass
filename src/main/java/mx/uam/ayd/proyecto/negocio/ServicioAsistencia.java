@@ -6,36 +6,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.datos.AsistenciaRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Asistencia;
 import mx.uam.ayd.proyecto.negocio.modelo.Empleado;
 
-@Slf4j
+/**
+ * Clase encargada de comunicarse con la capa de datos (AsistenciaRepository)
+ * 
+ * @author Raul Mb
+ * @since 15/02/2021
+ */
 @Service
 public class ServicioAsistencia {
 
 	@Autowired
 	private AsistenciaRepository asistenciaRepository;
 
+	/**
+	 * registroAsistencia: Método encargado de registrar la hora de entrada de un
+	 * empleado
+	 * 
+	 * @param horaInicial
+	 * @param fecha
+	 * @param empleado
+	 * @return true si la asistencia se guardó correctamente, false en caso
+	 *         contrario
+	 */
+	public boolean registroAsistencia(String horaInicial, String fecha, Empleado empleado) {
+		Asistencia asistencia = new Asistencia(empleado, horaInicial, fecha);
 
-	public void registroAsistencia(String horaInicial, String horaFinal, String fecha, Empleado empleado) {
-		Asistencia asistencia = new Asistencia();
-		asistencia.setHoraInicial(horaInicial);
-		asistencia.setHoraFinal(horaFinal);
-		asistencia.setFecha(fecha);
-		asistencia.setEmpleado(empleado);
-		asistenciaRepository.save(asistencia);
+		return asistenciaRepository.save(asistencia) != null;
 	}
 
 	/**
+	 * recuperarAsistencias: Recupera todas las asistencias guardadas
 	 * 
-	 * Recupera todos las Asistencias
-	 * 
-	 * @return
+	 * @return asistencias lista con todos los registros obtenidos
 	 */
-    // Metodo que recupera las asistencias 
-	public List<Asistencia> recuperarasistencia() {
+	public List<Asistencia> recuperarAsistencias() {
 		List<Asistencia> asistencias = new ArrayList<>();
 
 		for (Asistencia asistencia : asistenciaRepository.findAll()) {
@@ -44,20 +52,27 @@ public class ServicioAsistencia {
 
 		return asistencias;
 	}
+
 	/**
+	 * obtenerAsistenciaPorEmpleadoAndFecha: Método encargado de recuperar la
+	 * asistencia de un empleado en determinada fecha
 	 * 
-	 * Recupera todos las asistenciasPorEmpelado
-	 * 
-	 * @return
+	 * @param empleado
+	 * @param fecha
+	 * @return Asistencia el registro encontrado(para tal empleado, y dicha fecha)
 	 */
-
-	public List<Asistencia> obtenerAsistenciasPorEmpleado(Empleado empleado) {
-		return asistenciaRepository.findByEmpleado(empleado);
+	public Asistencia obtenerAsistenciaPorEmpleadoAndFecha(Empleado empleado, String fecha) {
+		return asistenciaRepository.findByEmpleadoAndFecha(empleado, fecha);
 	}
 
-	public void actualizar(Asistencia asistenciaAEditar) {
-		 asistenciaRepository.save(asistenciaAEditar);
+	/**
+	 * actualizar: Método encargado de modificar un registro de asistencia
+	 * 
+	 * @param asistenciaAEditar Asistencia modificada
+	 * @return true si la asistencia se modificó correctamente, false en caso
+	 *         contrario
+	 */
+	public boolean actualizar(Asistencia asistenciaAEditar) {
+		return asistenciaRepository.save(asistenciaAEditar) != null;
 	}
-
-
 }

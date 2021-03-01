@@ -46,5 +46,10 @@ public class ServicioEmpleado {
 		return true;
 		
 	}
+	
+	public Empleado buscarEmpleado(String usuarioSeleccionado) {
+			Empleado aux = empleadoRepository.findByUsuario(usuarioSeleccionado);
+			return aux;
+	}
 
 }

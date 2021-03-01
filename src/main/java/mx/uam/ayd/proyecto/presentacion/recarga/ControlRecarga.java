@@ -3,8 +3,12 @@ package mx.uam.ayd.proyecto.presentacion.recarga;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.presentacion.cobro.ControlCobro;
 
+/**
+ * @author
+ */
 @Component
 public class ControlRecarga {
 
@@ -17,38 +21,50 @@ public class ControlRecarga {
 	@Autowired
 	private ControlCobro controlCobro;
 	
-	/**
-	 * Inicia Historia de Usuario 4
-	 */
-	public void iniciaRecarga() {
-		ventanaRecarga.muestra(this);
-	}
 	
 	/**
-	 * Abre ventana de confirmacion  pasandole los datos de la recarga 
+	 * iniciaRecarga: Inicia Historia de Usuario
+	 * @param usuario
+	 */
+	public void iniciaRecarga(String usuario) {
+		ventanaRecarga.muestra(this,usuario);
+	}
+	
+	
+	/**
+	 * iniciaConfirmacion: Abre ventana de confirmacion  pasandole los datos de la recarga 
 	 * @param numero
 	 * @param compañia
 	 * @param monto
 	 */
-	public void iniciaConfirmacion(int numero, String compañia,int monto) {
-		ventanaConfirmacion.muestra(this, numero, compañia, monto);
-		
+	public void iniciaConfirmacion(int numero, String compañia,int monto,String responsable) {
+		ventanaConfirmacion.muestra(this, numero, compañia, monto,responsable);
 	}
 	
+	
+	/**
+	 * termina: 
+	 */
 	public void termina() {
 		ventanaRecarga.setVisible(false);
 	}
+	
+	
+	/**
+	 * terminaE: 
+	 */
 	public void terminaE() {
 		ventanaConfirmacion.setVisible(false);
 	}
+	
+	
 	/**
-	 * Pasa el cobro de la recarga
+	 * iniciaCobro: Pasa el cobro de la recarga
 	 * @param monto
+	 * @param responsable
+	 * @param cliente
 	 */
-	public void iniciaCobro (int monto) {
-		controlCobro.inicia(monto);
+	public void iniciaCobro (int monto, String responsable,Cliente cliente) {
+		controlCobro.inicia(monto, responsable, cliente);
 	}
-	/**
-	 * Termina historia de Usuario 4
-	 */
 }

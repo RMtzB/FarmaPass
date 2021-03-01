@@ -1,8 +1,5 @@
 package mx.uam.ayd.proyecto.presentacion.recarga;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -10,8 +7,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.springframework.stereotype.Component;
 
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
+import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,24 +19,29 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * @author
+ */
 @SuppressWarnings("serial")
 @Component
 public class VentanaConfirmacion extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textNumero;
 	private JTextField textMonto;
 	private JTextField textCompañia;
 	private ControlRecarga controlRecarga;
 	private JProgressBar progressBar;
+	private String usuario;
+	private Cliente cliente;
 
-	
 
 	/**
 	 * Create the frame.
 	 */
 	public VentanaConfirmacion() {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setTitle("Confirmacion");
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 626, 427);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,9 +98,8 @@ public class VentanaConfirmacion extends JFrame {
 		lblNewLabel.setBounds(160, 10, 266, 34);
 		contentPane.add(lblNewLabel);
 		
-		/*
-		 * Cuando se acepta se carga la recarga
-		 */
+
+
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,40 +120,52 @@ public class VentanaConfirmacion extends JFrame {
 				};
 				hilo.start();
 				
-				controlRecarga.iniciaCobro(Integer.valueOf(textMonto.getText()));
+				controlRecarga.iniciaCobro(Integer.valueOf(textMonto.getText()), usuario, cliente);
+
 				
 			}
 		});
+		
+		
+		
 		btnNewButton.setBounds(472, 304, 95, 30);
 		contentPane.add(btnNewButton);
 		
-		/**
-		 * Cierra la ventana de confirmacion para regresar a ventana de recarga
-		 */
+		
+		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlRecarga.terminaE();
 			}
 		});
+		
+		
+		
 		btnEditar.setBounds(330, 304, 95, 30);
 		contentPane.add(btnEditar);
 		
 		JLabel lblNewLabel_1 = new JLabel("Farmapass");
 		lblNewLabel_1.setBounds(10, 10, 65, 13);
 		contentPane.add(lblNewLabel_1);
-		
-		
-		
-	   
-		
 	}
-	public void muestra(ControlRecarga controlRecarga,int numero,String compañia,int monto) {
+	
+	
+	/**
+	 * muestra: 
+	 * 
+	 * @param controlRecarga
+	 * @param numero
+	 * @param compañia
+	 * @param monto
+	 * @param usuario
+	 */
+	public void muestra(ControlRecarga controlRecarga,int numero,String compañia,int monto,String usuario) {
 		this.controlRecarga = controlRecarga;
+		this.usuario=usuario;
 		textNumero.setText(String.valueOf(numero));
 		textCompañia.setText(compañia);
 		textMonto.setText(String.valueOf(monto));
 		setVisible(true);
-
 	}
 }
